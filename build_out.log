@@ -1,0 +1,159 @@
+﻿▲ Next.js 16.1.6 (Turbopack)
+
+  Creating an optimized production build ...
+node.exe : Error: 
+Cannot apply unknown 
+utility class `hover:sh
+adow-[0_0_30px_rgba(0,`
+At C:\Program Files\nod
+ejs\npx.ps1:29 char:3
++   & $NODE_EXE 
+$NPX_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (Error: Cannot   
+  a...0_30px_rgba(0    
+,`:String) [], Rem    
+oteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+    [2m[at 
+onInvalidCandidate (C:\
+MAMP\htdocs\ITV\streamp
+ro\node_modules\tailwin
+dcss\dist\lib.js:21:151
+1)][0m
+    [2m[at Ee (C:\MAMP
+\htdocs\ITV\streampro\n
+ode_modules\tailwindcss
+\dist\lib.js:16:36740)]
+[0m
+    [2m[at C:\MAMP\htd
+ocs\ITV\streampro\node_
+modules\tailwindcss\dis
+t\lib.js:21:355][0m
+    [2m[at Pr (C:\MAMP
+\htdocs\ITV\streampro\n
+ode_modules\tailwindcss
+\dist\lib.js:3:1733)][
+0m
+    [2m[at _ (C:\MAMP\
+htdocs\ITV\streampro\no
+de_modules\tailwindcss\
+dist\lib.js:3:1377)][0
+m
+    [2m[at Te (C:\MAMP
+\htdocs\ITV\streampro\n
+ode_modules\tailwindcss
+\dist\lib.js:21:172)][
+0m
+    [2m[at pn (C:\MAMP
+\htdocs\ITV\streampro\n
+ode_modules\tailwindcss
+\dist\lib.js:38:294)][
+0m
+    [2m[at async dn (C
+:\MAMP\htdocs\ITV\strea
+mpro\node_modules\tailw
+indcss\dist\lib.js:38:6
+31)][0m
+    [2m[at async Xr (C
+:\MAMP\htdocs\ITV\strea
+mpro\node_modules\@tail
+windcss\node\dist\index
+.js:10:3417)][0m
+    [2m[at async N (C:
+\MAMP\htdocs\ITV\stream
+pro\node_modules\@tailw
+indcss\postcss\dist\ind
+ex.js:10:3979)][0m
+
+> Build error occurred
+Error: Turbopack build 
+failed with 1 errors:
+./src/app/globals.css
+Error evaluating 
+Node.js code
+CssSyntaxError: 
+tailwindcss: C:\MAMP\ht
+docs\ITV\streampro\src\
+app\globals.css:1:1: 
+Cannot apply unknown 
+utility class `hover:sh
+adow-[0_0_30px_rgba(0,`
+    at Input.error (nod
+e_modules/postcss/lib/i
+nput.js:135:16) [C:\MAM
+P\htdocs\ITV\streampro\
+.next\build\chunks\node
+_modules_fe693df6._.js:
+4651:22]
+    at Root.error (node
+_modules/postcss/lib/no
+de.js:146:32) [C:\MAMP\
+htdocs\ITV\streampro\.n
+ext\build\chunks\node_m
+odules_fe693df6._.js:92
+8:38]
+    [at Object.Once (C:
+\MAMP\htdocs\ITV\stream
+pro\node_modules\@tailw
+indcss\postcss\dist\ind
+ex.js:10:6913)]
+    at async 
+LazyResult.runAsync (no
+de_modules/postcss/lib/
+lazy-result.js:293:11) 
+[C:\MAMP\htdocs\ITV\str
+eampro\.next\build\chun
+ks\node_modules_fe693df
+6._.js:6206:21]
+    at async transform 
+(turbopack:///[turbopac
+k-node]/transforms/post
+css.ts:70:34) [C:\MAMP\
+htdocs\ITV\streampro\.n
+ext\build\chunks\[root-
+of-the-server]__51225da
+f._.js:146:36]
+    at async run (turbo
+pack:///[turbopack-node
+]/ipc/evaluate.ts:92:23
+) [C:\MAMP\htdocs\ITV\s
+treampro\.next\build\ch
+unks\[root-of-the-serve
+r]__974941ed._.js:443:3
+1]
+
+Import trace:
+  Client Component 
+Browser:
+    
+./src/app/globals.css 
+[Client Component 
+Browser]
+    
+./src/app/layout.tsx 
+[Server Component]
+
+
+    at async transform 
+(turbopack:///[turbopac
+k-node]/transforms/post
+css.ts:70:34) [C:\MAMP\
+htdocs\ITV\streampro\.n
+ext\build\chunks\[root-
+of-the-server]__51225da
+f._.js:146:36])
+    at async run (turbo
+pack:///[turbopack-node
+]/ipc/evaluate.ts:92:23
+) [C:\MAMP\htdocs\ITV\s
+treampro\.next\build\ch
+unks\[root-of-the-serve
+r]__974941ed._.js:443:3
+1])

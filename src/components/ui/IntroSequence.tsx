@@ -29,19 +29,19 @@ export function IntroSequence({ onComplete }: { onComplete: () => void }) {
                 >
                     <div className="relative">
                         <motion.div
-                            initial={{ scale: 0.8, opacity: 0, filter: "blur(20px)" }}
-                            animate={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
-                            transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+                            initial={{ x: "-100vw", opacity: 0, rotate: -15, filter: "blur(40px)" }}
+                            animate={{ x: 0, opacity: 1, rotate: 0, filter: "blur(0px)" }}
+                            transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
                         >
-                            <Logo className="scale-150" showText={true} />
+                            <Logo className="scale-[2]" showText={true} />
                         </motion.div>
 
                         {/* Dramatic sweeping light effect */}
                         <motion.div
                             initial={{ x: "-100%", opacity: 0 }}
                             animate={{ x: "200%", opacity: [0, 1, 0] }}
-                            transition={{ duration: 2, delay: 0.5, ease: "easeInOut" }}
-                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12"
+                            transition={{ duration: 2.2, delay: 0.8, ease: "easeInOut" }}
+                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12"
                         />
                     </div>
                 </motion.div>

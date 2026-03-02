@@ -137,9 +137,16 @@ export default function PricingCard({ plan, index }: PricingCardProps) {
                 {/* Visual Security Seal */}
                 <div className="mt-10 pt-6 border-t border-white/5 flex items-center justify-between">
                     <div className="flex -space-x-2">
-                        {[1, 2, 3].map((i) => (
-                            <div key={i} className="h-6 w-6 rounded-full border-2 border-background bg-muted overflow-hidden">
-                                <img src={`https://i.pravatar.cc/100?u=${i + index}`} alt="User" />
+                        {[
+                            { id: 1, color: 'bg-primary' },
+                            { id: 2, color: 'bg-accent' },
+                            { id: 3, color: 'bg-emerald-500' }
+                        ].map((user) => (
+                            <div 
+                                key={user.id} 
+                                className={`h-6 w-6 rounded-full border-2 border-background ${user.color} flex items-center justify-center text-[8px] font-bold text-white`}
+                            >
+                                {String.fromCharCode(64 + user.id)}
                             </div>
                         ))}
                     </div>

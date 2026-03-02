@@ -34,7 +34,7 @@ export function Logo({ className = "", showText = true }: LogoProps) {
                         initial={{ pathLength: 0 }}
                         animate={{ pathLength: 1 }}
                         transition={{ duration: 2, ease: "easeInOut" }}
-                        d="M20 5L35 30H5L20 5Z"
+                        d="M32 20L12 32V8L32 20Z"
                         stroke="currentColor"
                         strokeWidth="1.5"
                     />
@@ -42,7 +42,7 @@ export function Logo({ className = "", showText = true }: LogoProps) {
                         initial={{ pathLength: 0, opacity: 0 }}
                         animate={{ pathLength: 1, opacity: 0.4 }}
                         transition={{ duration: 1.5, delay: 0.5, ease: "easeInOut" }}
-                        d="M20 5V30"
+                        d="M12 20H25"
                         stroke="currentColor"
                         strokeWidth="1"
                     />

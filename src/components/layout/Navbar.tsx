@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Zap } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
 
 const navLinks = [
@@ -44,10 +44,16 @@ export function Navbar() {
 
                     {/* Desktop CTA */}
                     <div className="hidden md:flex items-center gap-6">
-                        <Link href="/pricing" className="text-[13px] font-light tracking-widest text-secondary-foreground hover:text-primary transition-colors">
+                        <Link 
+                            href="/pricing" 
+                            className="text-[13px] font-light tracking-widest text-secondary-foreground hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 rounded"
+                        >
                             LOGIN
                         </Link>
-                        <Link href="/pricing" className="btn-primary !py-2.5 !px-7 !text-[11px] !rounded-lg hover:scale-105 active:scale-95">
+                        <Link 
+                            href="/pricing" 
+                            className="btn-primary !py-2.5 !px-7 !text-[11px] !rounded-lg hover:scale-105 active:scale-95 transition-transform focus:outline-none focus:ring-2 focus:ring-primary/50"
+                        >
                             GET STARTED
                         </Link>
                     </div>
@@ -55,9 +61,15 @@ export function Navbar() {
                     {/* Mobile Menu Button */}
                     <button
                         onClick={() => setMobileOpen(!mobileOpen)}
-                        className="md:hidden text-foreground p-2"
+                        className="md:hidden text-foreground p-2 rounded-lg hover:bg-white/5 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
+                        aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+                        aria-expanded={mobileOpen}
                     >
-                        {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                        {mobileOpen ? (
+                            <X className="h-5 w-5" />
+                        ) : (
+                            <Menu className="h-5 w-5" />
+                        )}
                     </button>
                 </div>
             </div>
@@ -72,21 +84,36 @@ export function Navbar() {
                         className="md:hidden glass-strong border-t border-white/[0.06] overflow-hidden"
                     >
                         <nav className="flex flex-col gap-1 p-4">
-                            {navLinks.map((link) => (
-                                <Link
+                            {navLinks.map((link, index) => (
+                                <motion.div
                                     key={link.href}
-                                    href={link.href}
-                                    onClick={() => setMobileOpen(false)}
-                                    className="text-sm font-medium text-secondary-foreground hover:text-foreground px-4 py-3 rounded-lg hover:bg-white/[0.04] transition-all"
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: index * 0.05 }}
                                 >
-                                    {link.label}
-                                </Link>
+                                    <Link
+                                        href={link.href}
+                                        onClick={() => setMobileOpen(false)}
+                                        className="text-sm font-medium text-secondary-foreground hover:text-foreground px-4 py-3 rounded-lg hover:bg-white/[0.04] transition-all block"
+                                    >
+                                        {link.label}
+                                    </Link>
+                                </motion.div>
                             ))}
-                            <div className="pt-4 border-t border-white/[0.06] mt-2 flex flex-col gap-3">
-                                <Link href="/pricing" className="btn-primary text-center">
+                            <motion.div
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: navLinks.length * 0.05 }}
+                                className="pt-4 border-t border-white/[0.06] mt-2 flex flex-col gap-3"
+                            >
+                                <Link 
+                                    href="/pricing" 
+                                    onClick={() => setMobileOpen(false)}
+                                    className="btn-primary text-center"
+                                >
                                     Get Started
                                 </Link>
-                            </div>
+                            </motion.div>
                         </nav>
                     </motion.div>
                 )}

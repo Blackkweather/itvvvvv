@@ -3,10 +3,12 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, CheckCheck, User, ShieldCheck } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 const testimonials = [
     {
         name: 'Marcus D.',
+        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
         time: '14:22',
         status: 'Delivered',
         text: "Yo, best IPTV service I've ever used. The 4K quality is insane and zero buffering even during the UCL games. ⚽🔥",
@@ -14,6 +16,7 @@ const testimonials = [
     },
     {
         name: 'Sarah M.',
+        avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face',
         time: '09:45',
         status: 'Read',
         text: "Just set it up on my Fire Stick, took like 3 mins. The channel list is huge! Happy with the service so far. Thanks guys! 🙌",
@@ -21,6 +24,7 @@ const testimonials = [
     },
     {
         name: 'Ahmed K.',
+        avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face',
         time: '21:10',
         status: 'Read',
         text: "Infinite Peak is the way to go. Most stable servers I've seen in Germany. No more cable for me! 🇩🇪💪",
@@ -28,6 +32,7 @@ const testimonials = [
     },
     {
         name: 'Lucia R.',
+        avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
         time: '18:30',
         status: 'Delivered',
         text: "Family is loving the movie VOD section. Everything in 4K with subs. Ultimate value! 🍿✨",

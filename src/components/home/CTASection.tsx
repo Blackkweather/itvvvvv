@@ -25,6 +25,16 @@ export function CTASection() {
                 <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[400px] h-[300px] bg-accent/[0.04] rounded-full blur-[120px]" />
                 {/* Grid pattern */}
                 <div className="absolute inset-0 bg-grid opacity-10" />
+                {/* Animated lines */}
+                <motion.div
+                    animate={{ backgroundPosition: ['0% 0%', '100% 100%'] }}
+                    transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+                    className="absolute inset-0 opacity-20"
+                    style={{
+                        backgroundImage: 'linear-gradient(45deg, transparent 40%, rgba(212,175,55,0.1) 50%, transparent 60%)',
+                        backgroundSize: '200% 200%'
+                    }}
+                />
             </div>
 
             <div className="section-padding relative z-10">

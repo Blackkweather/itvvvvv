@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft, Clock, Calendar } from 'lucide-react';
 import { useParams } from 'next/navigation';
 
@@ -11,12 +12,14 @@ const blogContent: Record<string, {
     readTime: string;
     date: string;
     content: string[];
+    image: string;
 }> = {
     'what-is-iptv-complete-guide': {
         title: 'What is IPTV? The Complete Guide for Beginners',
         category: 'Guides',
         readTime: '8 min read',
         date: 'February 28, 2026',
+        image: 'https://images.unsplash.com/photo-1593784991095-a205069470b6?w=1200&h=600&fit=crop',
         content: [
             'IPTV, or Internet Protocol Television, is a system where television services are delivered using the internet protocol suite over a packet-switched network such as a LAN or the internet, instead of being delivered through traditional terrestrial, satellite, or cable television formats.',
             'Unlike traditional TV that broadcasts content in real-time, IPTV gives you the power to stream your favorite content on demand. Think of it like Netflix or Hulu, but with access to thousands of live TV channels from around the world in addition to on-demand movies and series.',
@@ -36,6 +39,7 @@ const blogContent: Record<string, {
         category: 'Tutorials',
         readTime: '5 min read',
         date: 'February 25, 2026',
+        image: 'https://images.unsplash.com/photo-1593784991095-a205069470b6?w=1200&h=600&fit=crop',
         content: [
             'Setting up StreamPro on your Amazon Fire Stick is incredibly simple. Follow these 5 easy steps and you\'ll be streaming in no time.',
             '## Step 1: Enable Apps from Unknown Sources',
@@ -59,6 +63,7 @@ const defaultContent = {
     category: 'Blog',
     readTime: '3 min read',
     date: 'March 2026',
+    image: 'https://images.unsplash.com/photo-1593784991095-a205069470b6?w=1200&h=600&fit=crop',
     content: [
         'This article is currently being written by our team. Check back soon for the full content!',
         'In the meantime, browse our other articles or visit our FAQ section for answers to common questions about StreamPro and IPTV services.',
@@ -78,7 +83,7 @@ export default function BlogPostPage() {
                     <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-accent/[0.04] rounded-full blur-[150px]" />
                 </div>
 
-                <div className="section-padding relative z-10">
+                <div className="section-padding relative z-10 text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -104,7 +109,7 @@ export default function BlogPostPage() {
                             </span>
                         </div>
 
-                        <h1 className="text-3xl md:text-5xl font-bold tracking-tight max-w-3xl">
+                        <h1 className="text-3xl md:text-5xl font-bold tracking-tight max-w-3xl text-center mx-auto">
                             {post.title}
                         </h1>
                     </motion.div>
@@ -113,11 +118,28 @@ export default function BlogPostPage() {
 
             {/* Content */}
             <section className="section-padding pb-24 md:pb-32">
+                {/* Featured Image */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="relative w-full h-[300px] md:h-[400px] rounded-2xl overflow-hidden mb-12"
+                >
+                    <Image
+                        src={post.image}
+                        alt={post.title}
+                        fill
+                        className="object-cover"
+                        unoptimized={true}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+                </motion.div>
+
                 <motion.article
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="max-w-3xl prose-custom"
+                    className="max-w-3xl mx-auto prose-custom"
                 >
                     {post.content.map((paragraph, i) => {
                         if (paragraph.startsWith('## ')) {

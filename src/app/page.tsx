@@ -5,11 +5,13 @@ import { DevicesSection } from '@/components/home/DevicesSection';
 import { TestimonialsSection } from '@/components/home/TestimonialsSection';
 import { FAQSection } from '@/components/home/FAQSection';
 import { CTASection } from '@/components/home/CTASection';
+import { LiveTicker } from '@/components/ui/LiveTicker';
 
 export default function Home() {
   return (
     <div className="min-h-screen">
       <HeroBanner />
+      <LiveTicker />
       <ContentExplorer />
       <FeaturesSection />
       <DevicesSection />

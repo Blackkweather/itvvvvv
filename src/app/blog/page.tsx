@@ -2,7 +2,9 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, Clock } from 'lucide-react';
+import { useState } from 'react';
 
 const blogPosts = [
     {
@@ -13,6 +15,7 @@ const blogPosts = [
         readTime: '8 min',
         date: 'Feb 28, 2026',
         gradient: 'from-primary/20 to-blue-600/20',
+        image: '/images/posters/House-of-dragon.png',
     },
     {
         slug: 'how-to-setup-iptv-fire-stick',
@@ -22,6 +25,7 @@ const blogPosts = [
         readTime: '5 min',
         date: 'Feb 25, 2026',
         gradient: 'from-accent/20 to-purple-600/20',
+        image: '/images/posters/Squid-game.png',
     },
     {
         slug: 'best-iptv-players-2026',
@@ -31,6 +35,7 @@ const blogPosts = [
         readTime: '6 min',
         date: 'Feb 20, 2026',
         gradient: 'from-emerald-500/20 to-green-600/20',
+        image: '/images/posters/The-witcher.png',
     },
     {
         slug: 'iptv-vs-cable-tv',
@@ -40,6 +45,7 @@ const blogPosts = [
         readTime: '7 min',
         date: 'Feb 15, 2026',
         gradient: 'from-rose-500/20 to-pink-600/20',
+        image: '/images/posters/premier-league.png',
     },
     {
         slug: 'how-to-fix-iptv-buffering',
@@ -49,6 +55,7 @@ const blogPosts = [
         readTime: '6 min',
         date: 'Feb 10, 2026',
         gradient: 'from-amber-500/20 to-orange-600/20',
+        image: '/images/posters/Champions-league.png',
     },
     {
         slug: 'vpn-for-iptv-guide',
@@ -58,6 +65,7 @@ const blogPosts = [
         readTime: '5 min',
         date: 'Feb 5, 2026',
         gradient: 'from-sky-500/20 to-cyan-600/20',
+        image: '/images/posters/NFL.png',
     },
 ];
 
@@ -99,7 +107,7 @@ export default function BlogPage() {
 
             {/* Blog Grid */}
             <section className="section-padding pb-24 md:pb-32">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                     {blogPosts.map((post, i) => (
                         <motion.article
                             key={post.slug}
@@ -111,15 +119,22 @@ export default function BlogPage() {
                                 href={`/blog/${post.slug}`}
                                 className="block group rounded-2xl glass card-hover overflow-hidden h-full"
                             >
-                                {/* Thumbnail area */}
-                                <div className={`h-44 bg-gradient-to-br ${post.gradient} flex items-center justify-center relative overflow-hidden`}>
+                                {/* Thumbnail area with real image */}
+                                <div className="h-44 bg-gradient-to-br relative overflow-hidden">
                                     <div className="absolute inset-0 bg-grid opacity-30" />
-                                    <span className="relative z-10 text-4xl font-bold text-white/20 select-none">SP</span>
+                                    <Image 
+                                        src={post.image}
+                                        alt={post.title}
+                                        fill
+                                        className="object-cover group-hover:scale-110 transition-transform duration-700"
+                                        unoptimized={true}
+                                    />
+                                    <div className={`absolute inset-0 bg-gradient-to-br ${post.gradient} opacity-80`} />
                                 </div>
 
                                 {/* Content */}
-                                <div className="p-6">
-                                    <div className="flex items-center gap-3 mb-3">
+                                <div className="p-6 text-center">
+                                    <div className="flex items-center justify-center gap-3 mb-3 flex-wrap">
                                         <span className="text-[10px] font-bold uppercase tracking-wider text-primary px-2.5 py-1 rounded-full bg-primary/[0.1]">
                                             {post.category}
                                         </span>
@@ -129,14 +144,14 @@ export default function BlogPage() {
                                         </span>
                                     </div>
 
-                                    <h2 className="font-semibold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                                    <h2 className="font-semibold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2 text-center">
                                         {post.title}
                                     </h2>
-                                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-4">
+                                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-4 text-center">
                                         {post.excerpt}
                                     </p>
 
-                                    <div className="flex items-center justify-between">
+                                    <div className="flex items-center justify-center gap-4">
                                         <span className="text-xs text-muted-foreground">{post.date}</span>
                                         <span className="text-xs font-medium text-primary flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                                             Read <ArrowRight className="h-3 w-3" />

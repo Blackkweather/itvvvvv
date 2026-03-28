@@ -28,61 +28,352 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("http://localhost:3000"),
-  title: "StreamPro — Absolute Peak of 4K IPTV | Best IPTV Subscription 2026",
+  metadataBase: new URL("https://streampro.space"),
+  title: {
+    default: "StreamPro — Best Premium IPTV Service | 15,000+ Live Channels",
+    template: "%s | StreamPro",
+  },
   description:
-    "StreamPro is the world's leading premium IPTV provider. 15,000+ live 4K channels, 60,000+ VODs, Anti-Freeze 2.0 technology. Experience the future of television with zero buffering.",
-  keywords: "best iptv subscription 2026, premium iptv service, 4k iptv provider, best apple tv iptv app, firestick iptv setup, streampro review, cable tv alternative",
+    "StreamPro offers the best IPTV service with 15,000+ live channels, movies, sports, and VOD. Watch NFL, NBA, Premier League, and more in HD. 24/7 support. Starting at $9.99/month.",
+  keywords: [
+    "IPTV",
+    "best IPTV service",
+    "live TV streaming",
+    "sports streaming",
+    "movie streaming",
+    "premium IPTV",
+    "watch NFL live",
+    "watch NBA live",
+    "Premier League streaming",
+    "Netflix alternative",
+    "cord cutting",
+    "streaming service",
+    "IPTV subscription",
+    "live sports streaming",
+    "HD TV channels",
+  ],
+  authors: [{ name: "StreamPro" }],
+  creator: "StreamPro",
+  publisher: "StreamPro",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
-    title: "StreamPro — Premium 4K IPTV Ecosystem",
-    description: "The absolute peak of television technology. 15,000+ channels in crystal clear 4K.",
-    images: ["/og-image.jpg"],
+    type: "website",
+    locale: "en_US",
+    url: "https://streampro.space",
+    siteName: "StreamPro",
+    title: "StreamPro — Best Premium IPTV Service | 15,000+ Live Channels",
+    description: "StreamPro offers the best IPTV service with 15,000+ live channels, movies, sports, and VOD. Watch NFL, NBA, Premier League, and more in HD.",
+    images: [
+      {
+        url: "https://streampro.space/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "StreamPro - Premium IPTV Service",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "StreamPro — Premium 4K IPTV",
-    description: "15,000+ channels in crystal clear 4K. Zero buffering.",
+    title: "StreamPro — Best Premium IPTV Service",
+    description: "15,000+ live channels, movies, sports. Watch NFL, NBA, Premier League in HD.",
+    creator: "@streampro",
+    images: ["https://streampro.space/og-image.png"],
   },
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "black-translucent",
-    title: "StreamPro",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
-  formatDetection: {
-    telephone: false,
+  alternates: {
+    canonical: "https://streampro.space",
+    languages: {
+      "en-US": "https://streampro.space",
+      "en-GB": "https://streampro.space/en-gb",
+      "es": "https://streampro.space/es",
+      "fr": "https://streampro.space/fr",
+      "de": "https://streampro.space/de",
+      "it": "https://streampro.space/it",
+    },
   },
+  category: "technology",
+  classification: "IPTV Service",
 };
 
 import { CinematicWrapper } from "@/components/layout/CinematicWrapper";
+import { StealthCloak } from "@/components/ui/RedditCloak";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = {
+  // Enhanced JSON-LD for Organization and Product
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "StreamPro",
+    "url": "https://streampro.space",
+    "description": "Premium IPTV streaming service with 15,000+ live channels worldwide including sports, movies, and entertainment",
+    "logo": "https://streampro.space/logo.png",
+    "foundingDate": "2024",
+    "areaServed": {
+      "@type": "Place",
+      "name": "Worldwide"
+    },
+    "serviceType": ["IPTV", "Streaming Service", "Video on Demand"],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+1-800-STREAM-PRO",
+      "contactType": "customer service",
+      "available24Hours": true,
+      "contactOption": ["TollFree", "HearingImpairedAccessible"]
+    },
+    "sameAs": [
+      "https://twitter.com/streampro",
+      "https://facebook.com/streampro",
+      "https://instagram.com/streampro",
+      "https://youtube.com/@streampro",
+      "https://reddit.com/r/streampro"
+    ],
+    "potentialAction": {
+      "@type": "ViewAction",
+      "target": "https://streampro.space/pricing",
+      "name": "View Pricing"
+    }
+  };
+
+  const productSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
-    "name": "StreamPro IPTV",
-    "description": "Premium 4K IPTV Service with 35,000+ Live Channels",
+    "name": "StreamPro Premium IPTV Subscription",
+    "description": "Premium IPTV service with 15,000+ live channels, 50,000+ VOD titles, movies, sports in HD/4K quality",
     "brand": {
       "@type": "Brand",
       "name": "StreamPro"
     },
     "offers": {
-      "@type": "Offer",
-      "priceCurrency": "EUR",
-      "price": "9.99"
+      "@type": "AggregateOffer",
+      "lowPrice": "9.99",
+      "highPrice": "19.99",
+      "priceCurrency": "USD",
+      "offerCount": 3,
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Basic Plan",
+          "price": "9.99",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://streampro.space/pricing"
+        },
+        {
+          "@type": "Offer",
+          "name": "Premium Plan",
+          "price": "14.99",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://streampro.space/pricing"
+        },
+        {
+          "@type": "Offer",
+          "name": "Ultimate Plan",
+          "price": "19.99",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://streampro.space/pricing"
+        }
+      ]
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "2500",
+      "bestRating": "5"
+    },
+    "category": "Entertainment",
+    "additionalProperty": [
+      {
+        "@type": "PropertyValue",
+        "name": "Channel Count",
+        "value": "15000+"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Video Quality",
+        "value": "HD, FHD, 4K"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Simultaneous Connections",
+        "value": "2-4"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "24/7 Support",
+        "value": "Yes"
+      }
+    ]
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "name": "StreamPro FAQ - Frequently Asked Questions",
+    "description": "Answers to common questions about StreamPro IPTV service, compatible devices, pricing, and technical support.",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is streaming and how does StreamPro work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Streaming delivers TV content over the internet instead of traditional satellite or cable. StreamPro uses advanced streaming servers to deliver live channels and on-demand content directly to your devices through our app or compatible players."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which devices are compatible with StreamPro?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "StreamPro works on virtually any device: Smart TVs (Samsung, LG, Sony, Android TV), Amazon Fire Stick & Fire TV, Roku, Apple TV, iOS & Android phones and tablets, Windows & macOS computers, and any device that supports streaming apps."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is anti-freeze technology?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our proprietary anti-freeze technology uses adaptive bitrate streaming, intelligent CDN routing, and pre-buffering algorithms to eliminate freezing and buffering. Even on connections as low as 10 Mbps, you'll enjoy smooth, uninterrupted streaming."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many devices can I use at the same time?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Each StreamPro subscription supports up to 4 simultaneous connections. This means your family can watch different channels on different devices at the same time — all from one account."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you offer a free trial?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! We offer a 24-hour free trial so you can test the service quality, channel selection, and streaming performance before committing. No credit card required for the trial. Simply sign up and start watching."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What payment methods do you accept?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We accept all major credit and debit cards (Visa, Mastercard, Amex), PayPal, cryptocurrency (Bitcoin, Ethereum), and bank transfers. All transactions are encrypted and secure."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if a channel goes down?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We monitor all channels 24/7 with automated health checks. If a channel experiences issues, our system automatically switches to a backup source. Our team typically resolves channel issues within minutes. You can also report issues through our support for priority handling."
+        }
+      }
+    ]
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "StreamPro",
+    "url": "https://streampro.space",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://streampro.space/search?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
     }
   };
 
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        {/* Organization Schema */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
+        {/* Product Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+        />
+        {/* FAQ Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+        {/* Website Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+        {/* Google Tag Manager */}
+        {/* Google Consent Mode - Default denied */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('consent', 'default', {
+              'ad_storage': 'denied',
+              'ad_user_data': 'denied',
+              'ad_personalization': 'denied',
+              'analytics_storage': 'denied',
+              'wait_for_update': 500
+            });
+            gtag('set', 'ads_data_redaction', true);`,
+          }}
+        />
+        <script
+          async
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-55JBSLGB"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-55JBSLGB');`,
+          }}
+        />
+        {/* End Google Tag Manager */}
+        {/* Google Analytics 4 */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-X53CZV12VT"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-X53CZV12VT', {
+              'ads_data_redaction': true
+            });`,
+          }}
+        />
+        {/* End Google Analytics 4 */}
         {/* Skip to main content link for accessibility */}
         <style>{`
           .skip-link {
@@ -105,10 +396,22 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground selection:bg-primary/30 min-h-screen flex flex-col relative`}
       >
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-55JBSLGB"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+        {/* End Google Tag Manager (noscript) */}
         <a href="#main-content" className="skip-link">Skip to main content</a>
         {/* Noise overlay for cinematic feel */}
         <div className="noise-overlay" aria-hidden="true" />
-        <CinematicWrapper>{children}</CinematicWrapper>
+        <StealthCloak>
+          <CinematicWrapper>{children}</CinematicWrapper>
+        </StealthCloak>
       </body>
     </html>
   );

@@ -2,9 +2,11 @@
 
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, Sparkles, ChevronDown } from 'lucide-react';
+import { ArrowRight, Sparkles, ChevronDown, MessageCircle } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import Magnetic from '@/components/ui/Magnetic';
+import dynamic from 'next/dynamic';
+
+const Magnetic = dynamic(() => import('@/components/ui/Magnetic'), { ssr: false });
 
 export function HeroBanner() {
     const mouseX = useMotionValue(0);
@@ -41,14 +43,14 @@ export function HeroBanner() {
     };
 
     const itemVariants = {
-        hidden: { opacity: 0, scale: 1.1, filter: 'blur(40px)' },
+        hidden: { opacity: 0, scale: 1.1, filter: 'blur(40px)' } as const,
         visible: {
             opacity: 1,
             scale: 1,
-            filter: 'blur(0px)',
-            transition: { duration: 2, ease: [0.22, 1, 0.36, 1] },
+            filter: 'blur(0px)' as const,
+            transition: { duration: 2, ease: [0.22, 1, 0.36, 1] as const },
         },
-    } as any;
+    };
 
     return (
         <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden">
@@ -129,8 +131,8 @@ export function HeroBanner() {
                         variants={itemVariants}
                         className="text-sm md:text-base text-secondary-foreground max-w-2xl mx-auto mb-14 leading-relaxed font-medium uppercase tracking-widest"
                     >
-                        The world's most stable enterprise streaming network.
-                        No buffering. No compromises. Just absolute dominance.
+                        Expert technical support for all your streaming needs.
+                        Optimized solutions. 24/7 assistance. Just ask.
                     </motion.p>
 
                     {/* Minimalist CTAs */}
@@ -139,13 +141,13 @@ export function HeroBanner() {
                         className="flex flex-col sm:flex-row items-center justify-center gap-4"
                     >
                         <Magnetic strength={0.1}>
-                            <Link href="/pricing" className="bg-white text-black px-10 py-4 rounded font-bold text-xs uppercase tracking-widest hover:bg-white/90 transition-all duration-300">
-                                WATCH NOW
-                            </Link>
+                            <a href="https://wa.me/yournumber" className="bg-white text-black px-10 py-4 rounded font-bold text-xs uppercase tracking-widest hover:bg-white/90 transition-all duration-300">
+                                CHAT ON WHATSAPP
+                            </a>
                         </Magnetic>
                         <Magnetic strength={0.1}>
-                            <a href="#browse" className="bg-transparent border border-white/20 text-white px-10 py-4 rounded font-bold text-xs uppercase tracking-widest hover:bg-white/5 transition-all duration-300">
-                                EXPLORE
+                            <a href="https://t.me/yourbot" className="bg-transparent border border-white/20 text-white px-10 py-4 rounded font-bold text-xs uppercase tracking-widest hover:bg-white/5 transition-all duration-300">
+                                TELEGRAM
                             </a>
                         </Magnetic>
                     </motion.div>
@@ -157,15 +159,15 @@ export function HeroBanner() {
                     >
                         <div className="flex items-center gap-3">
                             <div className="h-2 w-2 rounded-full bg-success shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
-                            <span>Global Network: Online</span>
+                            <span>Support Team: Online</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <span className="text-foreground font-bold text-base">500TB+</span>
-                            <span>Daily Traffic</span>
+                            <span className="text-foreground font-bold text-base">24/7</span>
+                            <span>Available</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <span className="text-foreground font-bold text-base">4.98/5</span>
-                            <span>Satisfaction</span>
+                            <span className="text-foreground font-bold text-base">1hr</span>
+                            <span>Response Time</span>
                         </div>
                     </motion.div>
                 </div>

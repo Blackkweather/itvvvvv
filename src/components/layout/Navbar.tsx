@@ -3,21 +3,24 @@
 import Link from 'next/link';
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Home, Play, Zap, BookOpen } from 'lucide-react';
+import { Menu, X, Home, Play, Zap, BookOpen, Info } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
 
 const navLinks = [
     { label: 'Browse', href: '#browse', icon: Play },
+    { label: 'Trailers', href: '/trailers', icon: Play },
     { label: 'Features', href: '#features', icon: Zap },
     { label: 'Pricing', href: '/pricing', icon: Zap },
-    { label: 'Blog', href: '/blog', icon: BookOpen },
+    { label: 'Resources', href: '/blog', icon: BookOpen },
+    { label: 'About', href: '/about', icon: Info },
 ];
 
 const bottomNavItems = [
     { label: 'Home', href: '/', icon: Home },
+    { label: 'Trailers', href: '/trailers', icon: Play },
     { label: 'Browse', href: '#browse', icon: Play },
     { label: 'Pricing', href: '/pricing', icon: Zap },
-    { label: 'Blog', href: '/blog', icon: BookOpen },
+    { label: 'Resources', href: '/blog', icon: BookOpen },
 ];
 
 export function Navbar() {

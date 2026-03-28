@@ -4,7 +4,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Layout, Zap, Globe, Package, Cpu } from 'lucide-react';
 import Link from 'next/link';
-import Magnetic from '@/components/ui/Magnetic';
+import dynamic from 'next/dynamic';
+
+const Magnetic = dynamic(() => import('@/components/ui/Magnetic'), { ssr: false });
 
 const resellerFeatures = [
     {
@@ -59,7 +61,7 @@ export default function ResellerPage() {
                         className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-[0.9] mb-10"
                     >
                         Build Your Own <br />
-                        <span className="gradient-text-gold">IPTV Empire</span>
+                        <span className="gradient-text-gold">Streaming Empire</span>
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -67,7 +69,7 @@ export default function ResellerPage() {
                         transition={{ delay: 0.1 }}
                         className="text-xl text-secondary-foreground font-light leading-relaxed uppercase tracking-[0.05em] max-w-2xl"
                     >
-                        Become a StreamPro Reseller and access the world's most stable streaming infrastructure.
+                        Become a StreamPro Reseller and access the world&apos;s most stable streaming infrastructure.
                         The only provider designed for professional scale.
                     </motion.p>
                 </div>
@@ -101,7 +103,7 @@ export default function ResellerPage() {
                         <p className="text-secondary-foreground font-light uppercase tracking-widest">Pricing starts from $2,500 for initial credit bundles.</p>
                     </div>
                     <Magnetic strength={0.2}>
-                        <Link href="#" className="btn-primary !px-16 !py-6 !text-[13px] !tracking-[0.4em]">
+                        <Link href="https://wa.me/YOURNUMBER" className="btn-primary !px-16 !py-6 !text-[13px] !tracking-[0.4em]">
                             CONTACT SALES
                         </Link>
                     </Magnetic>

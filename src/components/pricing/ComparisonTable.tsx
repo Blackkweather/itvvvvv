@@ -31,7 +31,7 @@ export default function ComparisonTable() {
                         <tr className="border-b border-white/10">
                             <th className="p-6 text-sm font-bold uppercase tracking-wider text-muted-foreground">Feature</th>
                             <th className="p-6 text-sm font-bold uppercase tracking-wider text-primary text-center bg-primary/5">StreamPro</th>
-                            <th className="p-6 text-sm font-bold uppercase tracking-wider text-muted-foreground text-center">Generic IPTV</th>
+                            <th className="p-6 text-sm font-bold uppercase tracking-wider text-muted-foreground text-center">Generic Streaming</th>
                             <th className="p-6 text-sm font-bold uppercase tracking-wider text-muted-foreground text-center">Cable TV</th>
                         </tr>
                     </thead>

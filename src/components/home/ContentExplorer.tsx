@@ -5,6 +5,14 @@ import { Play, Info, ChevronRight, Star, Zap, Globe, Smartphone, Film, Tv } from
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 
+// Type definition for poster
+interface Poster {
+    id: number;
+    img: string;
+    title: string;
+    quality: string;
+}
+
 // Local movie posters from geniustv-v2 repo
 const contentRows = [
     {
@@ -175,7 +183,7 @@ export function ContentExplorer() {
     );
 }
 
-function PosterCard({ poster, index }: { poster: any; index: number }) {
+function PosterCard({ poster, index }: { poster: Poster; index: number }) {
     const [isLoading, setIsLoading] = useState(true);
     const [hasError, setHasError] = useState(false);
     const [isHovered, setIsHovered] = useState(false);

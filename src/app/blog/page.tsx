@@ -8,6 +8,56 @@ import { useState } from 'react';
 
 const blogPosts = [
     {
+        slug: 'cord-cutting-bible-2026',
+        title: 'The 2026 Cord-Cutting Bible: How to Build a 4K Home Cinema for Under $50',
+        excerpt: 'The ultimate guide to cutting cable TV forever. Build a complete 4K home cinema system with IPTV for under $50/month and access 15,000+ channels worldwide.',
+        category: 'Ultimate Guide',
+        readTime: '15 min',
+        date: 'Mar 15, 2026',
+        gradient: 'from-emerald-500/20 to-green-600/20',
+        image: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=1200&h=675&fit=crop&v=2',
+    },
+    {
+        slug: 'h265-vs-av1-codec-comparison',
+        title: 'H.265 vs. AV1: Why Your Streaming Quality Depends on Codec Efficiency',
+        excerpt: 'A technical deep-dive into video codecs. Learn why H.265 and AV1 are revolutionizing streaming quality and how they impact your IPTV experience.',
+        category: 'Technical Deep-Dive',
+        readTime: '12 min',
+        date: 'Mar 12, 2026',
+        gradient: 'from-violet-500/20 to-purple-600/20',
+        image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&h=675&fit=crop&v=2',
+    },
+    {
+        slug: 'best-iptv-players-android-tv-benchmark',
+        title: 'Top 10 IPTV Players for Android TV: A Performance Benchmarking Study',
+        excerpt: 'We benchmarked the top 10 IPTV players on Android TV. See which apps deliver the best performance, lowest buffering, and smoothest 4K playback.',
+        category: 'Comparison Matrix',
+        readTime: '14 min',
+        date: 'Mar 14, 2026',
+        gradient: 'from-amber-500/20 to-orange-600/20',
+        image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&h=675&fit=crop&v=2',
+    },
+    {
+        slug: 'traffic-creator-review',
+        title: 'Traffic Creator Review 2026: Boost Your SEO with Quality Backlinks',
+        excerpt: 'Discover how Traffic Creator can help you build high-authority backlinks and increase your website traffic. A complete review of this SEO tool.',
+        category: 'Reviews',
+        readTime: '8 min',
+        date: 'Mar 10, 2026',
+        gradient: 'from-primary/20 to-blue-600/20',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=675&fit=crop&v=2',
+    },
+    {
+        slug: 'best-iptv-service-2026',
+        title: 'Best IPTV Service 2026: Complete Comparison & Reviews',
+        excerpt: 'Discover the top IPTV providers in 2026. StreamPro leads with 15,000+ 4K channels, 60,000+ VODs, and zero buffering technology.',
+        category: 'Reviews',
+        readTime: '10 min',
+        date: 'Mar 8, 2026',
+        gradient: 'from-primary/20 to-blue-600/20',
+        image: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=1200&h=675&fit=crop&v=2',
+    },
+    {
         slug: 'what-is-iptv-complete-guide',
         title: 'What is IPTV? The Complete Guide for Beginners',
         excerpt: 'Everything you need to know about IPTV technology, how it works, and why it\'s the future of television entertainment.',
@@ -15,7 +65,17 @@ const blogPosts = [
         readTime: '8 min',
         date: 'Feb 28, 2026',
         gradient: 'from-primary/20 to-blue-600/20',
-        image: '/images/posters/House-of-dragon.png',
+        image: 'https://images.unsplash.com/photo-1593784991095-a205069470b6?w=1200&h=675&fit=crop&v=2',
+    },
+    {
+        slug: '4k-iptv-ultimate-guide',
+        title: '4K IPTV: The Ultimate Streaming Experience in 2026',
+        excerpt: 'Experience crystal-clear 4K streaming with StreamPro. Learn about 4K IPTV benefits, requirements, and best practices.',
+        category: 'Technology',
+        readTime: '7 min',
+        date: 'Mar 5, 2026',
+        gradient: 'from-sky-500/20 to-cyan-600/20',
+        image: 'https://images.unsplash.com/photo-1535016120720-40c646be5580?w=1200&h=675&fit=crop&v=2',
     },
     {
         slug: 'how-to-setup-iptv-fire-stick',
@@ -25,7 +85,17 @@ const blogPosts = [
         readTime: '5 min',
         date: 'Feb 25, 2026',
         gradient: 'from-accent/20 to-purple-600/20',
-        image: '/images/posters/Squid-game.png',
+        image: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=1200&h=675&fit=crop&v=2',
+    },
+    {
+        slug: 'premium-iptv-subscription',
+        title: 'Premium IPTV Subscription: Worth the Investment?',
+        excerpt: 'Is a premium IPTV subscription worth it? We analyze costs, features, channel selection, and compare to cable alternatives.',
+        category: 'Guides',
+        readTime: '6 min',
+        date: 'Mar 3, 2026',
+        gradient: 'from-amber-500/20 to-orange-600/20',
+        image: 'https://images.unsplash.com/photo-1574375927938-d5a98e8d7e28?w=1200&h=675&fit=crop&v=2',
     },
     {
         slug: 'best-iptv-players-2026',
@@ -35,7 +105,7 @@ const blogPosts = [
         readTime: '6 min',
         date: 'Feb 20, 2026',
         gradient: 'from-emerald-500/20 to-green-600/20',
-        image: '/images/posters/The-witcher.png',
+        image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&h=675&fit=crop&v=2',
     },
     {
         slug: 'iptv-vs-cable-tv',
@@ -45,7 +115,17 @@ const blogPosts = [
         readTime: '7 min',
         date: 'Feb 15, 2026',
         gradient: 'from-rose-500/20 to-pink-600/20',
-        image: '/images/posters/premier-league.png',
+        image: 'https://images.unsplash.com/photo-1593784991095-a205069470b6?w=1200&h=675&fit=crop&v=2',
+    },
+    {
+        slug: 'live-sports-streaming-iptv',
+        title: 'Live Sports Streaming: Best IPTV for Sports Fans 2026',
+        excerpt: 'Watch NFL, NBA, Champions League, UFC and more live in 4K. Discover the best IPTV service for sports enthusiasts.',
+        category: 'Sports',
+        readTime: '8 min',
+        date: 'Mar 1, 2026',
+        gradient: 'from-red-500/20 to-orange-600/20',
+        image: 'https://images.unsplash.com/photo-1461896836934-eba09c2a1c06?w=1200&h=675&fit=crop&v=2',
     },
     {
         slug: 'how-to-fix-iptv-buffering',
@@ -55,7 +135,17 @@ const blogPosts = [
         readTime: '6 min',
         date: 'Feb 10, 2026',
         gradient: 'from-amber-500/20 to-orange-600/20',
-        image: '/images/posters/Champions-league.png',
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=675&fit=crop&v=2',
+    },
+    {
+        slug: 'iptv-smart-tv-setup',
+        title: 'How to Set Up IPTV on Samsung & LG Smart TVs',
+        excerpt: 'Complete guide to installing IPTV on Samsung Smart TV, LG TV, Android TV, and Apple TV. Step-by-step instructions.',
+        category: 'Tutorials',
+        readTime: '7 min',
+        date: 'Feb 22, 2026',
+        gradient: 'from-indigo-500/20 to-purple-600/20',
+        image: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=1200&h=675&fit=crop&v=2',
     },
     {
         slug: 'vpn-for-iptv-guide',
@@ -65,13 +155,65 @@ const blogPosts = [
         readTime: '5 min',
         date: 'Feb 5, 2026',
         gradient: 'from-sky-500/20 to-cyan-600/20',
-        image: '/images/posters/NFL.png',
+        image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&h=675&fit=crop&v=2',
+    },
+    {
+        slug: 'future-of-television',
+        title: 'The Future of Television: IPTV Revolution 2026',
+        excerpt: 'Explore how IPTV is transforming the television industry. From 8K streaming to AI-powered recommendations.',
+        category: 'Industry',
+        readTime: '9 min',
+        date: 'Mar 7, 2026',
+        gradient: 'from-violet-500/20 to-purple-600/20',
+        image: 'https://images.unsplash.com/photo-1536240478700-b869070f9279?w=1200&h=675&fit=crop&v=2',
     },
 ];
 
 export default function BlogPage() {
+    // BlogPosting schema for each blog post
+    const blogPostingSchema = {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "StreamPro Blog",
+      "description": "Stay up to date with the latest streaming tutorials, setup guides, and entertainment tips.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "StreamPro",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://streampro.space/logo.png"
+        }
+      },
+      "url": "https://streampro.space/blog",
+      "blogPost": blogPosts.map(post => ({
+        "@type": "BlogPosting",
+        "headline": post.title,
+        "description": post.excerpt,
+        "image": post.image,
+        "datePublished": post.date,
+        "author": {
+          "@type": "Organization",
+          "name": "StreamPro"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "StreamPro"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": `https://streampro.space/blog/${post.slug}`
+        },
+        "section": post.category
+      }))
+    };
+
     return (
         <div className="min-h-screen">
+          {/* Blog Schema Markup */}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
+          />
             {/* Hero */}
             <section className="relative pt-20 md:pt-28 pb-16 overflow-hidden">
                 <div className="absolute inset-0">
@@ -100,7 +242,7 @@ export default function BlogPage() {
                         transition={{ delay: 0.2 }}
                         className="text-secondary-foreground max-w-xl mx-auto text-lg"
                     >
-                        Stay up to date with the latest IPTV tutorials, setup guides, and streaming tips.
+                        Stay up to date with the latest streaming tutorials, setup guides, and entertainment tips.
                     </motion.p>
                 </div>
             </section>
@@ -127,7 +269,9 @@ export default function BlogPage() {
                                         alt={post.title}
                                         fill
                                         className="object-cover group-hover:scale-110 transition-transform duration-700"
-                                        unoptimized={true}
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                        placeholder="blur"
+                                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMCwsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABwYI/8QAJBAAAgEDAwQDAQAAAAAAAAAAAQIDBAURABIhMRIGE1EHMmH/xAAVAQEBAAAAAAAAAAAAAAAAAAADBP/EABsRAQACAgMAAAAAAAAAAAAAAAEAAgMREiEx/9oADAMBAAIRAxEAPwCw6d6d6fvOm6S+aipKmaWnjjeRJJGVSxUEk4HjJ/tbN06F6a9P6SK26co6Gioo/uWCGOEH34Uf2k0n9z/9k="
                                     />
                                     <div className={`absolute inset-0 bg-gradient-to-br ${post.gradient} opacity-80`} />
                                 </div>

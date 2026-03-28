@@ -11,7 +11,7 @@ const testimonials = [
         avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
         time: '14:22',
         status: 'Delivered',
-        text: "Yo, best IPTV service I've ever used. The 4K quality is insane and zero buffering even during the UCL games. ⚽🔥",
+        text: "Yo, best streaming service I've ever used. The 4K quality is insane and zero buffering even during the UCL games. ⚽🔥",
         plan: 'Elite 12-Month',
     },
     {
@@ -87,7 +87,7 @@ export function TestimonialsSection() {
                             viewport={{ once: true }}
                             className="text-secondary-foreground text-xl max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed font-medium"
                         >
-                            We don't do fake reviews. Here is real coordinate feedback from our global node mesh. 50k+ active connections and counting.
+                            We don&apos;t do fake reviews. Here is real coordinate feedback from our global node mesh. 50k+ active connections and counting.
                         </motion.p>
 
                         <div className="flex items-center justify-center lg:justify-start gap-8">
@@ -149,7 +149,7 @@ export function TestimonialsSection() {
                                         <div className="max-w-[85%] rounded-2xl p-5 bg-white/5 border border-white/10 shadow-lg relative">
                                             <p className="text-sm font-black text-primary mb-2 uppercase tracking-tighter text-[10px]">{testimonials[activeIdx].name}</p>
                                             <p className="text-foreground font-medium leading-relaxed italic">
-                                                "{testimonials[activeIdx].text}"
+                                                &quot;{testimonials[activeIdx].text}&quot;
                                             </p>
                                             <div className="flex items-center justify-end gap-2 mt-4">
                                                 <span className="text-[9px] text-muted-foreground font-bold">{testimonials[activeIdx].time}</span>

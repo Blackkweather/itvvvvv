@@ -6,13 +6,13 @@ import { ChevronDown, Search, ThumbsUp, ThumbsDown } from 'lucide-react';
 
 const faqs = [
     {
-        question: 'What is IPTV and how does StreamPro work?',
-        answer: 'IPTV (Internet Protocol Television) delivers TV content over the internet instead of traditional satellite or cable. StreamPro uses advanced streaming servers to deliver 10,000+ live channels and on-demand content directly to your devices through our app or compatible players like TiviMate, IPTV Smarters, or VLC.',
+        question: 'What is streaming and how does StreamPro work?',
+        answer: 'Streaming delivers TV content over the internet instead of traditional satellite or cable. StreamPro uses advanced streaming servers to deliver live channels and on-demand content directly to your devices through our app or compatible players.',
         category: 'General',
     },
     {
         question: 'Which devices are compatible with StreamPro?',
-        answer: 'StreamPro works on virtually any device: Smart TVs (Samsung, LG, Sony, Android TV), Amazon Fire Stick & Fire TV, Roku, Apple TV, iOS & Android phones and tablets, Windows & macOS computers, MAG boxes, Formuler, Buzz TV, and any device that supports M3U playlists or Xtream Codes.',
+        answer: 'StreamPro works on virtually any device: Smart TVs (Samsung, LG, Sony, Android TV), Amazon Fire Stick & Fire TV, Roku, Apple TV, iOS & Android phones and tablets, Windows & macOS computers, and any device that supports streaming apps.',
         category: 'Devices',
     },
     {
@@ -57,7 +57,8 @@ export function FAQSection() {
         const query = searchQuery.toLowerCase();
         return faqs.filter(faq => 
             faq.question.toLowerCase().includes(query) || 
-            faq.answer.toLowerCase().includes(query)
+            faq.answer.toLowerCase().includes(query) ||
+            faq.category.toLowerCase().includes(query)
         );
     }, [searchQuery]);
 
@@ -103,7 +104,7 @@ export function FAQSection() {
                             placeholder="Search for answers..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full pl-12 pr-4 py-4 rounded-xl bg-white/[0.03] border border-white/10 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors"
+                             className="w-full pl-10 pr-4 py-4 rounded-xl bg-white/[0.03] border border-white/10 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors"
                         />
                     </div>
                     {searchQuery && (

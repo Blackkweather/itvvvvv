@@ -21,11 +21,11 @@ export function IntroSequence({ onComplete }: { onComplete: () => void }) {
 
     useEffect(() => {
         // Shorter duration on mobile for better UX
-        const duration = isMobile ? 1800 : 2200;
+        const duration = isMobile ? 1200 : 1500;
         const timer = setTimeout(() => {
             setIsVisible(false);
-            setTimeout(onComplete, shouldReduceMotion ? 300 : 800); // Faster fade out
-        }, shouldReduceMotion ? 500 : duration);
+            setTimeout(onComplete, shouldReduceMotion ? 200 : 400); // Faster fade out
+        }, shouldReduceMotion ? 300 : duration);
         return () => clearTimeout(timer);
     }, [onComplete, isMobile, shouldReduceMotion]);
 
@@ -59,7 +59,7 @@ export function IntroSequence({ onComplete }: { onComplete: () => void }) {
                         opacity: 0,
                         backgroundColor: "rgba(0,0,0,0)",
                         transition: { 
-                            duration: shouldReduceMotion ? 0.3 : 0.8, 
+                            duration: shouldReduceMotion ? 0.2 : 0.4, 
                             ease: [0.22, 1, 0.36, 1] 
                         }
                     }}
@@ -71,7 +71,7 @@ export function IntroSequence({ onComplete }: { onComplete: () => void }) {
                             animate="visible"
                             variants={logoVariants}
                             transition={{ 
-                                duration: shouldReduceMotion ? 0.3 : (isMobile ? 1.2 : 1.8), 
+                                duration: shouldReduceMotion ? 0.2 : (isMobile ? 0.8 : 1.2), 
                                 ease: [0.22, 1, 0.36, 1] 
                             }}
                         >

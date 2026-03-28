@@ -15,7 +15,7 @@ export default function RefundPolicy() {
                     <section>
                         <h2 className="text-2xl font-semibold text-foreground mb-4">Our Guarantee</h2>
                         <p>
-                            At StreamPro, we pride ourselves on providing the industry's most stable and premium IPTV experience. We want you to be completely satisfied with your subscription.
+                            At StreamPro, we pride ourselves on providing the industry's most stable and premium streaming experience. We want you to be completely satisfied with your subscription.
                         </p>
                     </section>
 
@@ -30,7 +30,7 @@ export default function RefundPolicy() {
                         <h2 className="text-2xl font-semibold text-foreground mb-4">Non-Refundable Items</h2>
                         <ul className="list-disc pl-6 space-y-2">
                             <li>Renewal payments (unless requested before the renewal date).</li>
-                            <li>Promotional or discounted "Limited Time" bundles.</li>
+                            <li>Promotional or discounted &quot;Limited Time&quot; bundles.</li>
                             <li>Accounts that have violated our Terms of Service.</li>
                         </ul>
                     </section>
@@ -38,7 +38,7 @@ export default function RefundPolicy() {
                     <section>
                         <h2 className="text-2xl font-semibold text-foreground mb-4">How to Request a Refund</h2>
                         <p>
-                            To initiate a refund request, please contact our billing department through the "Live Support" dashboard. Please include your transaction ID and a brief description of the technical issues encountered.
+                            To initiate a refund request, please contact our billing department through the &quot;Live Support&quot; dashboard. Please include your transaction ID and a brief description of the technical issues encountered.
                         </p>
                     </section>
                 </div>

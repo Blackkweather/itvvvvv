@@ -1,15 +1,16 @@
 'use client';
 
 import { motion, useReducedMotion } from 'framer-motion';
+import Link from 'next/link';
 import { Monitor, Smartphone, Tablet, Tv, Gamepad2, Wifi } from 'lucide-react';
 
 const devices = [
-    { icon: Tv, name: 'Smart TV', description: 'Samsung, LG, Sony, Android TV' },
-    { icon: Smartphone, name: 'Mobile', description: 'iOS & Android apps' },
-    { icon: Tablet, name: 'Tablet', description: 'iPad & Android tablets' },
-    { icon: Monitor, name: 'Computer', description: 'Windows, macOS, Linux' },
-    { icon: Gamepad2, name: 'Set-Top Box', description: 'MAG, Formuler, Buzz TV' },
-    { icon: Wifi, name: 'Fire Stick', description: 'Amazon Fire TV & Roku' },
+    { icon: Tv, name: 'Smart TV', description: 'Samsung, LG, Sony, Android TV', href: '/iptv-smart-tv' },
+    { icon: Smartphone, name: 'Mobile', description: 'iOS & Android apps', href: '/iptv-iphone' },
+    { icon: Tablet, name: 'Tablet', description: 'iPad & Android tablets', href: '/iptv-android' },
+    { icon: Monitor, name: 'Computer', description: 'Windows, macOS, Linux', href: '/pricing' },
+    { icon: Gamepad2, name: 'Set-Top Box', description: 'MAG, Formuler, Buzz TV', href: '/iptv-mag-box' },
+    { icon: Wifi, name: 'Fire Stick', description: 'Amazon Fire TV & Roku', href: '/iptv-firestick' },
 ];
 
 export function DevicesSection() {
@@ -66,28 +67,29 @@ export function DevicesSection() {
                 {/* Devices Grid - Responsive */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
                     {devices.map((device, i) => (
-                        <motion.div
-                            key={device.name}
-                            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ 
-                                duration: shouldReduceMotion ? 0.2 : 0.5, 
-                                delay: i * 0.05,
-                                ease: [0.22, 1, 0.36, 1] as const
-                            }}
-                            whileHover={shouldReduceMotion ? {} : { y: -5, scale: 1.03 }}
-                            whileTap={{ scale: 0.98 }}
-                            className="group relative flex flex-col items-center p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl glass border-white/[0.05] hover:border-primary/30 transition-all duration-500 overflow-hidden cursor-pointer"
-                        >
-                            <div className="relative z-10 flex flex-col items-center">
-                                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl sm:rounded-2xl bg-white/[0.04] mb-3 sm:mb-4 group-hover:bg-primary/20 transition-all duration-500">
-                                    <device.icon className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-secondary-foreground group-hover:text-primary transition-all duration-500" />
+                        <Link key={device.name} href={device.href}>
+                            <motion.div
+                                initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ 
+                                    duration: shouldReduceMotion ? 0.2 : 0.5, 
+                                    delay: i * 0.05,
+                                    ease: [0.22, 1, 0.36, 1] as const
+                                }}
+                                whileHover={shouldReduceMotion ? {} : { y: -5, scale: 1.03 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="group relative flex flex-col items-center p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl glass border-white/[0.05] hover:border-primary/30 transition-all duration-500 overflow-hidden cursor-pointer"
+                            >
+                                <div className="relative z-10 flex flex-col items-center">
+                                    <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl sm:rounded-2xl bg-white/[0.04] mb-3 sm:mb-4 group-hover:bg-primary/20 transition-all duration-500">
+                                        <device.icon className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-secondary-foreground group-hover:text-primary transition-all duration-500" />
+                                    </div>
+                                    <h3 className="font-black text-[10px] sm:text-xs md:text-sm text-foreground mb-1 uppercase tracking-tighter text-center">{device.name}</h3>
+                                    <p className="text-[8px] sm:text-[9px] md:text-[10px] text-muted-foreground font-bold uppercase tracking-widest text-center leading-tight">{device.description}</p>
                                 </div>
-                                <h3 className="font-black text-[10px] sm:text-xs md:text-sm text-foreground mb-1 uppercase tracking-tighter text-center">{device.name}</h3>
-                                <p className="text-[8px] sm:text-[9px] md:text-[10px] text-muted-foreground font-bold uppercase tracking-widest text-center leading-tight">{device.description}</p>
-                            </div>
-                        </motion.div>
+                            </motion.div>
+                        </Link>
                     ))}
                 </div>
 

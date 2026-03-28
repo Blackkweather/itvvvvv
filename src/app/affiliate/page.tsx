@@ -1,10 +1,13 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { DollarSign, Users, TrendingUp, ArrowRight, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
-import Magnetic from '@/components/ui/Magnetic';
+import dynamic from 'next/dynamic';
+
+// Dynamic import to avoid SSR issues with Magnetic component
+const Magnetic = dynamic(() => import('@/components/ui/Magnetic'), { ssr: false });
 
 export default function AffiliatePage() {
     const stats = [
@@ -42,8 +45,8 @@ export default function AffiliatePage() {
                         transition={{ delay: 0.2 }}
                         className="text-xl text-secondary-foreground max-w-2xl mx-auto font-light leading-relaxed uppercase tracking-wide"
                     >
-                        Join the most lucrative affiliate program in the IPTV industry.
-                        Earn 30% recurring commissions by promoting the world's most stable service.
+                        Join the most lucrative affiliate program in the streaming industry.
+                        Earn 30% recurring commissions by promoting the world&apos;s most stable service.
                     </motion.p>
                 </div>
 
@@ -80,8 +83,8 @@ export default function AffiliatePage() {
                     </p>
                     <div className="flex justify-center">
                         <Magnetic strength={0.2}>
-                            <Link href="#" className="btn-primary !px-16 !py-6 !text-[14px] !tracking-[0.3em]">
-                                APPLY TO PROGRAM <ArrowRight className="ml-3 h-5 w-5" />
+                            <Link href="https://wa.me/YOURNUMBER" className="btn-primary !px-16 !py-6 !text-[14px] !tracking-[0.3em]">
+                                CONTACT FOR DETAILS <ArrowRight className="ml-3 h-5 w-5" />
                             </Link>
                         </Magnetic>
                     </div>

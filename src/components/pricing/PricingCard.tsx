@@ -3,7 +3,9 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Check, ArrowRight, Shield, Zap, Clock, Users } from 'lucide-react';
 import Link from 'next/link';
-import Magnetic from '@/components/ui/Magnetic';
+import dynamic from 'next/dynamic';
+
+const Magnetic = dynamic(() => import('@/components/ui/Magnetic'), { ssr: false });
 
 interface PricingCardProps {
     plan: {
@@ -123,14 +125,14 @@ export default function PricingCard({ plan, index }: PricingCardProps) {
                 <div className="mb-6">
                     <Magnetic strength={0.1}>
                         <Link
-                            href="#"
+                            href="https://wa.me/YOURNUMBER"
                             className={`w-full group/btn relative flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl font-bold text-sm transition-all duration-300 ${
                                 plan.popular
                                     ? 'bg-primary text-black hover:bg-primary/90 shadow-lg shadow-primary/20'
                                     : 'bg-white/10 text-white hover:bg-white/20 border border-white/10'
                             }`}
                         >
-                            <span>Get Started</span>
+                            <span>Contact Us</span>
                             <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
                         </Link>
                     </Magnetic>

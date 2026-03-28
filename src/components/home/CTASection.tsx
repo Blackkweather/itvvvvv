@@ -106,7 +106,7 @@ export function CTASection() {
                             )}
                         </motion.button>
                         <span className="text-sm text-muted-foreground">
-                            Starting at just <strong className="text-foreground">€9.99/month</strong>
+                            Custom solutions for every need. Contact us for a quote.
                         </span>
                     </div>
 

@@ -1,0 +1,179 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ==================== USER & AUTH ====================
+
+model User {
+  id                String    @id @default(uuid())
+  email             String    @unique
+  password          String    // hashed
+  name              String?
+  phone             String?
+  whatsapp          String?
+  telegram          String?
+  role              String    @default("USER") // USER, ADMIN, RESELLER, AFFILIATE
+  isActive          Boolean   @default(true)
+  emailVerified     Boolean   @default(false)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  // Relations
+  subscription      Subscription?
+  payments          Payment[]
+  sessions          Session[]
+  apiKeys           ApiKey[]
+  auditLogs         AuditLog[]
+}
+
+// ==================== SESSIONS ====================
+
+model Session {
+  id           String   @id @default(uuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token        String   @unique
+  expiresAt    DateTime
+  ipAddress    String?
+  userAgent    String?
+  createdAt    DateTime @default(now())
+}
+
+// ==================== SUBSCRIPTIONS ====================
+
+model Subscription {
+  id              String            @id @default(uuid())
+  userId          String            @unique
+  user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plan            String            @default("NONE") // NONE, STARTER, STANDARD, PREMIUM, ELITE
+  status          String            @default("PENDING") // PENDING, ACTIVE, SUSPENDED, CANCELLED, EXPIRED
+  startDate       DateTime?
+  endDate         DateTime?
+  autoRenew       Boolean           @default(false)
+  deviceLimit     Int               @default(4)
+  devicesUsed     Int               @default(0)
+  m3uUrl          String?
+  xtreamUsername  String?
+  xtreamPassword  String?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  payments        Payment[]
+}
+
+// enum SubscriptionPlan {
+//   NONE
+//   STARTER
+//   STANDARD
+//   PREMIUM
+//   ELITE
+// }
+
+// enum SubscriptionStatus {
+//   PENDING
+//   ACTIVE
+//   SUSPENDED
+//   CANCELLED
+//   EXPIRED
+// }
+
+// ==================== PAYMENTS ====================
+
+model Payment {
+  id              String        @id @default(uuid())
+  userId          String
+  user            User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subscriptionId  String?
+  subscription    Subscription? @relation(fields: [subscriptionId], references: [id], onDelete: SetNull)
+  amount          Float
+  currency        String        @default("USD")
+  method          String        @default("WHATSAPP") // STRIPE, PAYPAL, CRYPTO, BANK_TRANSFER, WHATSAPP, TELEGRAM
+  status          String        @default("PENDING") // PENDING, PROCESSING, COMPLETED, FAILED, REFUNDED, DISPUTED
+  transactionId   String?       @unique
+  stripePaymentId String?       @unique
+  description     String?
+  metadata        String?       // JSON string for extra data
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+}
+
+// enum PaymentMethod {
+//   STRIPE
+//   PAYPAL
+//   CRYPTO
+//   BANK_TRANSFER
+//   WHATSAPP
+//   TELEGRAM
+// }
+
+// enum PaymentStatus {
+//   PENDING
+//   PROCESSING
+//   COMPLETED
+//   FAILED
+//   REFUNDED
+//   DISPUTED
+// }
+
+// ==================== API KEYS ====================
+
+model ApiKey {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  key         String   @unique
+  name        String?
+  lastUsed    DateTime?
+  expiresAt   DateTime?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+
+// ==================== AUDIT LOGS ====================
+
+model AuditLog {
+  id          String   @id @default(uuid())
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action      String
+  entity      String?
+  entityId    String?
+  ipAddress   String?
+  userAgent   String?
+  metadata    String?  // JSON
+  createdAt   DateTime @default(now())
+}
+
+// ==================== AFFILIATES ====================
+
+model Affiliate {
+  id            String   @id @default(uuid())
+  affiliateCode String   @unique
+  userId        String
+  commission    Float    @default(0.15) // 15%
+  totalEarnings Float    @default(0)
+  totalReferrals Int     @default(0)
+  pendingPayout Float    @default(0)
+  paidOut       Float    @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model AffiliatePayout {
+  id           String        @id @default(uuid())
+  affiliateId  String
+  amount       Float
+  method       String        @default("WHATSAPP")
+  status       String        @default("PENDING")
+  transactionId String?
+  createdAt    DateTime      @default(now())
+  processedAt  DateTime?
+}

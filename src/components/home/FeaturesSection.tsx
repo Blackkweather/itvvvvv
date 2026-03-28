@@ -101,7 +101,7 @@ export function FeaturesSection() {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="text-secondary-foreground text-sm sm:text-base md:text-lg lg:text-xl max-w-xl sm:max-w-2xl mx-auto leading-relaxed font-medium px-4 sm:px-0"
                     >
-                        Zero constraints. Zero latency. We've optimized every layer of the multi-device mesh
+                        Zero constraints. Zero latency. We&apos;ve optimized every layer of the multi-device mesh
                         for total spectral dominance.
                     </motion.p>
                 </div>
@@ -117,7 +117,7 @@ export function FeaturesSection() {
                             transition={{ 
                                 duration: shouldReduceMotion ? 0.2 : 0.5, 
                                 delay: i * 0.05,
-                                ease: [0.22, 1, 0.36, 1] as const
+                                ease: "easeOut"
                             }}
                             whileHover={shouldReduceMotion ? {} : { y: -8 }}
                             whileTap={{ scale: 0.98 }}

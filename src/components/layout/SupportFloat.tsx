@@ -22,7 +22,7 @@ export default function SupportFloat() {
     return (
         <div className="fixed bottom-8 right-8 z-[100] flex flex-col items-end gap-3">
             {/* Social Icons - Golden Style */}
-            <div className="flex gap-3">
+            <div className="flex flex-col gap-3">
                 {contacts.map((contact, i) => (
                     <motion.a
                         key={contact.name}
@@ -34,7 +34,7 @@ export default function SupportFloat() {
                         transition={{ delay: i * 0.1, duration: 0.4 }}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
-                        className="h-12 w-12 rounded-full bg-[#D4AF37] flex items-center justify-center text-black shadow-2xl hover:shadow-xl transition-shadow duration-300"
+                        className="h-14 w-14 rounded-full bg-[#D4AF37] flex items-center justify-center text-black shadow-2xl hover:shadow-xl transition-shadow duration-300 border-2 border-white/20"
                         aria-label={contact.name}
                     >
                         {contact.icon}

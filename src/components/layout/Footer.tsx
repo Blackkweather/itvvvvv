@@ -15,7 +15,7 @@ const footerSections = [
     {
         title: 'Resources',
         links: [
-            { label: 'Blog', href: '/blog' },
+            { label: 'Resources', href: '/blog' },
             { label: 'Setup Guide', href: '#faq' },
             { label: 'FAQ', href: '#faq' },
             { label: 'Refund Policy', href: '/legal/refund-policy' },
@@ -24,8 +24,8 @@ const footerSections = [
     {
         title: 'Company',
         links: [
-            { label: 'About Us', href: '#' },
-            { label: 'Contact', href: '#' },
+            { label: 'About Us', href: '/#' },
+            { label: 'Contact', href: 'mailto:support@streampro.space' },
             { label: 'Privacy Policy', href: '/legal/privacy-policy' },
             { label: 'Terms of Service', href: '/legal/terms-of-service' },
         ],
@@ -33,10 +33,10 @@ const footerSections = [
 ];
 
 const socialLinks = [
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Youtube, href: '#', label: 'Youtube' },
-    { icon: Mail, href: '#', label: 'Email' },
+    { icon: Twitter, href: 'https://twitter.com/streampro', label: 'Twitter' },
+    { icon: Instagram, href: 'https://instagram.com/streampro', label: 'Instagram' },
+    { icon: Youtube, href: 'https://youtube.com/@streampro', label: 'Youtube' },
+    { icon: Mail, href: 'mailto:support@streampro.space', label: 'Email' },
 ];
 
 export function Footer() {
@@ -53,8 +53,8 @@ export function Footer() {
                             <Logo />
                         </Link>
                         <p className="text-secondary-foreground text-sm leading-relaxed max-w-sm mb-8">
-                            Premium IPTV service with 15,000+ live channels and crystal clear 4K library.
-                            The absolute peak of television technology.
+                            Professional streaming consultation and technical support services.
+                            Expert solutions for all your entertainment needs.
                         </p>
 
                         {/* Trust Badges */}

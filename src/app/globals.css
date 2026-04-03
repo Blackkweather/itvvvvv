@@ -133,6 +133,26 @@ body {
 html, body {
   max-width: 100%;
   overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+  }
+  
+  * {
+    max-width: 100vw;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .container-fluid, .container-narrow, .container-wide {
+    max-width: 100vw;
+    padding-left: max(var(--section-padding-x), env(safe-area-inset-left));
+    padding-right: max(var(--section-padding-x), env(safe-area-inset-right));
+  }
 }
 
 /* Touch action optimization */
@@ -343,7 +363,15 @@ img, video, picture, canvas, svg {
 }
 
 .btn-primary:active {
-  transform: scale(0.98);
+  transform: scale(0.96);
+  filter: brightness(0.95);
+}
+
+@media (hover: none) {
+  .btn-primary:active {
+    transform: scale(0.94);
+    filter: brightness(0.9);
+  }
 }
 
 /* Secondary Button - Touch Optimized */
@@ -382,7 +410,15 @@ img, video, picture, canvas, svg {
 }
 
 .btn-secondary:active {
-  transform: scale(0.98);
+  transform: scale(0.96);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@media (hover: none) {
+  .btn-secondary:active {
+    transform: scale(0.94);
+    background: rgba(255, 255, 255, 0.08);
+  }
 }
 
 /* Ghost Button */

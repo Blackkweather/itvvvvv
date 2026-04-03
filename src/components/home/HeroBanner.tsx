@@ -120,7 +120,7 @@ export function HeroBanner() {
                     {/* Headline / Title Art Style */}
                     <motion.h1
                         variants={itemVariants}
-                        className="text-7xl sm:text-8xl md:text-[160px] font-black tracking-[-0.08em] leading-[0.8] uppercase mb-12"
+                        className="text-5xl sm:text-6xl md:text-7xl lg:text-[120px] xl:text-[160px] font-black tracking-[-0.08em] leading-[0.85] uppercase mb-8 sm:mb-12"
                     >
                         <span className="text-white">STREAM</span>
                         <span className="text-white/20">PRO</span>
@@ -129,24 +129,24 @@ export function HeroBanner() {
                     {/* Subtitle / Description */}
                     <motion.p
                         variants={itemVariants}
-                        className="text-sm md:text-base text-secondary-foreground max-w-2xl mx-auto mb-14 leading-relaxed font-medium uppercase tracking-widest"
+                        className="text-xs sm:text-sm md:text-base text-secondary-foreground max-w-lg sm:max-w-xl mx-auto mb-10 sm:mb-14 leading-relaxed font-medium uppercase tracking-wider sm:tracking-widest px-4 sm:px-0"
                     >
                         Expert technical support for all your streaming needs.
                         Optimized solutions. 24/7 assistance. Just ask.
                     </motion.p>
 
-                    {/* Minimalist CTAs */}
+                    {/* Minimalist CTAs - Touch optimized */}
                     <motion.div
                         variants={itemVariants}
-                        className="flex flex-col sm:flex-row items-center justify-center gap-4"
+                        className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-2 sm:px-0"
                     >
                         <Magnetic strength={0.1}>
-                            <a href="https://wa.me/yournumber" className="bg-white text-black px-10 py-4 rounded font-bold text-xs uppercase tracking-widest hover:bg-white/90 transition-all duration-300">
+                            <a href="https://wa.me/yournumber" className="bg-white text-black px-8 sm:px-10 py-4 sm:py-[18px] rounded-lg sm:rounded-xl font-bold text-[11px] sm:text-xs uppercase tracking-widest hover:bg-white/90 transition-all duration-300 active:scale-[0.98] min-h-[48px] w-full sm:w-auto text-center">
                                 CHAT ON WHATSAPP
                             </a>
                         </Magnetic>
                         <Magnetic strength={0.1}>
-                            <a href="https://t.me/yourbot" className="bg-transparent border border-white/20 text-white px-10 py-4 rounded font-bold text-xs uppercase tracking-widest hover:bg-white/5 transition-all duration-300">
+                            <a href="https://t.me/yourbot" className="bg-transparent border border-white/20 text-white px-8 sm:px-10 py-4 sm:py-[18px] rounded-lg sm:rounded-xl font-bold text-[11px] sm:text-xs uppercase tracking-widest hover:bg-white/5 transition-all duration-300 active:scale-[0.98] min-h-[48px] w-full sm:w-auto text-center">
                                 TELEGRAM
                             </a>
                         </Magnetic>

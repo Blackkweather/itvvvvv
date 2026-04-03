@@ -8,8 +8,6 @@
   "installCommand": "npm i",
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
-  "framework": "nextjs",
-  "env": {
-    "DATABASE_URL": "@vercel/postgres" 
-  }
+  "framework": "nextjs"
+
 }

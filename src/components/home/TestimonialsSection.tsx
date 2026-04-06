@@ -85,7 +85,7 @@ export function TestimonialsSection() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-secondary-foreground text-xl max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed font-medium"
+                            className="text-white text-xl max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed font-medium"
                         >
                             We don&apos;t do fake reviews. Here is real coordinate feedback from our global node mesh. 50k+ active connections and counting.
                         </motion.p>
@@ -93,12 +93,12 @@ export function TestimonialsSection() {
                         <div className="flex items-center justify-center lg:justify-start gap-8">
                             <div className="text-center lg:text-left">
                                 <p className="text-3xl font-black text-foreground">99.9%</p>
-                                <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mt-1">Uptime Verified</p>
+                                <p className="text-[10px] font-bold uppercase tracking-widest text-gray-300 mt-1">Uptime Verified</p>
                             </div>
                             <div className="w-px h-10 bg-white/10" />
                             <div className="text-center lg:text-left">
                                 <p className="text-3xl font-black text-foreground">4.95/5</p>
-                                <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mt-1">Client Satisfaction</p>
+                                <p className="text-[10px] font-bold uppercase tracking-widest text-gray-300 mt-1">Client Satisfaction</p>
                             </div>
                         </div>
                     </div>

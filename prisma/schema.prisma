@@ -11,6 +11,13 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+enum Role {
+  USER
+  ADMIN
+  RESELLER
+  AFFILIATE
+}
+
 // ==================== USER & AUTH ====================
 
 model User {
@@ -21,7 +28,7 @@ model User {
   phone             String?
   whatsapp          String?
   telegram          String?
-  role              String    @default("USER") // USER, ADMIN, RESELLER, AFFILIATE
+  role              Role      @default(USER)
   isActive          Boolean   @default(true)
   emailVerified     Boolean   @default(false)
   createdAt         DateTime  @default(now())

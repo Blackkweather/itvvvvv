@@ -126,7 +126,7 @@ export function Navbar() {
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    className="relative text-[13px] font-light tracking-[0.1em] uppercase text-secondary-foreground hover:text-primary transition-all duration-500 group py-2"
+                                    className="relative text-[13px] font-light tracking-[0.1em] uppercase text-white hover:text-primary transition-all duration-500 group py-2"
                                 >
                                     {link.label}
                                     <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary group-hover:w-full transition-all duration-500" />
@@ -218,7 +218,7 @@ export function Navbar() {
                                             <Link
                                                 href={link.href}
                                                 onClick={handleNavClick}
-                                                className="flex items-center gap-4 text-base font-medium text-secondary-foreground hover:text-foreground px-4 py-4 rounded-xl hover:bg-white/[0.04] transition-all min-h-[48px]"
+                                                className="flex items-center gap-4 text-base font-medium text-white hover:text-primary px-4 py-4 rounded-xl hover:bg-white/[0.04] transition-all min-h-[48px]"
                                             >
                                                 <link.icon className="h-5 w-5 text-primary/60" />
                                                 {link.label}

@@ -17,10 +17,18 @@ export default function DashboardPage() {
   const { user, subscription } = useAuth();
 
   const planFeatures: Record<string, string[]> = {
-    STARTER: ['4K Quality', '10,000+ Channels', '1 Device', 'Basic Support'],
-    STANDARD: ['4K Quality', '15,000+ Channels', '2 Devices', 'Priority Support', 'Anti-Freeze'],
-    PREMIUM: ['4K HDR', '20,000+ Channels', '3 Devices', '24/7 Support', 'Anti-Freeze', 'Multi-Screen'],
-    ELITE: ['4K HDR', '35,000+ Channels', '4 Devices', '24/7 Priority', 'Anti-Freeze 2.0', 'Multi-Screen', '8K Trial'],
+    '1D_1M': ['30,000+ Channels', '1 Device', '4K Quality', '24/7 Support', 'Anti-Freeze', 'VOD'],
+    '1D_3M': ['30,000+ Channels', '1 Device', '4K Quality', '24/7 Support', 'Anti-Freeze', 'VOD'],
+    '1D_6M': ['30,000+ Channels', '1 Device', '4K Quality', '24/7 Support', 'Anti-Freeze', 'VOD'],
+    '1D_12M': ['30,000+ Channels', '1 Device', '4K Quality', '24/7 Support', 'Anti-Freeze', 'VOD'],
+    '2D_1M': ['30,000+ Channels', '2 Devices', '4K Quality', '24/7 Support', 'Anti-Freeze', 'VOD'],
+    '2D_3M': ['30,000+ Channels', '2 Devices', '4K Quality', '24/7 Support', 'Anti-Freeze', 'VOD'],
+    '2D_6M': ['30,000+ Channels', '2 Devices', '4K Quality', '24/7 Support', 'Anti-Freeze', 'VOD'],
+    '2D_12M': ['30,000+ Channels', '2 Devices', '4K Quality', '24/7 Support', 'Anti-Freeze', 'VOD'],
+    '3D_1M': ['30,000+ Channels', '3 Devices', '4K Quality', '24/7 Support', 'Anti-Freeze', 'VOD'],
+    '3D_3M': ['30,000+ Channels', '3 Devices', '4K Quality', '24/7 Support', 'Anti-Freeze', 'VOD'],
+    '3D_6M': ['30,000+ Channels', '3 Devices', '4K Quality', '24/7 Support', 'Anti-Freeze', 'VOD'],
+    '3D_12M': ['30,000+ Channels', '3 Devices', '4K Quality', '24/7 Support', 'Anti-Freeze', 'VOD'],
   };
 
   return (

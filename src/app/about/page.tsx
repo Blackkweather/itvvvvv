@@ -189,13 +189,17 @@ export default function AboutPage() {
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
                         <a
-                            href="/pricing"
-                            className="bg-primary text-black px-10 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-primary/90 transition-all"
+                            href="https://wa.me/+447853402172"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-white/10 text-white px-10 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-white/20 border border-white/10 transition-all"
                         >
-                            View Plans
+                            Contact Us
                         </a>
                         <a
-                            href="https://wa.me/YOURNUMBER"
+                            href="https://wa.me/+447853402172"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="bg-white/10 text-white px-10 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-white/20 border border-white/10 transition-all"
                         >
                             Contact Us

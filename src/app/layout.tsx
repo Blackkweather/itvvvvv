@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     description: "StreamPro offers the best IPTV service with 15,000+ live channels, movies, sports, and VOD. Watch NFL, NBA, Premier League, and more in HD.",
     images: [
       {
-        url: "https://streampro.space/og-image.png",
+        url: "https://streampro.space/og-image.svg",
         width: 1200,
         height: 630,
         alt: "StreamPro - Premium IPTV Service",
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
     title: "StreamPro — Best Premium IPTV Service",
     description: "15,000+ live channels, movies, sports. Watch NFL, NBA, Premier League in HD.",
     creator: "@streampro",
-    images: ["https://streampro.space/og-image.png"],
+    images: ["https://streampro.space/og-image.svg"],
   },
   robots: {
     index: true,
@@ -156,41 +156,49 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "StreamPro Premium IPTV Subscription",
-    "description": "Premium IPTV service with 15,000+ live channels, 50,000+ VOD titles, movies, sports in HD/4K quality",
+    "description": "Premium IPTV service with 30,000+ live channels, 120,000+ VOD titles, movies, sports in 4K quality",
     "brand": {
       "@type": "Brand",
       "name": "StreamPro"
     },
     "offers": {
       "@type": "AggregateOffer",
-      "lowPrice": "9.99",
-      "highPrice": "19.99",
+      "lowPrice": "15",
+      "highPrice": "35",
       "priceCurrency": "USD",
-      "offerCount": 3,
+      "offerCount": 12,
       "offers": [
         {
           "@type": "Offer",
-          "name": "Basic Plan",
-          "price": "9.99",
+          "name": "1 Device - 1 Month",
+          "price": "15",
           "priceCurrency": "USD",
           "availability": "https://schema.org/InStock",
-          "url": "https://streampro.space/pricing"
+          "url": "https://streampro.space/dashboard/subscription"
         },
         {
           "@type": "Offer",
-          "name": "Premium Plan",
-          "price": "14.99",
+          "name": "1 Device - 12 Months",
+          "price": "75",
           "priceCurrency": "USD",
           "availability": "https://schema.org/InStock",
-          "url": "https://streampro.space/pricing"
+          "url": "https://streampro.space/dashboard/subscription"
         },
         {
           "@type": "Offer",
-          "name": "Ultimate Plan",
-          "price": "19.99",
+          "name": "2 Devices - 1 Month",
+          "price": "25",
           "priceCurrency": "USD",
           "availability": "https://schema.org/InStock",
-          "url": "https://streampro.space/pricing"
+          "url": "https://streampro.space/dashboard/subscription"
+        },
+        {
+          "@type": "Offer",
+          "name": "3 Devices - 1 Month",
+          "price": "35",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://streampro.space/dashboard/subscription"
         }
       ]
     },
@@ -205,7 +213,7 @@ export default function RootLayout({
       {
         "@type": "PropertyValue",
         "name": "Channel Count",
-        "value": "15000+"
+        "value": "30000+"
       },
       {
         "@type": "PropertyValue",
@@ -328,8 +336,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
-        {/* Google Tag Manager */}
-        {/* Google Consent Mode - Default denied */}
+        {/* Google Tag Manager - Single Instance */}
         <script
           dangerouslySetInnerHTML={{
             __html: `window.dataLayer = window.dataLayer || [];
@@ -346,21 +353,6 @@ export default function RootLayout({
         />
         <script
           async
-          src="https://www.googletagmanager.com/gtm.js?id=GTM-55JBSLGB"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-55JBSLGB');`,
-          }}
-        />
-        {/* End Google Tag Manager */}
-        {/* Google Analytics 4 */}
-        <script
-          async
           src="https://www.googletagmanager.com/gtag/js?id=G-X53CZV12VT"
         />
         <script
@@ -370,10 +362,15 @@ export default function RootLayout({
             gtag('js', new Date());
             gtag('config', 'G-X53CZV12VT', {
               'ads_data_redaction': true
-            });`,
+            });
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-55JBSLGB');`,
           }}
         />
-        {/* End Google Analytics 4 */}
+        {/* End Google Tag Manager & Analytics */}
         {/* Skip to main content link for accessibility */}
         <style>{`
           .skip-link {

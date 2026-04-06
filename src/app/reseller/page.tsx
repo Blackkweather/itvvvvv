@@ -103,7 +103,7 @@ export default function ResellerPage() {
                         <p className="text-secondary-foreground font-light uppercase tracking-widest">Pricing starts from $2,500 for initial credit bundles.</p>
                     </div>
                     <Magnetic strength={0.2}>
-                        <Link href="https://wa.me/YOURNUMBER" className="btn-primary !px-16 !py-6 !text-[13px] !tracking-[0.4em]">
+                        <Link href="https://wa.me/+447853402172" target="_blank" rel="noopener noreferrer" className="btn-primary !px-16 !py-6 !text-[13px] !tracking-[0.4em]">
                             CONTACT SALES
                         </Link>
                     </Magnetic>

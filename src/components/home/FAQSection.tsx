@@ -152,18 +152,18 @@ export function FAQSection() {
                                         className="overflow-hidden"
                                     >
                                         <div className="px-5 md:px-6 pb-5 md:pb-6">
-                                            <p className="text-sm text-secondary-foreground leading-relaxed mb-4">
+                                            <p className="text-sm text-white leading-relaxed mb-4">
                                                 {faq.answer}
                                             </p>
                                             {/* Helpful rating */}
                                             <div className="flex items-center gap-4 pt-3 border-t border-white/5">
-                                                <span className="text-xs text-muted-foreground">Was this helpful?</span>
+                                                <span className="text-xs text-gray-300">Was this helpful?</span>
                                                 <button
                                                     onClick={() => handleHelpful(i, 'yes')}
                                                     className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs transition-colors ${
                                                         helpful[i] === 'yes' 
                                                             ? 'bg-success/20 text-success' 
-                                                            : 'bg-white/5 text-muted-foreground hover:bg-white/10'
+                                                            : 'bg-white/5 text-gray-300 hover:bg-white/10'
                                                     }`}
                                                 >
                                                     <ThumbsUp className="h-3 w-3" />
@@ -174,7 +174,7 @@ export function FAQSection() {
                                                     className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs transition-colors ${
                                                         helpful[i] === 'no' 
                                                             ? 'bg-rose-500/20 text-rose-500' 
-                                                            : 'bg-white/5 text-muted-foreground hover:bg-white/10'
+                                                            : 'bg-white/5 text-gray-300 hover:bg-white/10'
                                                     }`}
                                                 >
                                                     <ThumbsDown className="h-3 w-3" />

@@ -83,7 +83,7 @@ export default function AffiliatePage() {
                     </p>
                     <div className="flex justify-center">
                         <Magnetic strength={0.2}>
-                            <Link href="https://wa.me/YOURNUMBER" className="btn-primary !px-16 !py-6 !text-[14px] !tracking-[0.3em]">
+                            <Link href="https://wa.me/+447853402172" target="_blank" rel="noopener noreferrer" className="btn-primary !px-16 !py-6 !text-[14px] !tracking-[0.3em]">
                                 CONTACT FOR DETAILS <ArrowRight className="ml-3 h-5 w-5" />
                             </Link>
                         </Magnetic>

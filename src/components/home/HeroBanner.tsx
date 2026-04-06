@@ -129,7 +129,7 @@ export function HeroBanner() {
                     {/* Subtitle / Description */}
                     <motion.p
                         variants={itemVariants}
-                        className="text-xs sm:text-sm md:text-base text-secondary-foreground max-w-lg sm:max-w-xl mx-auto mb-10 sm:mb-14 leading-relaxed font-medium uppercase tracking-wider sm:tracking-widest px-4 sm:px-0"
+                        className="text-xs sm:text-sm md:text-base text-white max-w-lg sm:max-w-xl mx-auto mb-10 sm:mb-14 leading-relaxed font-medium uppercase tracking-wider sm:tracking-widest px-4 sm:px-0"
                     >
                         Expert technical support for all your streaming needs.
                         Optimized solutions. 24/7 assistance. Just ask.
@@ -141,12 +141,17 @@ export function HeroBanner() {
                         className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-2 sm:px-0"
                     >
                         <Magnetic strength={0.1}>
-                            <a href="https://wa.me/yournumber" className="bg-white text-black px-8 sm:px-10 py-4 sm:py-[18px] rounded-lg sm:rounded-xl font-bold text-[11px] sm:text-xs uppercase tracking-widest hover:bg-white/90 transition-all duration-300 active:scale-[0.98] min-h-[48px] w-full sm:w-auto text-center">
+                            <a href="https://wa.me/+447853402172" target="_blank" rel="noopener noreferrer" className="bg-white text-black px-8 sm:px-10 py-4 sm:py-[18px] rounded-lg sm:rounded-xl font-bold text-[11px] sm:text-xs uppercase tracking-widest hover:bg-white/90 transition-all duration-300 active:scale-[0.98] min-h-[48px] w-full sm:w-auto text-center">
                                 CHAT ON WHATSAPP
                             </a>
                         </Magnetic>
                         <Magnetic strength={0.1}>
-                            <a href="https://t.me/yourbot" className="bg-transparent border border-white/20 text-white px-8 sm:px-10 py-4 sm:py-[18px] rounded-lg sm:rounded-xl font-bold text-[11px] sm:text-xs uppercase tracking-widest hover:bg-white/5 transition-all duration-300 active:scale-[0.98] min-h-[48px] w-full sm:w-auto text-center">
+                            <a href="https://t.me/streamprospace" target="_blank" rel="noopener noreferrer" className="bg-transparent border border-white/20 text-white px-8 sm:px-10 py-4 sm:py-[18px] rounded-lg sm:rounded-xl font-bold text-[11px] sm:text-xs uppercase tracking-widest hover:bg-white/5 transition-all duration-300 active:scale-[0.98] min-h-[48px] w-full sm:w-auto text-center">
+                                TELEGRAM
+                            </a>
+                        </Magnetic>
+                        <Magnetic strength={0.1}>
+                            <a href="https://t.me/streamprospace" target="_blank" rel="noopener noreferrer" className="bg-transparent border border-white/20 text-white px-8 sm:px-10 py-4 sm:py-[18px] rounded-lg sm:rounded-xl font-bold text-[11px] sm:text-xs uppercase tracking-widest hover:bg-white/5 transition-all duration-300 active:scale-[0.98] min-h-[48px] w-full sm:w-auto text-center">
                                 TELEGRAM
                             </a>
                         </Magnetic>
@@ -155,7 +160,7 @@ export function HeroBanner() {
                     {/* Trust indicators */}
                     <motion.div
                         variants={itemVariants}
-                        className="mt-20 flex flex-wrap items-center justify-center gap-10 text-muted-foreground text-sm font-medium"
+                        className="flex flex-wrap items-center justify-center gap-10 text-gray-300 text-sm font-medium"
                     >
                         <div className="flex items-center gap-3">
                             <div className="h-2 w-2 rounded-full bg-success shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
@@ -180,7 +185,7 @@ export function HeroBanner() {
                 transition={{ delay: 2, duration: 1 }}
                 className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
             >
-                <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground font-bold">Scroll to explore</span>
+                <span className="text-[10px] uppercase tracking-[0.3em] text-gray-300 font-bold">Scroll to explore</span>
                 <motion.div
                     animate={{ y: [0, 8, 0] }}
                     transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}

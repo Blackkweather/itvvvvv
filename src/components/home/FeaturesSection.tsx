@@ -99,7 +99,7 @@ export function FeaturesSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="text-secondary-foreground text-sm sm:text-base md:text-lg lg:text-xl max-w-xl sm:max-w-2xl mx-auto leading-relaxed font-medium px-4 sm:px-0"
+                        className="text-white text-sm sm:text-base md:text-lg lg:text-xl max-w-xl sm:max-w-2xl mx-auto leading-relaxed font-medium px-4 sm:px-0"
                     >
                         Zero constraints. Zero latency. We&apos;ve optimized every layer of the multi-device mesh
                         for total spectral dominance.
@@ -133,7 +133,7 @@ export function FeaturesSection() {
                                 <h3 className="text-base sm:text-lg font-bold mb-2 sm:mb-3 uppercase tracking-tighter group-hover:text-primary transition-colors">
                                     {feature.title}
                                 </h3>
-                                <p className="text-secondary-foreground text-xs sm:text-sm leading-relaxed font-medium">
+                                <p className="text-gray-300 text-xs sm:text-sm leading-relaxed font-medium">
                                     {feature.description}
                                 </p>
                             </div>

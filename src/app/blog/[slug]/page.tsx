@@ -1,5 +1,8 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import Image from 'next/image';
+import { InArticleAd } from '@/components/ads/AdSlot';
+import { NewsletterSignup } from '@/components/newsletter/NewsletterSignup';
 
 const blogPosts: Record<string, {
   title: string;
@@ -1285,13 +1288,44 @@ function renderContent(content: string) {
   return elements;
 }
 
+export function generateStaticParams() {
+  return Object.keys(blogPosts).map((slug) => ({ slug }));
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const post = blogPosts[slug];
   if (!post) return {};
+  
+  const description = post.content.trim().split('\n').filter(p => p.trim().length > 50)[0]?.slice(0, 160).replace(/\*\*/g, '') || 'Read more on StreamPro blog';
+  
   return {
     title: post.title,
-    description: post.content.trim().slice(0, 160),
+    description: description,
+    openGraph: {
+      title: post.title,
+      description: description,
+      type: 'article',
+      publishedTime: new Date(post.date).toISOString(),
+      authors: ['StreamPro'],
+      images: [
+        {
+          url: post.image,
+          width: 1200,
+          height: 675,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: description,
+      images: [post.image],
+    },
+    alternates: {
+      canonical: `https://streampro.space/blog/${slug}`,
+    },
   };
 }
 
@@ -1300,13 +1334,92 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const post = blogPosts[slug];
   if (!post) notFound();
 
+  const isoDate = new Date(post.date).toISOString();
+  const cleanDescription = post.content.trim().split('\n').filter(p => p.trim().length > 50)[0]?.slice(0, 160).replace(/\*\*/g, '') || 'Read more on StreamPro blog';
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": post.title,
+    "description": cleanDescription,
+    "image": post.image,
+    "datePublished": isoDate,
+    "dateModified": isoDate,
+    "author": {
+      "@type": "Organization",
+      "name": "StreamPro",
+      "url": "https://streampro.space"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "StreamPro",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://streampro.space/logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://streampro.space/blog/${slug}`
+    }
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://streampro.space"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://streampro.space/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": post.title,
+        "item": `https://streampro.space/blog/${slug}`
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen">
-      {/* Hero */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       <div className="relative h-72 md:h-96 overflow-hidden">
-        <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+        <Image
+          src={post.image}
+          alt={post.title}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 800px, 1200px"
+          priority
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 section-padding pb-8">
+          <nav className="text-xs text-muted-foreground mb-3" aria-label="Breadcrumb">
+            <ol className="flex items-center gap-2">
+              <li><a href="/" className="hover:text-primary transition-colors">Home</a></li>
+              <li>/</li>
+              <li><a href="/blog" className="hover:text-primary transition-colors">Blog</a></li>
+              <li>/</li>
+              <li className="text-foreground truncate max-w-[200px]">{post.title}</li>
+            </ol>
+          </nav>
           <span className="text-xs font-bold uppercase tracking-widest text-primary mb-3 block">{post.category}</span>
           <h1 className="text-2xl md:text-4xl font-bold text-foreground max-w-3xl leading-tight">{post.title}</h1>
           <div className="flex items-center gap-4 mt-3 text-sm text-muted-foreground">
@@ -1317,10 +1430,63 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </div>
       </div>
 
-      {/* Content */}
+      {/* In-Article Ad After Hero */}
+      <div className="section-padding pt-8">
+        <InArticleAd slot="1234567890" />
+      </div>
+
       <article className="section-padding py-12 max-w-3xl mx-auto">
         {renderContent(post.content)}
       </article>
+
+      {/* Newsletter Signup */}
+      <section className="section-padding pb-16">
+        <div className="max-w-3xl mx-auto px-4">
+          <NewsletterSignup variant="inline" />
+        </div>
+      </section>
+
+      {/* Related Posts */}
+      <section className="section-padding pb-24">
+        <div className="max-w-5xl mx-auto px-4">
+          <h2 className="text-2xl font-bold mb-8 text-center">Related Articles</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {getRelatedPosts(slug, post.relatedPosts).map((relatedPost) => (
+              <a
+                key={relatedPost.slug}
+                href={`/blog/${relatedPost.slug}`}
+                className="block group rounded-xl glass p-5 border border-border/20 hover:border-primary/30 transition-colors"
+              >
+                <span className="text-xs font-bold uppercase tracking-wider text-primary">{relatedPost.category}</span>
+                <h3 className="font-semibold mt-2 mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                  {relatedPost.title}
+                </h3>
+                <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
+                  {relatedPost.excerpt}
+                </p>
+                <span className="text-xs text-muted-foreground">{relatedPost.dateDisplay}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
+}
+
+function getRelatedPosts(currentSlug: string, relatedSlugs: string[]) {
+  return relatedSlugs
+    .map((slug) => {
+      const post = blogPosts[slug];
+      if (!post) return null;
+      return {
+        slug,
+        title: post.title,
+        category: post.category,
+        excerpt: post.content.trim().split('\n')[0]?.slice(0, 120).replace(/\*\*/g, '') || '',
+        dateDisplay: post.date,
+      };
+    })
+    .filter(Boolean)
+    .slice(0, 2);
 }

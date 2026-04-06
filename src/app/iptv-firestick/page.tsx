@@ -16,7 +16,7 @@ export default function FirestickPage() {
         <section className="py-20 px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">{config.h1}</h1>
-            <p className="text-xl text-muted-foreground mb-8">{config.intro}</p>
+            <p className="text-xl text-white mb-8">{config.intro}</p>
             <a 
               href={config.cta.link}
               className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
@@ -40,7 +40,7 @@ export default function FirestickPage() {
                 >
                   <div className="text-4xl mb-4">{feature.icon}</div>
                   <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-muted-foreground text-sm">{feature.description}</p>
+                  <p className="text-gray-300 text-sm">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -64,7 +64,7 @@ export default function FirestickPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                    <p className="text-muted-foreground">{step.content}</p>
+                    <p className="text-gray-300">{step.content}</p>
                   </div>
                 </div>
               ))}
@@ -85,7 +85,7 @@ export default function FirestickPage() {
                   className="p-6 rounded-xl bg-background border border-border"
                 >
                   <h3 className="text-lg font-semibold mb-2">{faq.question}</h3>
-                  <p className="text-muted-foreground">{faq.answer}</p>
+                  <p className="text-gray-300">{faq.answer}</p>
                 </div>
               ))}
             </div>

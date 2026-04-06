@@ -252,7 +252,7 @@ export default function TrailersPage() {
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-5">
               Watch <span className="gradient-text">Trailers</span>
             </h1>
-            <p className="text-secondary-foreground max-w-xl mx-auto text-lg mb-8">
+            <p className="text-white max-w-xl mx-auto text-lg mb-8">
               Experience the latest movie trailers and sports highlights in our premium player. No buffering. Pure entertainment.
             </p>
             

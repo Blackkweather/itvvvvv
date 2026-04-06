@@ -52,7 +52,7 @@ export function Footer() {
                         <Link href="/" className="mb-6 inline-block group">
                             <Logo />
                         </Link>
-                        <p className="text-secondary-foreground text-sm leading-relaxed max-w-sm mb-8">
+                        <p className="text-white text-sm leading-relaxed max-w-sm mb-8">
                             Professional streaming consultation and technical support services.
                             Expert solutions for all your entertainment needs.
                         </p>
@@ -61,11 +61,11 @@ export function Footer() {
                         <div className="flex flex-wrap gap-4 mb-8">
                             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/5 bg-white/[0.02]">
                                 <div className="h-1.5 w-1.5 rounded-full bg-success shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
-                                <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Secure SSL</span>
+                                <span className="text-[10px] uppercase tracking-widest text-gray-300 font-bold">Secure SSL</span>
                             </div>
                             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/5 bg-white/[0.02]">
                                 <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-                                <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Premium Quality</span>
+                                <span className="text-[10px] uppercase tracking-widest text-gray-300 font-bold">Premium Quality</span>
                             </div>
                         </div>
 
@@ -86,7 +86,7 @@ export function Footer() {
                     {/* Link Columns */}
                     {footerSections.map((section) => (
                         <div key={section.title}>
-                            <h4 className="font-semibold text-sm text-foreground mb-5 uppercase tracking-wider">
+                            <h4 className="font-semibold text-sm text-white mb-5 uppercase tracking-wider">
                                 {section.title}
                             </h4>
                             <ul className="space-y-3">
@@ -94,7 +94,7 @@ export function Footer() {
                                     <li key={link.label}>
                                         <Link
                                             href={link.href}
-                                            className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                                            className="text-sm text-gray-300 hover:text-white transition-colors duration-200"
                                         >
                                             {link.label}
                                         </Link>

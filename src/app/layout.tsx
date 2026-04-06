@@ -371,6 +371,11 @@ export default function RootLayout({
           }}
         />
         {/* End Google Tag Manager & Analytics */}
+        {/* Autotag Library */}
+        <script 
+          async 
+          src="https://aclib.acintelligence.com/aclib-min.js"
+        />
         {/* Skip to main content link for accessibility */}
         <style>{`
           .skip-link {
@@ -409,6 +414,15 @@ export default function RootLayout({
         <StealthCloak>
           <CinematicWrapper>{children}</CinematicWrapper>
         </StealthCloak>
+        {/* Autotag Zone */}
+        <script
+          type="text/javascript"
+          dangerouslySetInnerHTML={{
+            __html: `aclib.runAutoTag({
+              zoneId: 'zusoe0fva9',
+            });`
+          }}
+        />
       </body>
     </html>
   );

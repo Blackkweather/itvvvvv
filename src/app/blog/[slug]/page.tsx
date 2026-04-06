@@ -11,6 +11,7 @@ const blogPosts: Record<string, {
   readTime: string;
   image: string;
   content: string;
+  relatedPosts: string[];
 }> = {
   'cord-cutting-manifesto-2026': {
     title: 'The 2026 Cord-Cutting Manifesto: Why Local Sports are the Final Frontier',
@@ -18,6 +19,7 @@ const blogPosts: Record<string, {
     date: 'Mar 30, 2026',
     readTime: '12 min',
     image: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=1200&h=675&fit=crop',
+    relatedPosts: ['cord-cutting-mistakes-2026', 'fix-iptv-buffering-2026'],
     content: `
 In the rapidly evolving landscape of home entertainment, cord-cutting has transitioned from a niche trend to a mainstream movement. Millions have embraced the freedom and flexibility of streaming, ditching expensive cable bundles for a more personalized viewing experience. Yet, for many, one significant hurdle remains: **local sports**. In 2026, as streaming technology continues to advance, accessing your favorite regional teams without a traditional cable subscription has become the ultimate test for any cord-cutter. This manifesto explores why local sports are the final frontier in the cord-cutting revolution and how to conquer it.
 
@@ -60,6 +62,7 @@ In 2026, the dream of a truly comprehensive cord-cutting experience, complete wi
     date: 'Mar 28, 2026',
     readTime: '14 min',
     image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&h=675&fit=crop',
+    relatedPosts: ['smart-tv-streaming-slow-2026', 'budget-4k-home-cinema-2026'],
     content: `
 For Android TV users, the choice of IPTV player is just as critical as the service itself. A premium service paired with a subpar player results in a frustrating, clunky experience. In 2026, the debate over the **best IPTV player for Android TV 2026** largely centers around two heavyweights: TiviMate and OTT Navigator. Both offer robust features, but they cater to slightly different user preferences and technical requirements. This performance showdown breaks down their strengths and weaknesses to help you optimize your streaming setup.
 
@@ -111,6 +114,7 @@ The answer depends entirely on your user profile:
     date: 'Mar 26, 2026',
     readTime: '10 min',
     image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&h=675&fit=crop',
+    relatedPosts: ['4k-home-cinema-blueprint-2026', 'cord-cutting-manifesto-2026'],
     content: `
 There's nothing more frustrating for a cord-cutter than settling in to watch a live game or a favorite show, only to be met with the dreaded spinning wheel of buffering. IPTV buffering can turn an enjoyable streaming session into a test of patience. While many factors contribute to buffering, the good news is that most are within your control. In 2026, with faster internet speeds and more sophisticated home networking equipment, **fixing IPTV buffering forever** is not just a pipe dream — it's an achievable reality with the right network optimization strategies.
 
@@ -165,6 +169,7 @@ By systematically addressing these potential bottlenecks, you can significantly 
     date: 'Apr 2, 2026',
     readTime: '22 min',
     image: 'https://images.unsplash.com/photo-1593784991095-a205069470b6?w=1200&h=675&fit=crop',
+    relatedPosts: ['av1-codec-streaming-2026', 'budget-4k-home-cinema-2026'],
     content: `
 The promise of 4K **Ultra High Definition (UHD)** streaming has existed for nearly a decade, yet the gap between marketing claims and real-world delivery performance remains vast. For the high-end home cinema enthusiast, this gap is not merely an inconvenience — it is a fundamental engineering problem rooted in physics, protocol design, and the economic incentives of consumer-grade hardware manufacturers. **Stream Pro**, positioned as a **High-Performance Content Delivery Network (CDN) Architecture**, was engineered specifically to address these failure points at every layer of the delivery stack.
 
@@ -326,6 +331,7 @@ The physics of 4K delivery are unforgiving — but with the right architecture a
     date: 'Mar 24, 2026',
     readTime: '8 min',
     image: 'https://images.unsplash.com/photo-1535016120720-40c646be5580?w=1200&h=675&fit=crop',
+    relatedPosts: ['4k-home-cinema-blueprint-2026', 'fix-iptv-buffering-2026'],
     content: `
 In the relentless pursuit of higher quality and more efficient streaming, video codecs play a pivotal role. For years, H.264 (AVC) and H.265 (HEVC) have dominated the landscape, enabling the proliferation of HD and 4K content. However, as resolutions climb and internet infrastructure struggles to keep pace with demand, a new contender has emerged: **AV1**. In 2026, AV1 is rapidly becoming the codec of choice for major streaming platforms, promising to deliver stunning 4K visuals with significantly less bandwidth.
 
@@ -368,6 +374,7 @@ While H.265 served its purpose admirably, AV1 is undeniably the future of video 
     date: 'Mar 20, 2026',
     readTime: '15 min',
     image: 'https://images.unsplash.com/photo-1593784991095-a205069470b6?w=1200&h=675&fit=crop',
+    relatedPosts: ['smart-tv-streaming-slow-2026', '4k-home-cinema-blueprint-2026'],
     content: `
 The dream of a true 4K home cinema doesn't require a luxury budget. In 2026, you can build an impressive setup for under $100 that delivers stunning visual quality, rivaling systems costing five times as much. This blueprint walks you through selecting affordable components, optimizing your network, and achieving cinema-quality performance without breaking the bank.
 
@@ -458,6 +465,7 @@ Final Thoughts: The barrier to entry for quality home cinema has never been lowe
     date: 'Mar 18, 2026',
     readTime: '6 min',
     image: 'https://images.unsplash.com/photo-1461896836934-eba09c2a1c06?w=1200&h=675&fit=crop',
+    relatedPosts: ['budget-4k-home-cinema-2026', 'tivimate-vs-ott-navigator-2026'],
     content: `
 You've experienced it: the spinning wheel when opening Netflix, the lag when changing channels, the app that just won't load. Despite calling them "smart," your Smart TV often feels anything but. In 2026, the gap between Smart TV performance and dedicated streaming devices has never been wider. This guide explains why your Smart TV apps are slow and what you can do about it.
 
@@ -592,6 +600,7 @@ Final Thoughts: Your Smart TV's slow performance isn't your fault — it's the h
     date: 'Mar 16, 2026',
     readTime: '9 min',
     image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&h=675&fit=crop',
+    relatedPosts: ['international-streaming-2026', 'cord-cutting-mistakes-2026'],
     content: `
 The world of streaming has evolved dramatically, creating confusion about what's legal and what isn't. In 2026, understanding the legal landscape is more important than ever. This guide breaks down the legal realities of different streaming methods so you can make informed decisions.
 
@@ -741,6 +750,7 @@ Final Thoughts: The streaming legal landscape in 2026 offers more legal options 
     date: 'Mar 14, 2026',
     readTime: '8 min',
     image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1200&h=675&fit=crop',
+    relatedPosts: ['legal-landscape-streaming-2026', 'ai-powered-epg-2026'],
     content: `
 Your vacation starts the moment you leave home — not when you arrive. But nothing breaks that excitement faster than discovering your favorite streaming apps don't work abroad. In 2026, accessing your home country's content while traveling internationally has become essential for the modern traveler. This guide covers everything you need to know about streaming without borders.
 
@@ -904,6 +914,7 @@ Final Thoughts: Streaming while traveling internationally is entirely achievable
     date: 'Mar 12, 2026',
     readTime: '7 min',
     image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=675&fit=crop',
+    relatedPosts: ['international-streaming-2026', 'cord-cutting-mistakes-2026'],
     content: `
 The Electronic Program Guide (EPG) has remained essentially unchanged for two decades — a simple list of shows by time and channel. In 2026, artificial intelligence is revolutionizing how we discover and interact with live TV, making channel guides smarter, more personalized, and more powerful than ever before. This is the future of television navigation.
 
@@ -1075,6 +1086,7 @@ Final Thoughts: AI-powered EPG in 2026 isn't just an incremental improvement —
     date: 'Mar 22, 2026',
     readTime: '7 min',
     image: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=1200&h=675&fit=crop',
+    relatedPosts: ['cord-cutting-manifesto-2026', 'ai-powered-epg-2026'],
     content: `
 Cord-cutting promises freedom from expensive cable bills, but many cord-cutters make mistakes that cost them hundreds per month — or give up entirely. In 2026, avoid these common mistakes that trap users back into cable or drain their wallets unnecessarily.
 
@@ -1274,15 +1286,15 @@ function renderContent(content: string) {
     if (!trimmed) { elements.push(<br key={key++} />); continue; }
 
     if (trimmed.startsWith('### ')) {
-      elements.push(<h3 key={key++} className="text-xl font-bold text-foreground mt-8 mb-3">{trimmed.slice(4)}</h3>);
+      elements.push(<h3 key={key++} className="text-xl font-bold text-white mt-8 mb-3">{trimmed.slice(4)}</h3>);
     } else if (trimmed.startsWith('## ')) {
-      elements.push(<h2 key={key++} className="text-2xl font-bold text-foreground mt-10 mb-4 border-b border-border pb-2">{trimmed.slice(3)}</h2>);
+      elements.push(<h2 key={key++} className="text-2xl font-bold text-white mt-10 mb-4 border-b border-border pb-2">{trimmed.slice(3)}</h2>);
     } else if (/^\d+\.\s/.test(trimmed)) {
-      elements.push(<li key={key++} className="ml-6 list-decimal text-secondary-foreground leading-relaxed mb-2" dangerouslySetInnerHTML={{ __html: trimmed.replace(/^\d+\.\s/, '').replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground">$1</strong>') }} />);
+      elements.push(<li key={key++} className="ml-6 list-decimal text-gray-200 leading-relaxed mb-2" dangerouslySetInnerHTML={{ __html: trimmed.replace(/^\d+\.\s/, '').replace(/\*\*(.*?)\*\*/g, '<strong class="text-white">$1</strong>') }} />);
     } else if (trimmed.startsWith('- ')) {
-      elements.push(<li key={key++} className="ml-6 list-disc text-secondary-foreground leading-relaxed mb-2" dangerouslySetInnerHTML={{ __html: trimmed.slice(2).replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground">$1</strong>') }} />);
+      elements.push(<li key={key++} className="ml-6 list-disc text-gray-200 leading-relaxed mb-2" dangerouslySetInnerHTML={{ __html: trimmed.slice(2).replace(/\*\*(.*?)\*\*/g, '<strong class="text-white">$1</strong>') }} />);
     } else {
-      elements.push(<p key={key++} className="text-secondary-foreground leading-relaxed mb-4" dangerouslySetInnerHTML={{ __html: trimmed.replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground">$1</strong>') }} />);
+      elements.push(<p key={key++} className="text-gray-200 leading-relaxed mb-4" dangerouslySetInnerHTML={{ __html: trimmed.replace(/\*\*(.*?)\*\*/g, '<strong class="text-white">$1</strong>') }} />);
     }
   }
   return elements;
@@ -1411,18 +1423,18 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 section-padding pb-8">
-          <nav className="text-xs text-muted-foreground mb-3" aria-label="Breadcrumb">
+          <nav className="text-xs text-gray-400 mb-3" aria-label="Breadcrumb">
             <ol className="flex items-center gap-2">
               <li><a href="/" className="hover:text-primary transition-colors">Home</a></li>
               <li>/</li>
               <li><a href="/blog" className="hover:text-primary transition-colors">Blog</a></li>
               <li>/</li>
-              <li className="text-foreground truncate max-w-[200px]">{post.title}</li>
+              <li className="text-white truncate max-w-[200px]">{post.title}</li>
             </ol>
           </nav>
           <span className="text-xs font-bold uppercase tracking-widest text-primary mb-3 block">{post.category}</span>
-          <h1 className="text-2xl md:text-4xl font-bold text-foreground max-w-3xl leading-tight">{post.title}</h1>
-          <div className="flex items-center gap-4 mt-3 text-sm text-muted-foreground">
+          <h1 className="text-2xl md:text-4xl font-bold text-white max-w-3xl leading-tight">{post.title}</h1>
+          <div className="flex items-center gap-4 mt-3 text-sm text-gray-400">
             <span>{post.date}</span>
             <span>·</span>
             <span>{post.readTime} read</span>
@@ -1458,13 +1470,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 className="block group rounded-xl glass p-5 border border-border/20 hover:border-primary/30 transition-colors"
               >
                 <span className="text-xs font-bold uppercase tracking-wider text-primary">{relatedPost.category}</span>
-                <h3 className="font-semibold mt-2 mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                <h3 className="font-semibold mt-2 mb-2 group-hover:text-primary transition-colors line-clamp-2 text-white">
                   {relatedPost.title}
                 </h3>
-                <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
+                <p className="text-sm text-gray-300 line-clamp-2 mb-3">
                   {relatedPost.excerpt}
                 </p>
-                <span className="text-xs text-muted-foreground">{relatedPost.dateDisplay}</span>
+                <span className="text-xs text-gray-400">{relatedPost.dateDisplay}</span>
               </a>
             ))}
           </div>
@@ -1487,6 +1499,6 @@ function getRelatedPosts(currentSlug: string, relatedSlugs: string[]) {
         dateDisplay: post.date,
       };
     })
-    .filter(Boolean)
+    .filter((item): item is NonNullable<typeof item> => item !== null)
     .slice(0, 2);
 }

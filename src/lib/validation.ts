@@ -56,7 +56,12 @@ export const changePasswordSchema = z.object({
 // ==================== SUBSCRIPTION VALIDATION ====================
 
 // Valid plans - should match database enum
-const VALID_PLANS = ['STARTER', 'STANDARD', 'PREMIUM', 'ELITE'] as const;
+// Valid subscription plans (matches pricing page)
+const VALID_PLANS = [
+  '1D_1M', '1D_3M', '1D_6M', '1D_12M',
+  '2D_1M', '2D_3M', '2D_6M', '2D_12M',
+  '3D_1M', '3D_3M', '3D_6M', '3D_12M',
+] as const;
 
 // Valid payment methods
 const VALID_PAYMENT_METHODS = ['STRIPE', 'PAYPAL', 'CRYPTO', 'BANK_TRANSFER', 'WHATSAPP', 'TELEGRAM'] as const;

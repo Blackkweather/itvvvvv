@@ -16,12 +16,11 @@ import {
 import { createSubscriptionSchema, updateSubscriptionSchema } from '@/lib/validation';
 import { verifyCsrfToken } from '@/lib/csrf';
 
-// Plan prices (in USD)
-const PLAN_PRICES: Record<string, { monthly: number; yearly: number }> = {
-  STARTER: { monthly: 9.99, yearly: 99.99 },
-  STANDARD: { monthly: 14.99, yearly: 149.99 },
-  PREMIUM: { monthly: 19.99, yearly: 199.99 },
-  ELITE: { monthly: 24.99, yearly: 249.99 },
+// Plan prices (in USD) - matches pricing page
+const PLAN_PRICES: Record<string, { prices: { [duration: string]: number } }> = {
+  '1D': { prices: { '1': 15, '3': 35, '6': 50, '12': 75 } },
+  '2D': { prices: { '1': 25, '3': 60, '6': 85, '12': 125 } },
+  '3D': { prices: { '1': 35, '3': 85, '6': 125, '12': 175 } },
 };
 
 // GET - Get current subscription
@@ -44,6 +43,18 @@ export async function GET(request: NextRequest) {
       return notFound('No subscription found');
     }
     
+    // Log subscription access
+    await db.auditLog.create({
+      data: {
+        userId: user.id,
+        action: 'SUBSCRIPTION_VIEWED',
+        entity: 'Subscription',
+        entityId: subscription.id,
+        ipAddress: getIpAddress(request),
+        userAgent: getUserAgent(request),
+      },
+    }).catch(() => {}); // Non-blocking
+    
     // Get plan prices
     const planInfo = PLAN_PRICES[subscription.plan];
     
@@ -53,7 +64,7 @@ export async function GET(request: NextRequest) {
     });
     
   } catch (error) {
-    console.error('Get subscription error:', error);
+    console.error('[Subscriptions] Get error:', error);
     if (error instanceof Error && error.message === 'Unauthorized') {
       return notFound();
     }
@@ -84,8 +95,12 @@ export async function POST(request: NextRequest) {
       return conflict('Subscription already exists. Use PUT to update.');
     }
     
-    // Get plan price
-    const price = PLAN_PRICES[validated.plan];
+// Get plan price (format: "1D_1M", "2D_3M", etc.)
+    const planKey = validated.plan.split('_')[0]; // "1D", "2D", "3D"
+    const duration = validated.plan.split('_')[1]?.replace('M', '') || '1'; // "1", "3", "6", "12"
+    const planData = PLAN_PRICES[planKey];
+    const price = planData?.prices[duration];
+    
     if (!price) {
       return badRequest('Invalid plan');
     }
@@ -96,22 +111,22 @@ export async function POST(request: NextRequest) {
         userId: user.id,
         plan: validated.plan,
         status: 'PENDING',
-        deviceLimit: validated.deviceLimit || 4,
+        deviceLimit: validated.deviceLimit || parseInt(planKey.replace('D', '')),
       },
     });
-    
+
     // Create pending payment
     const payment = await db.payment.create({
       data: {
         userId: user.id,
         subscriptionId: subscription.id,
-        amount: price.monthly,
+        amount: price,
         method: validated.paymentMethod,
         status: 'PENDING',
-        description: `${validated.plan} subscription - monthly`,
+        description: `${validated.plan} subscription`,
       },
     });
-    
+
     // Log audit
     await db.auditLog.create({
       data: {
@@ -124,11 +139,11 @@ export async function POST(request: NextRequest) {
         metadata: JSON.stringify({ plan: validated.plan, paymentId: payment.id }),
       },
     });
-    
+
     return created({
       subscription,
       payment,
-      instructions: getPaymentInstructions(validated.paymentMethod),
+      instructions: getPaymentInstructions(validated.paymentMethod, validated.plan, price),
     });
     
   } catch (error) {
@@ -203,17 +218,35 @@ export async function PUT(request: NextRequest) {
 }
 
 // Helper function to get payment instructions based on method
-function getPaymentInstructions(method: string): string {
+function getPaymentInstructions(method: string, plan: string, price: number): { message: string; link?: string } {
+  const whatsappNumber = process.env.WHATSAPP_NUMBER;
+  const telegramBot = process.env.TELEGRAM_BOT_USERNAME;
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+  
   switch (method) {
     case 'WHATSAPP':
-      return 'Contact us on WhatsApp to complete your payment.';
+      if (whatsappNumber) {
+        const message = `Hello! I want to subscribe to the ${plan} plan ($${price}). Here are my details:\nName: \nEmail: `;
+        return {
+          message: `Contact us on WhatsApp to complete your payment.`,
+          link: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
+        };
+      }
+      return { message: 'Contact us on WhatsApp to complete your payment.' };
     case 'TELEGRAM':
-      return 'Contact us on Telegram to complete your payment.';
+      if (telegramBot) {
+        const message = `Hello! I want to subscribe to the ${plan} plan ($${price}).`;
+        return {
+          message: `Contact our Telegram bot to complete your payment.`,
+          link: `https://t.me/${telegramBot}?start=${encodeURIComponent(message)}`
+        };
+      }
+      return { message: 'Contact us on Telegram to complete your payment.' };
     case 'BANK_TRANSFER':
-      return 'Bank transfer details will be provided after order confirmation.';
+      return { message: 'Bank transfer details will be provided after order confirmation.' };
     case 'CRYPTO':
-      return 'Crypto payment details will be provided after order confirmation.';
+      return { message: 'Crypto payment details will be provided after order confirmation.' };
     default:
-      return 'You will receive payment instructions via email.';
+      return { message: 'You will receive payment instructions via email.' };
   }
 }

@@ -10,6 +10,7 @@ import { AdCashSlot } from '@/components/ads/AdCashSlot';
 
 export default function Home() {
   const zoneId = process.env.NEXT_PUBLIC_ADCASH_ZONE_ID || '';
+  const siteId = process.env.NEXT_PUBLIC_ADCASH_SITE_ID || '';
   
   return (
     <div className="min-h-screen">
@@ -21,7 +22,7 @@ export default function Home() {
       {/* Ad Break 1 */}
       <div className="section-padding py-8 bg-muted/20">
         <div className="max-w-4xl mx-auto">
-          <AdCashSlot zoneId={zoneId} label="Featured advertisement" />
+          <AdCashSlot zoneId={zoneId} siteId={siteId} label="Featured advertisement" />
         </div>
       </div>
       
@@ -31,7 +32,7 @@ export default function Home() {
       {/* Ad Break 2 */}
       <div className="section-padding py-8">
         <div className="max-w-4xl mx-auto">
-          <AdCashSlot zoneId={zoneId} label="Secondary advertisement" />
+          <AdCashSlot zoneId={zoneId} siteId={siteId} label="Secondary advertisement" />
         </div>
       </div>
       

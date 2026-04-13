@@ -2029,7 +2029,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       {/* In-Article Ad After Hero */}
       <div className="section-padding pt-8">
-        <AdCashInArticleAd zoneId={process.env.NEXT_PUBLIC_ADCASH_ZONE_ID || ''} />
+        <AdCashInArticleAd 
+          zoneId={process.env.NEXT_PUBLIC_ADCASH_ZONE_ID || ''}
+          siteId={process.env.NEXT_PUBLIC_ADCASH_SITE_ID}
+        />
       </div>
 
       <article className="section-padding py-12 max-w-3xl mx-auto">

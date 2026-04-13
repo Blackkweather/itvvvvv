@@ -16,49 +16,58 @@ export function AdCashSlot({ zoneId, siteId, className = '', label = 'Advertisem
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
-    if (!zoneId) return;
+    if (!zoneId || !siteId) return;
     
-    const loadAd = async () => {
+    const loadAd = () => {
       try {
         const hostname = window.location.hostname;
         
-        if (!(window as any).AdCash) {
+        // Load AdCash script
+        if (!(window as any).AdCashScriptLoaded) {
           const script = document.createElement('script');
           script.type = 'text/javascript';
-          script.src = `https://adcash.com/script/showad/ct/?h=${encodeURIComponent(hostname)}&sid=${siteId || ''}`;
+          script.src = `https://adcash.com/script/showad/ct/?h=${encodeURIComponent(hostname)}&sid=${siteId}`;
           script.async = true;
-          script.onload = () => console.log('AdCash script loaded');
+          script.onload = () => {
+            (window as any).AdCashScriptLoaded = true;
+          };
           script.onerror = () => {
             console.error('AdCash script failed to load');
-            setHasError(true);
           };
           document.head.appendChild(script);
         }
 
-        if (adRef.current) {
-          adRef.current.innerHTML = '';
+        // Create ad container
+        if (adRef.current && !adRef.current.querySelector('.adcash-container')) {
+          const container = document.createElement('div');
+          container.className = 'adcash-container';
+          container.setAttribute('data-adcash-zone', zoneId);
+          adRef.current.appendChild(container);
           
-          const adFrame = document.createElement('iframe');
-          adFrame.style.width = '100%';
-          adFrame.style.minHeight = '280px';
-          adFrame.style.border = 'none';
-          adFrame.src = `https://adcash.com/script/showad/ct/?h=${encodeURIComponent(hostname)}&z=${zoneId}&sid=${siteId || ''}`;
-          adFrame.setAttribute('loading', 'lazy');
-          
-          adRef.current.appendChild(adFrame);
-          setIsLoaded(true);
+          // Trigger ad display after script loads
+          setTimeout(() => {
+            if ((window as any).AdCash) {
+              try {
+                (window as any).AdCash.showAd({
+                  zoneId: zoneId,
+                  container: container
+                });
+                setIsLoaded(true);
+              } catch (e) {
+                console.error('AdCash showAd error:', e);
+              }
+            }
+          }, 500);
         }
       } catch (err) {
         console.error('AdCash error:', err);
-        setHasError(true);
       }
     };
 
     loadAd();
   }, [zoneId, siteId]);
 
-  if (!zoneId) return null;
-  if (hasError) return null;
+  if (!zoneId || !siteId) return null;
 
   return (
     <div
@@ -67,13 +76,7 @@ export function AdCashSlot({ zoneId, siteId, className = '', label = 'Advertisem
       data-ad-status={isLoaded ? 'filled' : 'unfilled'}
       aria-label={label}
       style={style}
-    >
-      {!isLoaded && (
-        <div className="ad-placeholder flex items-center justify-center py-8 text-xs text-muted-foreground border border-dashed border-border/30 rounded-lg bg-muted/10">
-          <span>Advertisement</span>
-        </div>
-      )}
-    </div>
+    />
   );
 }
 

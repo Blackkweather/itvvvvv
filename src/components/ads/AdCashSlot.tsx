@@ -13,61 +13,47 @@ interface AdCashSlotProps {
 export function AdCashSlot({ zoneId, siteId, className = '', label = 'Advertisement', style }: AdCashSlotProps) {
   const adRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
-    if (!zoneId || !siteId) return;
+    if (!zoneId) return;
     
     const loadAd = () => {
-      try {
-        const hostname = window.location.hostname;
-        
-        // Load AdCash script
-        if (!(window as any).AdCashScriptLoaded) {
-          const script = document.createElement('script');
-          script.type = 'text/javascript';
-          script.src = `https://adcash.com/script/showad/ct/?h=${encodeURIComponent(hostname)}&sid=${siteId}`;
-          script.async = true;
-          script.onload = () => {
-            (window as any).AdCashScriptLoaded = true;
-          };
-          script.onerror = () => {
-            console.error('AdCash script failed to load');
-          };
-          document.head.appendChild(script);
-        }
+      const container = adRef.current;
+      if (!container) return;
 
-        // Create ad container
-        if (adRef.current && !adRef.current.querySelector('.adcash-container')) {
-          const container = document.createElement('div');
-          container.className = 'adcash-container';
-          container.setAttribute('data-adcash-zone', zoneId);
-          adRef.current.appendChild(container);
-          
-          // Trigger ad display after script loads
-          setTimeout(() => {
-            if ((window as any).AdCash) {
-              try {
-                (window as any).AdCash.showAd({
-                  zoneId: zoneId,
-                  container: container
-                });
-                setIsLoaded(true);
-              } catch (e) {
-                console.error('AdCash showAd error:', e);
-              }
-            }
-          }, 500);
+      // Use the AutoTag method directly
+      if ((window as any).aclib) {
+        try {
+          (window as any).aclib.runAutoTag({ zoneId: zoneId });
+          setIsLoaded(true);
+        } catch (e) {
+          console.error('AdCash AutoTag error:', e);
         }
-      } catch (err) {
-        console.error('AdCash error:', err);
+      } else {
+        // Load the anti-adblock library from CDN
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://cdn.aclibintelligence.com/lib.js';
+        script.async = true;
+        script.onload = () => {
+          if ((window as any).aclib) {
+            (window as any).aclib.runAutoTag({ zoneId: zoneId });
+            setIsLoaded(true);
+          }
+        };
+        script.onerror = () => {
+          console.error('Failed to load AdCash library');
+        };
+        document.head.appendChild(script);
       }
     };
 
-    loadAd();
+    // Delay slightly to ensure page is ready
+    const timer = setTimeout(loadAd, 100);
+    return () => clearTimeout(timer);
   }, [zoneId, siteId]);
 
-  if (!zoneId || !siteId) return null;
+  if (!zoneId) return null;
 
   return (
     <div

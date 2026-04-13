@@ -24,19 +24,19 @@ const TRIAL_CONFIG = {
 
 const PLANS = {
   1: [
-    { id: '1M', name: '1 Month', price: 15, originalPrice: null, duration: 'month', isTrial: true },
+    { id: '1M', name: '1 Month', price: 15, originalPrice: null, duration: 'month' },
     { id: '3M', name: '3 Months', price: 35, originalPrice: 45, duration: '3 months', save: 10 },
     { id: '6M', name: '6 Months', price: 50, originalPrice: 70, duration: '6 months', save: 20 },
     { id: '12M', name: '12 Months', price: 75, originalPrice: 110, duration: 'year', save: 35 },
   ],
   2: [
-    { id: '1M', name: '1 Month', price: 25, originalPrice: null, duration: 'month', isTrial: true },
+    { id: '1M', name: '1 Month', price: 25, originalPrice: null, duration: 'month' },
     { id: '3M', name: '3 Months', price: 60, originalPrice: 90, duration: '3 months', save: 30 },
     { id: '6M', name: '6 Months', price: 85, originalPrice: 140, duration: '6 months', save: 55 },
     { id: '12M', name: '12 Months', price: 125, originalPrice: 210, duration: 'year', save: 85 },
   ],
   3: [
-    { id: '1M', name: '1 Month', price: 35, originalPrice: null, duration: 'month', isTrial: true },
+    { id: '1M', name: '1 Month', price: 35, originalPrice: null, duration: 'month' },
     { id: '3M', name: '3 Months', price: 85, originalPrice: 110, duration: '3 months', save: 25 },
     { id: '6M', name: '6 Months', price: 125, originalPrice: 200, duration: '6 months', save: 75 },
     { id: '12M', name: '12 Months', price: 175, originalPrice: 280, duration: 'year', save: 105 },
@@ -44,9 +44,9 @@ const PLANS = {
 };
 
 const DEVICE_OPTIONS = [
-  { devices: 1, label: '1 Device', description: 'Perfect for personal use' },
-  { devices: 2, label: '2 Devices', description: 'Great for couples' },
-  { devices: 3, label: '3 Devices', description: 'Family plan' },
+  { devices: 1, label: '1 Device', description: 'Perfect for personal use', startingPrice: 15 },
+  { devices: 2, label: '2 Devices', description: 'Great for couples', startingPrice: 25 },
+  { devices: 3, label: '3 Devices', description: 'Family plan', startingPrice: 35 },
 ];
 
 const FEATURES = [
@@ -64,13 +64,6 @@ interface LeadData {
   planPrice: number;
   phone?: string;
   name?: string;
-}
-
-function saveLead(data: LeadData) {
-  const existing = JSON.parse(localStorage.getItem('streampro_leads') || '[]');
-  existing.push(data);
-  localStorage.setItem('streampro_leads', JSON.stringify(existing));
-  console.log('Lead saved:', data);
 }
 
 function openWhatsApp(message: string) {
@@ -98,21 +91,18 @@ export default function FreeTrialPage() {
     };
     setLeadData(data);
 
-    if (plan.isTrial) {
-      const message = `🏆 *FREE TRIAL REQUEST*
+    const message = `📦 *New Subscription Order*
 
-Hi! I'd like to start a free trial.
+Hello, I would like to subscribe to StreamPro.
 
-📱 *Plan:* 1 Month (${TRIAL_CONFIG.trialDuration} FREE)
-📱 *Devices:* ${selectedDevices} Device${selectedDevices > 1 ? 's' : ''}
-💰 *Price:* $${plan.price}/month (after trial)
+📋 *Package:* ${plan.name}
+📱 *Number of Devices:* ${selectedDevices}
+💵 *Price:* $${plan.price}/${plan.duration === 'year' ? 'year' : 'month'}
 
-Please confirm my trial access. Thank you!`;
+Please confirm the order. Thank you!`;
 
-      saveLead(data);
-      openWhatsApp(message);
-      setIsSubmitted(true);
-    }
+    openWhatsApp(message);
+    setIsSubmitted(true);
   };
 
   const handleNext = () => {
@@ -155,7 +145,7 @@ Please confirm my trial access. Thank you!`;
             >
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
               <span className="text-xs font-medium uppercase tracking-wider text-primary">
-                24-Hour Free Trial Available
+                Subscribe Now
               </span>
             </motion.div>
 
@@ -165,7 +155,7 @@ Please confirm my trial access. Thank you!`;
               transition={{ delay: 0.1 }}
               className="text-4xl md:text-6xl font-black tracking-tight mb-4"
             >
-              Start Your <span className="text-primary">Free Trial</span>
+              Get Your <span className="text-primary">Subscription</span>
             </motion.h1>
 
             <motion.p
@@ -175,7 +165,7 @@ Please confirm my trial access. Thank you!`;
               className="text-lg text-muted max-w-2xl mx-auto mb-8"
             >
               Experience 30,000+ channels in stunning 4K quality. 
-              No credit card required. Cancel anytime.
+              Choose your plan and start watching instantly.
             </motion.p>
           </div>
         </section>
@@ -237,8 +227,6 @@ Please confirm my trial access. Thank you!`;
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
                   {DEVICE_OPTIONS.map((option) => {
                     const isSelected = selectedDevices === option.devices;
-                    const devicePrices = PLANS[option.devices as keyof typeof PLANS];
-                    const trialPrice = devicePrices.find(p => p.isTrial)?.price || 15;
                     return (
                       <button
                         key={option.devices}
@@ -258,7 +246,7 @@ Please confirm my trial access. Thank you!`;
                         <div className="font-medium text-foreground">{option.label}</div>
                         <p className="text-gray-300 mt-2">{option.description}</p>
                         <div className="mt-4 pt-4 border-t border-border">
-                          <span className="text-2xl font-bold text-primary">${trialPrice}</span>
+                          <span className="text-2xl font-bold text-primary">${option.startingPrice}</span>
                           <span className="text-gray-400">/month</span>
                         </div>
                       </button>
@@ -298,21 +286,12 @@ Please confirm my trial access. Thank you!`;
                       onClick={() => handlePlanSelect(plan)}
                       disabled={isSubmitted}
                       className={`relative p-6 rounded-2xl border-2 transition-all duration-300 text-left ${
-                        plan.isTrial
-                          ? 'border-green-500 bg-green-500/10 hover:border-green-400'
+                        selectedPlan === plan.id
+                          ? 'border-primary bg-primary/10 shadow-lg shadow-primary/10'
                           : 'border-border hover:border-primary/50 hover:bg-white/5'
                       }`}
                     >
-                      {plan.isTrial && (
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                          <span className="bg-green-500 text-black text-xs font-bold px-4 py-1.5 rounded-full flex items-center gap-1">
-                            <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
-                            FREE TRIAL
-                          </span>
-                        </div>
-                      )}
-                      
-                      {plan.save && !plan.isTrial && (
+                      {plan.save && (
                         <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                           <span className="bg-primary text-black text-xs font-bold px-3 py-1 rounded-full">
                             SAVE ${plan.save}
@@ -326,7 +305,7 @@ Please confirm my trial access. Thank you!`;
                         {plan.originalPrice && (
                           <span className="text-sm text-muted line-through">${plan.originalPrice}</span>
                         )}
-                        <span className={`text-3xl font-bold ${plan.isTrial ? 'text-green-400' : 'text-primary'}`}>
+                        <span className="text-3xl font-bold text-primary">
                           ${plan.price}
                         </span>
                         <span className="text-muted text-sm">/{plan.duration}</span>
@@ -341,19 +320,11 @@ Please confirm my trial access. Thank you!`;
                         ))}
                       </div>
 
-                      <div className={`mt-4 pt-4 rounded-lg ${
-                        plan.isTrial
-                          ? 'bg-green-500/20 text-green-400'
-                          : 'bg-white/5 text-muted'
-                      } text-center text-sm font-medium`}>
-                        {plan.isTrial ? (
-                          <span className="flex items-center justify-center gap-2">
-                            <IconMessageCircle className="h-4 w-4" />
-                            Click to start via WhatsApp
-                          </span>
-                        ) : (
-                          'Select Plan'
-                        )}
+                      <div className={`mt-4 pt-4 rounded-lg bg-white/5 text-muted text-center text-sm font-medium`}>
+                        <span className="flex items-center justify-center gap-2">
+                          <IconMessageCircle className="h-4 w-4" />
+                          Click to order via WhatsApp
+                        </span>
                       </div>
                     </button>
                   ))}
@@ -383,7 +354,7 @@ Please confirm my trial access. Thank you!`;
               </div>
               <h2 className="text-2xl font-bold text-foreground mb-2">Request Sent!</h2>
               <p className="text-gray-400 mb-6">
-                We've opened WhatsApp. Please send the message to confirm your free trial.
+                We've opened WhatsApp. Please send the message to confirm your subscription.
               </p>
               <div className="bg-surface border border-border rounded-xl p-4 text-left">
                 <p className="text-sm text-gray-400 mb-2">Your selection:</p>
@@ -445,7 +416,7 @@ Please confirm my trial access. Thank you!`;
               Still Have Questions?
             </h2>
             <p className="text-gray-400 mb-6 max-w-lg mx-auto">
-              Our team is here to help you get started with your free trial.
+              Our team is here to help you get started with your subscription.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link

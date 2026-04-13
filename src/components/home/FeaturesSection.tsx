@@ -99,7 +99,7 @@ export function FeaturesSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="text-white text-sm sm:text-base md:text-lg lg:text-xl max-w-xl sm:max-w-2xl mx-auto leading-relaxed font-medium px-4 sm:px-0"
+                        className="text-[#f0f0f0] text-sm sm:text-base md:text-lg lg:text-xl max-w-xl sm:max-w-2xl mx-auto leading-relaxed font-medium px-4 sm:px-0"
                     >
                         Zero constraints. Zero latency. We&apos;ve optimized every layer of the multi-device mesh
                         for total spectral dominance.
@@ -130,10 +130,10 @@ export function FeaturesSection() {
                                 <div className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-primary group-hover:border-primary transition-all duration-500">
                                     <feature.icon strokeWidth={1.5} className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 text-white group-hover:text-background transition-colors" />
                                 </div>
-                                <h3 className="text-base sm:text-lg font-bold mb-2 sm:mb-3 uppercase tracking-tighter group-hover:text-primary transition-colors">
+                                <h3 className="text-base sm:text-lg font-bold mb-2 sm:mb-3 uppercase tracking-tighter group-hover:text-primary transition-colors text-[#f0f0f0]">
                                     {feature.title}
                                 </h3>
-                                <p className="text-gray-300 text-xs sm:text-sm leading-relaxed font-medium">
+                                <p className="text-[#a0a0a0] text-xs sm:text-sm leading-relaxed font-medium">
                                     {feature.description}
                                 </p>
                             </div>

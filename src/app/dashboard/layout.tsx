@@ -12,7 +12,10 @@ import {
   IconLogOut,
   IconLoader,
   IconMenu,
-  IconX
+  IconX,
+  IconTv,
+  IconDollarSign,
+  IconSmartphone
 } from '@/components/ui/Icons';
 import { useState } from 'react';
 import { ErrorBoundary } from '@/components/ui/ErrorBoundary';
@@ -23,13 +26,16 @@ function DashboardContent({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  // Public pages that don't require authentication
+  const isAuthPage = pathname.includes('/login') || pathname.includes('/register') || pathname.includes('/forgot-password');
+
   useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
+    if (!isLoading && !isAuthenticated && !isAuthPage) {
       router.push('/dashboard/login');
     }
-  }, [isLoading, isAuthenticated, router]);
+  }, [isLoading, isAuthenticated, router, isAuthPage]);
 
-  if (isLoading) {
+  if (isLoading && !isAuthPage) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="flex flex-col items-center gap-4">
@@ -40,12 +46,20 @@ function DashboardContent({ children }: { children: ReactNode }) {
     );
   }
 
+  // Allow public auth pages to render
+  if (isAuthPage) {
+    return children;
+  }
+
   if (!isAuthenticated) {
     return null;
   }
 
   const navItems = [
     { href: '/dashboard', label: 'Overview', icon: IconDashboard },
+    { href: '/dashboard/channels', label: 'Channels', icon: IconTv },
+    { href: '/dashboard/devices', label: 'Devices', icon: IconSmartphone },
+    { href: '/dashboard/billing', label: 'Billing', icon: IconDollarSign },
     { href: '/dashboard/profile', label: 'Profile', icon: IconUser },
     { href: '/dashboard/subscription', label: 'Subscription', icon: IconCreditCard },
     { href: '/dashboard/settings', label: 'Settings', icon: IconSettings },

@@ -11,52 +11,70 @@ export function Logo({ className = "", showText = true }: LogoProps) {
     return (
         <div className={`flex items-center gap-2.5 ${className}`}>
             <motion.div
-                whileHover={{ scale: 1.1, rotate: 5 }}
+                whileHover={{ scale: 1.05 }}
                 className="relative h-10 w-10 flex items-center justify-center group"
             >
-                {/* Subtly glowing backglow */}
+                {/* Subtle glow */}
                 <motion.div
                     animate={{
-                        opacity: [0.2, 0.4, 0.2],
+                        opacity: [0.15, 0.3, 0.15],
                     }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute inset-0 bg-white/5 rounded-lg blur-md"
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute inset-0 bg-primary/20 rounded-lg blur-md"
                 />
 
-                {/* Minimalist 'Prism' SVG */}
+                {/* Modern Play Button / Signal Mark */}
                 <svg
                     viewBox="0 0 40 40"
                     fill="none"
-                    className="h-7 w-7 text-white relative z-10"
+                    className="h-8 w-8 text-primary relative z-10"
                     xmlns="http://www.w3.org/2000/svg"
                 >
-                    <motion.path
-                        initial={{ pathLength: 0 }}
-                        animate={{ pathLength: 1 }}
-                        transition={{ duration: 2, ease: "easeInOut" }}
-                        d="M32 20L12 32V8L32 20Z"
+                    {/* Outer ring */}
+                    <circle
+                        cx="20"
+                        cy="20"
+                        r="16"
                         stroke="currentColor"
                         strokeWidth="1.5"
+                        fill="none"
+                        className="opacity-40"
                     />
-                    <motion.path
-                        initial={{ pathLength: 0, opacity: 0 }}
-                        animate={{ pathLength: 1, opacity: 0.4 }}
-                        transition={{ duration: 1.5, delay: 0.5, ease: "easeInOut" }}
-                        d="M12 20H25"
+                    {/* Play triangle */}
+                    <path
+                        d="M17 14L26 20L17 26V14Z"
+                        fill="currentColor"
                         stroke="currentColor"
                         strokeWidth="1"
+                        strokeLinejoin="round"
+                    />
+                    {/* Signal waves */}
+                    <path
+                        d="M30 14C31.5 15.5 32 18 32 20C32 22 31.5 24.5 30 26"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        fill="none"
+                        className="opacity-60"
+                    />
+                    <path
+                        d="M34 10C36 12 37 16 37 20C37 24 36 28 34 30"
+                        stroke="currentColor"
+                        strokeWidth="1"
+                        strokeLinecap="round"
+                        fill="none"
+                        className="opacity-30"
                     />
                 </svg>
-
-                {/* Advanced Light Leak / Glow */}
-                <div className="absolute inset-x-0 -bottom-1 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </motion.div>
 
             {showText && (
-                <span className="text-xl font-light tracking-[0.4em] uppercase text-white/90">
-                    Stream<span className="font-bold">Pro</span>
+                <span className="text-xl font-light tracking-[0.4em] uppercase text-[#f0f0f0]">
+                    Stream<span className="font-bold text-primary">Pro</span>
                 </span>
             )}
         </div>
     );
 }
+
+

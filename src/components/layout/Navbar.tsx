@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Home, Play, Zap, BookOpen, Info } from 'lucide-react';
+import { Menu, X, Home, Play, Zap, BookOpen, Info, Users } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
 
 const navLinks = [
@@ -11,8 +11,9 @@ const navLinks = [
     { label: 'Trailers', href: '/trailers', icon: Play },
     { label: 'Features', href: '#features', icon: Zap },
     { label: 'Pricing', href: '/pricing', icon: Zap },
-    { label: 'Resources', href: '/blog', icon: BookOpen },
-    { label: 'About', href: '/about', icon: Info },
+    { label: 'FAQ', href: '#faq', icon: BookOpen },
+    { label: 'Reseller', href: '/reseller', icon: Users },
+    { label: 'Contact', href: 'https://wa.me/447853402172', icon: Info },
 ];
 
 const bottomNavItems = [
@@ -20,7 +21,8 @@ const bottomNavItems = [
     { label: 'Trailers', href: '/trailers', icon: Play },
     { label: 'Browse', href: '#browse', icon: Play },
     { label: 'Pricing', href: '/pricing', icon: Zap },
-    { label: 'Resources', href: '/blog', icon: BookOpen },
+    { label: 'Reseller', href: '/reseller', icon: Users },
+    { label: 'Blog', href: '/blog', icon: BookOpen },
 ];
 
 export function Navbar() {
@@ -122,11 +124,11 @@ export function Navbar() {
                             role="navigation"
                             aria-label="Main navigation"
                         >
-                            {navLinks.map((link) => (
+                            {navLinks.map((link, index) => (
                                 <Link
-                                    key={link.href}
+                                    key={`nav-${index}`}
                                     href={link.href}
-                                    className="relative text-[13px] font-light tracking-[0.1em] uppercase text-white hover:text-primary transition-all duration-500 group py-2"
+                                    className="relative text-[13px] font-light tracking-[0.1em] uppercase text-[#f0f0f0] hover:text-primary transition-all duration-500 group py-2"
                                 >
                                     {link.label}
                                     <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary group-hover:w-full transition-all duration-500" />
@@ -147,7 +149,7 @@ export function Navbar() {
                         {/* Mobile Menu Button - Touch optimized */}
                         <button
                             onClick={() => setMobileOpen(!mobileOpen)}
-                            className="lg:hidden relative z-50 text-foreground p-3 rounded-xl hover:bg-white/5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 min-h-[44px] min-w-[44px] flex items-center justify-center"
+                            className="lg:hidden relative z-50 text-[#f0f0f0] p-3 rounded-xl hover:bg-white/5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 min-h-[44px] min-w-[44px] flex items-center justify-center"
                             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
                             aria-expanded={mobileOpen}
                             aria-controls="mobile-menu"
@@ -210,7 +212,7 @@ export function Navbar() {
                                 >
                                     {navLinks.map((link, index) => (
                                         <motion.div
-                                            key={link.href}
+                                            key={`mobile-nav-${index}`}
                                             initial={{ opacity: 0, x: -20 }}
                                             animate={{ opacity: 1, x: 0 }}
                                             transition={{ delay: index * 0.05 + 0.1 }}
@@ -218,9 +220,9 @@ export function Navbar() {
                                             <Link
                                                 href={link.href}
                                                 onClick={handleNavClick}
-                                                className="flex items-center gap-4 text-base font-medium text-white hover:text-primary px-4 py-4 rounded-xl hover:bg-white/[0.04] transition-all min-h-[48px]"
+                                                className="flex items-center gap-4 text-base font-medium text-[#f0f0f0] hover:text-primary px-4 py-4 rounded-xl hover:bg-white/[0.04] transition-all min-h-[48px]"
                                             >
-                                                <link.icon className="h-5 w-5 text-primary/60" />
+                                                <link.icon className="h-5 w-5 text-primary" />
                                                 {link.label}
                                             </Link>
                                         </motion.div>
@@ -253,7 +255,7 @@ export function Navbar() {
                 role="navigation"
                 aria-label="Bottom navigation"
             >
-                {bottomNavItems.map((item) => {
+                {bottomNavItems.map((item, index) => {
                     const isActive = item.href === '/' 
                         ? activeSection === '' 
                         : item.href.startsWith('#') 
@@ -262,7 +264,7 @@ export function Navbar() {
                     
                     return (
                         <Link
-                            key={item.href}
+                            key={`bottom-${index}`}
                             href={item.href}
                             className={`mobile-bottom-nav-item ${isActive ? 'active' : ''}`}
                             aria-current={isActive ? 'page' : undefined}

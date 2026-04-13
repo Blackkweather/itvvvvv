@@ -37,10 +37,22 @@ export async function GET(request: NextRequest) {
       },
     });
     
+    // Log profile access
+    await db.auditLog.create({
+      data: {
+        userId: user.id,
+        action: 'PROFILE_VIEWED',
+        entity: 'User',
+        entityId: user.id,
+        ipAddress: getIpAddress(request),
+        userAgent: getUserAgent(request),
+      },
+    }).catch(() => {}); // Non-blocking
+    
     return success(profile);
     
   } catch (error) {
-    console.error('Get profile error:', error);
+    console.error('[Profile] Get error:', error);
     return serverError();
   }
 }

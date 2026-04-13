@@ -23,7 +23,7 @@ enum Role {
 model User {
   id                String    @id @default(uuid())
   email             String    @unique
-  password          String    // hashed
+  password          String    // hashed with Argon2id
   name              String?
   phone             String?
   whatsapp          String?
@@ -31,6 +31,23 @@ model User {
   role              Role      @default(USER)
   isActive          Boolean   @default(true)
   emailVerified     Boolean   @default(false)
+  
+  // Security fields
+  resetToken        String?   // hashed token for password reset
+  resetExpires      DateTime?
+  mfaEnabled        Boolean   @default(false)
+  mfaSecret         String?   // encrypted TOTP secret
+  backupCodes       String?   // hashed backup codes (one-time use)
+  
+  // Brute force protection
+  failedAttempts    Int       @default(0)
+  lockedUntil       DateTime?
+  passwordChangedAt DateTime  @default(now())
+  
+  // Session security
+  lastLoginAt       DateTime?
+  lastLoginIp       String?
+  
   createdAt         DateTime  @default(now())
   updatedAt         DateTime  @updatedAt
 
@@ -49,9 +66,11 @@ model Session {
   userId       String
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   token        String   @unique
+  deviceName   String?
   expiresAt    DateTime
   ipAddress    String?
   userAgent    String?
+  isActive     Boolean  @default(true)
   createdAt    DateTime @default(now())
 }
 
@@ -184,4 +203,37 @@ model AffiliatePayout {
   transactionId String?
   createdAt    DateTime      @default(now())
   processedAt  DateTime?
+}
+
+// ==================== CHANNELS ====================
+
+model ChannelCategory {
+  id          String     @id @default(uuid())
+  name        String
+  slug        String     @unique
+  description String?
+  order       Int        @default(0)
+  isActive    Boolean    @default(true)
+  channels    Channel[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Channel {
+  id           String          @id @default(uuid())
+  name         String
+  slug         String          @unique
+  streamUrl    String?
+  logoUrl      String?
+  categoryId   String
+  category     ChannelCategory @relation(fields: [categoryId], references: [id])
+  channelNumber Int?
+  isActive     Boolean        @default(true)
+  isHd         Boolean        @default(false)
+  is4k         Boolean        @default(false)
+  country      String?
+  language     String?
+  order        Int            @default(0)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
 }

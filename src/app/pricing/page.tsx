@@ -51,26 +51,12 @@ const FEATURES = [
 
 export default function PricingPage() {
   const [selectedDevices, setSelectedDevices] = useState(1);
+  const [selectedPlan, setSelectedPlan] = useState('1D_1M');
   const currentPlans = PLANS[selectedDevices as keyof typeof PLANS] || PLANS[1];
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="text-2xl font-black">
-            <span className="text-foreground">STREAM</span>
-            <span className="text-primary">PRO</span>
-          </Link>
-          <nav className="hidden md:flex items-center gap-6">
-            <Link href="/#features" className="text-sm text-muted hover:text-foreground transition-colors">Features</Link>
-            <Link href="/pricing" className="text-sm text-primary font-medium">Pricing</Link>
-            <Link href="/faq" className="text-sm text-muted hover:text-foreground transition-colors">FAQ</Link>
-          </nav>
-        </div>
-      </header>
-
-      <main className="pt-32 pb-20">
+      <main className="pt-32 pb-20" id="pricing">
         {/* Hero */}
         <section className="relative overflow-hidden">
           <div className="absolute inset-0 z-0">
@@ -102,7 +88,7 @@ export default function PricingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-lg text-muted max-w-2xl mx-auto mb-8"
+              className="text-lg text-[#a0a0a0] max-w-2xl mx-auto mb-8"
             >
               Select the perfect plan for your streaming needs. 
               All plans include 30,000+ channels and 120,000+ VOD.
@@ -113,8 +99,8 @@ export default function PricingPage() {
         {/* Device Selection */}
         <section className="max-w-4xl mx-auto px-6 mb-12">
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-foreground mb-2">How Many Devices?</h2>
-            <p className="text-gray-400">Select the number of simultaneous connections</p>
+            <h2 className="text-2xl font-bold text-[#f0f0f0] mb-2">How Many Devices?</h2>
+            <p className="text-[#a0a0a0]">Select the number of simultaneous connections</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -142,13 +128,13 @@ export default function PricingPage() {
                     </div>
                   )}
                   
-                  <div className="flex items-center gap-3 mb-3">
-                    <IconMonitor className={`h-6 w-6 ${isSelected ? 'text-primary' : 'text-muted'}`} />
-                    <span className="text-2xl font-bold text-foreground">{option.devices}</span>
-                  </div>
-                  
-                  <div className="font-medium text-foreground mb-1">{option.label}</div>
-                  <p className="text-gray-300 mb-4">{option.description}</p>
+<div className="flex items-center gap-3 mb-3">
+                                            <IconMonitor className={`h-6 w-6 ${isSelected ? 'text-primary' : 'text-[#a0a0a0]'}`} />
+                                            <span className="text-2xl font-bold text-[#f0f0f0]">{option.devices}</span>
+                                        </div>
+                                        
+                                        <div className="font-medium text-[#f0f0f0] mb-1">{option.label}</div>
+                                        <p className="text-[#a0a0a0] mb-4">{option.description}</p>
                   
                   <div className="pt-4 border-t border-border">
                     <span className="text-3xl font-bold text-primary">${monthlyPrice}</span>
@@ -168,63 +154,146 @@ export default function PricingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
             >
-              {currentPlans.map((plan, index) => (
-                <motion.div
-                  key={plan.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className={`relative bg-surface border rounded-2xl p-6 transition-all duration-300 ${
-                    index === 0 
-                      ? 'border-primary shadow-lg shadow-primary/10' 
-                      : 'border-border hover:border-primary/50'
-                  }`}
-                >
-                  {plan.save && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                      <span className="bg-primary text-black text-xs font-bold px-4 py-1.5 rounded-full">
-                        SAVE ${plan.save}
-                      </span>
-                    </div>
-                  )}
-
-                  <h3 className="text-lg font-bold text-foreground mb-1">{plan.name}</h3>
-                  
-                  <div className="mb-6">
-                    {plan.originalPrice && (
-                      <span className="text-sm text-muted line-through">${plan.originalPrice}</span>
-                    )}
-                    <div>
-                      <span className="text-4xl font-bold text-primary">${plan.price}</span>
-                      <span className="text-muted text-sm">/{plan.duration}</span>
-                    </div>
-                  </div>
-
-                  <ul className="space-y-3 mb-6">
-                    {['30,000+ Channels', '4K Quality', '120,000+ VOD', '24/7 Support', 'Anti-Freeze'].map((feature, i) => (
-                      <li key={i} className="flex items-center gap-2 text-sm">
-                        <IconCheck className="h-4 w-4 text-green-500 shrink-0" />
-                        <span className="text-white">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <Link
-                    href="/free-trial"
-                    className={`block w-full py-3.5 rounded-xl font-bold text-center transition-all ${
-                      index === 0
-                        ? 'bg-primary text-black hover:bg-primary/90'
-                        : 'bg-white/5 text-foreground hover:bg-white/10 border border-border'
+              {currentPlans.map((plan, index) => {
+                const isSelected = selectedPlan === plan.id;
+                
+                return (
+                  <motion.div
+                    key={plan.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    onClick={() => setSelectedPlan(plan.id)}
+                    className={`relative group rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer ${
+                      isSelected ? 'ring-2 ring-primary' : ''
+                    } ${
+                      index === 0 
+                        ? 'lg:scale-105 lg:shadow-2xl lg:shadow-primary/20' 
+                        : ''
                     }`}
                   >
-                    {index === 0 ? 'Start Free Trial' : 'Select Plan'}
-                  </Link>
-                </motion.div>
-              ))}
+                    {/* Background gradient */}
+                    <div className={`absolute inset-0 ${
+                      isSelected
+                        ? 'bg-gradient-to-br from-primary/30 via-primary/15 to-transparent'
+                        : index === 0
+                        ? 'bg-gradient-to-br from-primary/20 via-primary/10 to-transparent'
+                        : 'bg-gradient-to-br from-white/5 to-transparent'
+                    }`} />
+                    
+                    {/* Border glow effect */}
+                    <div className={`absolute inset-0 rounded-2xl border ${
+                      isSelected
+                        ? 'border-primary shadow-[inset_0_0_30px_rgba(0,212,255,0.2)]'
+                        : index === 0
+                        ? 'border-primary/50 shadow-[inset_0_0_30px_rgba(0,212,255,0.1)]'
+                        : 'border-white/10 group-hover:border-primary/30'
+                    } transition-all duration-300`} />
+
+                    <div className="relative p-6 md:p-7 h-full flex flex-col">
+                      {/* Badge */}
+                      {plan.save && (
+                        <div className="mb-4">
+                          <span className="inline-block bg-gradient-to-r from-primary via-primary to-accent/80 text-black text-xs font-black px-3 py-1.5 rounded-full">
+                            💰 SAVE ${plan.save}
+                          </span>
+                        </div>
+                      )}
+                      {index === 0 && !plan.save && (
+                        <div className="mb-4">
+                          <span className="inline-block bg-primary/20 border border-primary/50 text-primary text-xs font-bold px-3 py-1.5 rounded-full">
+                            MOST POPULAR
+                          </span>
+                        </div>
+                      )}
+
+                      {/* Plan Name */}
+                      <h3 className="text-base font-bold text-white mb-4">{plan.name}</h3>
+                      
+                      {/* Price Section */}
+                      <div className="mb-6">
+                        {plan.originalPrice && (
+                          <div className="flex items-baseline gap-2 mb-2">
+                            <span className="text-sm text-gray-400 font-medium">Was</span>
+                            <span className="text-lg text-gray-500 line-through font-semibold">${plan.originalPrice}</span>
+                          </div>
+                        )}
+<div className="flex items-baseline gap-2">
+                            <span className={`${index === 0 ? 'text-5xl' : 'text-4xl'} font-black bg-gradient-to-r from-primary via-primary to-accent/80 bg-clip-text text-transparent`}>
+                                ${plan.price}
+                            </span>
+                            <span className="text-[#a0a0a0] font-medium">/{plan.duration}</span>
+                        </div>
+                      </div>
+
+                      {/* Divider */}
+                      <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6" />
+
+                      {/* Features */}
+                      <ul className="space-y-3 mb-8 flex-grow">
+                        {['30,000+ Channels', '4K Quality', '120,000+ VOD', '24/7 Support', 'Anti-Freeze'].map((feature, i) => (
+                          <li key={i} className="flex items-start gap-3 text-sm leading-relaxed">
+                            <div className={`mt-0.5 rounded-full shrink-0 ${index === 0 ? 'bg-primary/20' : 'bg-white/10'}`}>
+                              <IconCheck className={`h-3.5 w-3.5 ${index === 0 ? 'text-primary' : 'text-green-400'}`} />
+                            </div>
+                            <span className="text-[#f0f0f0] font-medium">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      {/* CTA Button */}
+                      <a
+                        href={`https://wa.me/447853402172?text=Hi%2C%20I'm%20interested%20in%20the%20${plan.name}%20${selectedDevices}%20Device%20plan%20(%24${plan.price})`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`block w-full py-3.5 rounded-xl font-bold text-center transition-all duration-300 transform hover:scale-105 ${
+                          isSelected
+                            ? 'bg-gradient-to-r from-primary via-primary to-accent/80 text-black shadow-lg shadow-primary/50 font-black'
+                            : index === 0
+                            ? 'bg-gradient-to-r from-primary/60 via-primary/60 to-accent/50 text-black shadow-lg shadow-primary/30 hover:shadow-primary/50 font-black'
+                            : 'bg-white/5 text-[#f0f0f0] hover:bg-white/10 border border-white/20 hover:border-primary/50'
+                        }`}
+                      >
+                        {isSelected ? '✅ Plan Selected' : index === 0 ? '🚀 Get This Plan' : 'Select Plan'}
+                      </a>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </motion.div>
           </AnimatePresence>
+
+          {/* Selected Plan Summary */}
+          {selectedPlan && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-12 p-6 md:p-8 rounded-2xl bg-gradient-to-r from-primary/10 via-accent/5 to-primary/10 border border-primary/20"
+            >
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                <div>
+                  <p className="text-[#a0a0a0] text-sm mb-2">Selected Plan</p>
+                  <h3 className="text-2xl font-bold text-[#f0f0f0]">
+                    {currentPlans.find(p => p.id === selectedPlan)?.name}
+                  </h3>
+                </div>
+                <div>
+                  <p className="text-[#a0a0a0] text-sm mb-2">Devices</p>
+                  <h3 className="text-2xl font-bold text-[#f0f0f0]">
+                    {selectedDevices} Device{selectedDevices !== 1 ? 's' : ''}
+                  </h3>
+                </div>
+                <div className="text-center md:text-right">
+                  <p className="text-[#a0a0a0] text-sm mb-2">Total Price</p>
+                  <h3 className="text-3xl font-black bg-gradient-to-r from-primary to-accent/80 bg-clip-text text-transparent">
+                    ${currentPlans.find(p => p.id === selectedPlan)?.price}
+                  </h3>
+                </div>
+              </div>
+            </motion.div>
+          )}
         </section>
 
         {/* Features */}
@@ -281,13 +350,6 @@ export default function PricingPage() {
           </div>
         </section>
       </main>
-
-      {/* Footer */}
-      <footer className="border-t border-border py-8">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <p className="text-gray-400 text-sm">© 2025 StreamPro. All rights reserved.</p>
-        </div>
-      </footer>
     </div>
   );
 }

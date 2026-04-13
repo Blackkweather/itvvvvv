@@ -1,5 +1,5 @@
 import jwt, { SignOptions } from 'jsonwebtoken';
-import bcrypt from 'bcryptjs';
+import argon2 from 'argon2';
 import { cookies } from 'next/headers';
 import { db } from './db';
 import { Prisma } from '@prisma/client';
@@ -28,31 +28,85 @@ export interface SessionUser {
 
 const JWT_SECRET = process.env.JWT_SECRET as string | undefined;
 
-// Throw error if JWT_SECRET is not set in production
-if (!JWT_SECRET && process.env.NODE_ENV === 'production') {
-  throw new Error('JWT_SECRET environment variable is required in production');
+// Fail fast if JWT_SECRET is not set - no silent fallbacks
+if (!JWT_SECRET) {
+  const errorMsg = 'JWT_SECRET environment variable is required. Set it in your .env.local or .env file.';
+  if (process.env.NODE_ENV === 'production') {
+    throw new Error(`[FATAL] ${errorMsg}`);
+  }
+  // In development, fail immediately rather than using insecure fallback
+  console.error(`[FATAL] ${errorMsg}`);
+  throw new Error(`[FATAL] ${errorMsg}`);
 }
 
-// Use a temporary secret only in development - should never happen in production
-// WARNING: This fallback is ONLY for development. In production, JWT_SECRET MUST be set.
-const effectiveSecret: string = JWT_SECRET || 'dev-only-secret-do-not-use-in-prod';
+const effectiveSecret: string = JWT_SECRET;
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '7d';
 const COOKIE_NAME = process.env.COOKIE_NAME || 'streampro_session';
 
-// Log warning if using dev secret in non-production environment
-if (!JWT_SECRET && process.env.NODE_ENV !== 'production') {
-  console.warn('[Auth Warning] Using development JWT secret. Set JWT_SECRET environment variable for production.');
-}
-
-// ==================== PASSWORD HASHING ====================
+// ==================== PASSWORD HASHING (Argon2id) ====================
 
 export async function hashPassword(password: string): Promise<string> {
-  const salt = await bcrypt.genSalt(12);
-  return bcrypt.hash(password, salt);
+  return argon2.hash(password, {
+    type: argon2.argon2id,
+    memoryCost: 65536, // 64 MB
+    timeCost: 3,
+    parallelism: 4,
+    hashLength: 32,
+  });
 }
 
 export async function verifyPassword(password: string, hashedPassword: string): Promise<boolean> {
-  return bcrypt.compare(password, hashedPassword);
+  try {
+    return await argon2.verify(hashedPassword, password);
+  } catch {
+    return false;
+  }
+}
+
+// ==================== BRUTE FORCE PROTECTION ====================
+
+export async function checkAccountLockout(userId: string): Promise<{ locked: boolean; reason?: string }> {
+  const user = await db.user.findUnique({
+    where: { id: userId },
+    select: { lockedUntil: true, failedAttempts: true },
+  });
+
+  if (!user) return { locked: false };
+
+  if (user.lockedUntil && user.lockedUntil > new Date()) {
+    return { locked: true, reason: 'Account temporarily locked due to too many failed attempts' };
+  }
+
+  if (user.failedAttempts >= 10) {
+    // Lock for 30 minutes
+    await db.user.update({
+      where: { id: userId },
+      data: { 
+        lockedUntil: new Date(Date.now() + 30 * 60 * 1000),
+        failedAttempts: { increment: 1 },
+      },
+    });
+    return { locked: true, reason: 'Account locked due to repeated failed login attempts' };
+  }
+
+  return { locked: false };
+}
+
+export async function recordFailedAttempt(userId: string): Promise<void> {
+  await db.user.update({
+    where: { id: userId },
+    data: { failedAttempts: { increment: 1 } },
+  });
+}
+
+export async function clearFailedAttempts(userId: string): Promise<void> {
+  await db.user.update({
+    where: { id: userId },
+    data: { 
+      failedAttempts: 0,
+      lockedUntil: null,
+    },
+  });
 }
 
 // ==================== TOKEN GENERATION ====================

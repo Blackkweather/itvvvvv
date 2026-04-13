@@ -98,17 +98,17 @@ export function FAQSection() {
                     className="max-w-xl mx-auto mb-12"
                 >
                     <div className="relative">
-                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-[#a0a0a0]" />
                         <input
                             type="text"
                             placeholder="Search for answers..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                             className="w-full pl-10 pr-4 py-4 rounded-xl bg-white/[0.03] border border-white/10 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors"
+                             className="w-full pl-10 pr-4 py-4 rounded-xl bg-white/[0.03] border border-white/10 text-[#f0f0f0] placeholder:text-[#a0a0a0] focus:outline-none focus:border-primary/50 transition-colors"
                         />
                     </div>
                     {searchQuery && (
-                        <p className="text-sm text-muted-foreground mt-3 text-center">
+                        <p className="text-sm text-[#a0a0a0] mt-3 text-center">
                             Found {filteredFaqs.length} result{filteredFaqs.length !== 1 ? 's' : ''}
                         </p>
                     )}
@@ -133,12 +133,12 @@ export function FAQSection() {
                                     <span className="text-[10px] font-bold uppercase tracking-wider text-primary px-2 py-0.5 rounded bg-primary/10">
                                         {faq.category}
                                     </span>
-                                    <span className="font-medium text-sm md:text-[15px] text-foreground">
+                                    <span className="font-medium text-sm md:text-[15px] text-[#f0f0f0]">
                                         {faq.question}
                                     </span>
                                 </div>
                                 <ChevronDown
-                                    className={`h-5 w-5 text-muted-foreground flex-shrink-0 transition-transform duration-300 ${openIndex === i ? 'rotate-180 text-primary' : ''
+                                    className={`h-5 w-5 text-[#a0a0a0] flex-shrink-0 transition-transform duration-300 ${openIndex === i ? 'rotate-180 text-primary' : ''
                                         }`}
                                 />
                             </button>
@@ -152,18 +152,18 @@ export function FAQSection() {
                                         className="overflow-hidden"
                                     >
                                         <div className="px-5 md:px-6 pb-5 md:pb-6">
-                                            <p className="text-sm text-white leading-relaxed mb-4">
+                                            <p className="text-sm text-[#f0f0f0] leading-relaxed mb-4">
                                                 {faq.answer}
                                             </p>
                                             {/* Helpful rating */}
                                             <div className="flex items-center gap-4 pt-3 border-t border-white/5">
-                                                <span className="text-xs text-gray-300">Was this helpful?</span>
+                                                <span className="text-xs text-[#a0a0a0]">Was this helpful?</span>
                                                 <button
                                                     onClick={() => handleHelpful(i, 'yes')}
                                                     className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs transition-colors ${
                                                         helpful[i] === 'yes' 
                                                             ? 'bg-success/20 text-success' 
-                                                            : 'bg-white/5 text-gray-300 hover:bg-white/10'
+                                                            : 'bg-white/5 text-[#a0a0a0] hover:bg-white/10'
                                                     }`}
                                                 >
                                                     <ThumbsUp className="h-3 w-3" />
@@ -174,7 +174,7 @@ export function FAQSection() {
                                                     className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs transition-colors ${
                                                         helpful[i] === 'no' 
                                                             ? 'bg-rose-500/20 text-rose-500' 
-                                                            : 'bg-white/5 text-gray-300 hover:bg-white/10'
+                                                            : 'bg-white/5 text-[#a0a0a0] hover:bg-white/10'
                                                     }`}
                                                 >
                                                     <ThumbsDown className="h-3 w-3" />

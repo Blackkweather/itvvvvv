@@ -393,24 +393,11 @@ export function generateHoneypotLink(): string {
 export function trackHoneypotInteraction(ip: string): void {
   // In production, this would log to a database or external service
   console.warn(`[HONEYPOT] Bot detected from IP: ${ip}`);
-  
-  // Store in localStorage for client-side tracking
-  if (typeof window !== 'undefined') {
-    const blockedIPs = JSON.parse(localStorage.getItem('blocked_ips') || '[]');
-    if (!blockedIPs.includes(ip)) {
-      blockedIPs.push(ip);
-      localStorage.setItem('blocked_ips', JSON.stringify(blockedIPs));
-    }
-  }
 }
 
 /**
- * Check if an IP is blocked
+ * Check if an IP is blocked (always returns false - server-side only)
  */
 export function isIPBlocked(ip: string): boolean {
-  if (typeof window !== 'undefined') {
-    const blockedIPs = JSON.parse(localStorage.getItem('blocked_ips') || '[]');
-    return blockedIPs.includes(ip);
-  }
   return false;
 }

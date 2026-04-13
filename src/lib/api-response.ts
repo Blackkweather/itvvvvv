@@ -1,15 +1,29 @@
 import { NextResponse } from 'next/server';
 import { ZodError, ZodIssue } from 'zod';
+import { generateRequestId } from './request-id';
+
+// Store request ID for the current request (set by middleware)
+let currentRequestId: string | null = null;
+
+export function setCurrentRequestId(id: string): void {
+  currentRequestId = id;
+}
+
+export function getCurrentRequestId(): string {
+  return currentRequestId || generateRequestId();
+}
 
 // ==================== RESPONSE TYPES ====================
 
 export interface ApiResponse<T = unknown> {
   success: boolean;
+  requestId?: string;
   data?: T;
   error?: {
     message: string;
     code?: string;
     details?: unknown;
+    requestId?: string;
   };
   meta?: {
     page?: number;
@@ -21,9 +35,11 @@ export interface ApiResponse<T = unknown> {
 // ==================== SUCCESS RESPONSES ====================
 
 export function success<T>(data: T, status = 200): NextResponse<ApiResponse<T>> {
+  const requestId = getCurrentRequestId();
   return NextResponse.json(
     {
       success: true,
+      requestId,
       data,
     },
     { status }
@@ -46,6 +62,7 @@ export function error(
   code?: string,
   details?: unknown
 ): NextResponse<ApiResponse> {
+  const requestId = getCurrentRequestId();
   return NextResponse.json(
     {
       success: false,
@@ -53,6 +70,7 @@ export function error(
         message,
         code,
         details,
+        requestId,
       },
     },
     { status }

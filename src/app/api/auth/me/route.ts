@@ -2,6 +2,7 @@ import { NextRequest } from 'next/server';
 import { success, unauthorized, serverError } from '@/lib/api-response';
 import { getSession } from '@/lib/auth';
 import { db } from '@/lib/db';
+import { getIpAddress, getUserAgent } from '@/lib/api-response';
 
 export async function GET(request: NextRequest) {
   try {
@@ -25,9 +26,6 @@ export async function GET(request: NextRequest) {
             autoRenew: true,
             deviceLimit: true,
             devicesUsed: true,
-            // NOTE: m3uUrl and xtreamUsername removed for security.
-            // These credentials should only be exposed to authenticated clients
-            // in a secure manner, not via the user profile endpoint.
           },
         },
       },
@@ -36,11 +34,23 @@ export async function GET(request: NextRequest) {
     if (!fullUser) {
       return unauthorized();
     }
+
+    // Log access to /api/auth/me
+    await db.auditLog.create({
+      data: {
+        userId: user.id,
+        action: 'PROFILE_ACCESSED',
+        entity: 'User',
+        entityId: user.id,
+        ipAddress: getIpAddress(request),
+        userAgent: getUserAgent(request),
+      },
+    }).catch(() => {}); // Non-blocking
     
     return success(fullUser);
     
   } catch (error) {
-    console.error('Get user error:', error);
+    console.error('[Auth/Me] Error:', error);
     return serverError('Failed to get user');
   }
 }

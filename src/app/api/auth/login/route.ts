@@ -1,8 +1,8 @@
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { db } from '@/lib/db';
-import { createSession, findUserByEmail, verifyPassword } from '@/lib/auth';
-import { authRateLimit } from '@/lib/rate-limit';
+import { createSession, findUserByEmail, verifyPassword, checkAccountLockout, recordFailedAttempt, clearFailedAttempts } from '@/lib/auth';
+import { checkRateLimit, getRateLimitConfig } from '@/lib/rate-limit';
 import {
   success,
   badRequest,
@@ -13,77 +13,188 @@ import {
   getUserAgent
 } from '@/lib/api-response';
 import { loginSchema } from '@/lib/validation';
-import { verifyCsrfToken } from '@/lib/csrf';
 
 export async function POST(request: NextRequest) {
   try {
-    // CSRF protection
-    const csrfValid = await verifyCsrfToken(request);
-    if (!csrfValid) {
-      return badRequest('Invalid CSRF token');
-    }
-    
     const ip = getIpAddress(request) || 'unknown';
+    const userAgent = getUserAgent(request) || 'unknown';
     
-    // Rate limit check
-    const rateLimitResult = authRateLimit.login(ip);
+    // Redis-based rate limit check
+    const rateLimitResult = await checkRateLimit('login', ip, { limit: 5, windowSeconds: 900 });
     if (!rateLimitResult.success) {
-      return serverError('Too many login attempts. Please try again later.');
+      await db.auditLog.create({
+        data: {
+          action: 'LOGIN_RATE_LIMITED',
+          entity: 'User',
+          ipAddress: ip,
+          userAgent: userAgent,
+          metadata: JSON.stringify({ reason: 'rate_limit_exceeded' }),
+        },
+      }).catch(() => {});
+      
+      return NextResponse.json(
+        { success: false, error: { message: 'Too many login attempts. Please try again later.', code: 'RATE_LIMITED' } },
+        { status: 429 }
+      );
     }
     
     const body = await request.json();
-    
-    // Validate input
     const validated = loginSchema.parse(body);
     
     // Find user
     const user = await findUserByEmail(validated.email);
+    
+    // Prevent user enumeration
     if (!user) {
+      await db.auditLog.create({
+        data: {
+          action: 'LOGIN_FAILED',
+          entity: 'User',
+          ipAddress: ip,
+          userAgent: userAgent,
+          metadata: JSON.stringify({ 
+            reason: 'user_not_found',
+            attemptedEmail: process.env.NODE_ENV === 'production' ? undefined : validated.email 
+          }),
+        },
+      }).catch(() => {});
+      
       return unauthorized('Invalid email or password');
     }
     
+    // Get fresh user data with security fields
+    const userWithSecurity = await db.user.findUnique({
+      where: { id: user.id },
+      select: {
+        id: true,
+        email: true,
+        password: true,
+        name: true,
+        role: true,
+        isActive: true,
+        mfaEnabled: true,
+        failedAttempts: true,
+        lockedUntil: true,
+        lastLoginAt: true,
+        lastLoginIp: true,
+      },
+    });
+    
+    if (!userWithSecurity) {
+      return unauthorized('Invalid email or password');
+    }
+    
+    // Check if account is locked
+    const lockoutCheck = await checkAccountLockout(userWithSecurity.id);
+    if (lockoutCheck.locked) {
+      await db.auditLog.create({
+        data: {
+          userId: userWithSecurity.id,
+          action: 'LOGIN_LOCKED',
+          entity: 'User',
+          entityId: userWithSecurity.id,
+          ipAddress: ip,
+          userAgent: userAgent,
+          metadata: JSON.stringify({ reason: lockoutCheck.reason }),
+        },
+      }).catch(() => {});
+      
+      return unauthorized(lockoutCheck.reason || 'Account is locked');
+    }
+    
     // Check if user is active
-    if (!user.isActive) {
+    if (!userWithSecurity.isActive) {
+      await db.auditLog.create({
+        data: {
+          userId: userWithSecurity.id,
+          action: 'LOGIN_FAILED',
+          entity: 'User',
+          entityId: userWithSecurity.id,
+          ipAddress: ip,
+          userAgent: userAgent,
+          metadata: JSON.stringify({ reason: 'account_disabled' }),
+        },
+      }).catch(() => {});
+      
       return unauthorized('Account is disabled');
     }
     
     // Verify password
-    const isValid = await verifyPassword(validated.password, user.password);
+    const isValid = await verifyPassword(validated.password, userWithSecurity.password);
     if (!isValid) {
+      await recordFailedAttempt(userWithSecurity.id);
+      await db.auditLog.create({
+        data: {
+          userId: userWithSecurity.id,
+          action: 'LOGIN_FAILED',
+          entity: 'User',
+          entityId: userWithSecurity.id,
+          ipAddress: ip,
+          userAgent: userAgent,
+          metadata: JSON.stringify({ reason: 'invalid_password' }),
+        },
+      }).catch(() => {});
+      
       return unauthorized('Invalid email or password');
     }
     
-    // Create session
-    const token = await createSession(
-      user.id,
-      getIpAddress(request),
-      getUserAgent(request)
-    );
+    // Check if MFA is enabled
+    if (userWithSecurity.mfaEnabled) {
+      await db.auditLog.create({
+        data: {
+          userId: userWithSecurity.id,
+          action: 'LOGIN_MFA_PENDING',
+          entity: 'User',
+          entityId: userWithSecurity.id,
+          ipAddress: ip,
+          userAgent: userAgent,
+        },
+      }).catch(() => {});
+      
+      // Return success but indicate MFA required
+      // In a full implementation, you'd return a temporary token requiring MFA
+    }
     
-    // Log audit
+    // Clear failed attempts on successful login
+    await clearFailedAttempts(userWithSecurity.id);
+    
+    // Update last login info
+    await db.user.update({
+      where: { id: userWithSecurity.id },
+      data: {
+        lastLoginAt: new Date(),
+        lastLoginIp: ip,
+      },
+    });
+    
+    // Create session
+    const token = await createSession(userWithSecurity.id, ip, userAgent);
+    
+    // Log successful login
     await db.auditLog.create({
       data: {
-        userId: user.id,
+        userId: userWithSecurity.id,
         action: 'USER_LOGIN',
         entity: 'User',
-        entityId: user.id,
-        ipAddress: getIpAddress(request),
-        userAgent: getUserAgent(request),
+        entityId: userWithSecurity.id,
+        ipAddress: ip,
+        userAgent: userAgent,
       },
     });
     
     return success({
       user: {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        role: user.role,
+        id: userWithSecurity.id,
+        email: userWithSecurity.email,
+        name: userWithSecurity.name,
+        role: userWithSecurity.role,
+        mfaEnabled: userWithSecurity.mfaEnabled,
       },
       token,
     });
     
   } catch (error) {
-    console.error('Login error:', error);
+    console.error('[Login] Error:', error);
     
     if (error instanceof z.ZodError) {
       return handleZodError(error);

@@ -8,9 +8,10 @@ interface AdSlotProps {
   layout?: 'in-article' | 'in-feed' | 'responsive';
   className?: string;
   label?: string;
+  provider?: 'adsense' | 'adcash';
 }
 
-export function AdSlot({ slot, format = 'auto', layout = 'responsive', className = '', label }: AdSlotProps) {
+export function AdSlot({ slot, format = 'auto', layout = 'responsive', className = '', label, provider = 'adsense' }: AdSlotProps) {
   const adRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);

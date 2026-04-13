@@ -71,7 +71,7 @@ export function CTASection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.3, duration: 0.6 }}
-                        className="text-xl text-secondary-foreground max-w-xl mx-auto mb-10"
+                        className="text-xl text-[#a0a0a0] max-w-xl mx-auto mb-10"
                     >
                         Join 50,000+ satisfied subscribers. Start streaming 15,000+ channels in 4K today.
                         No contract. Cancel anytime.
@@ -118,19 +118,19 @@ export function CTASection() {
                         transition={{ delay: 0.5 }}
                         className="mt-12 flex flex-wrap items-center justify-center gap-6"
                     >
-                        <span className="flex items-center gap-2 text-xs text-muted-foreground">
+                        <span className="flex items-center gap-2 text-xs text-[#a0a0a0]">
                             <span className="h-1.5 w-1.5 rounded-full bg-success shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
                             24h Free Trial
                         </span>
-                        <span className="flex items-center gap-2 text-xs text-muted-foreground">
+                        <span className="flex items-center gap-2 text-xs text-[#a0a0a0]">
                             <span className="h-1.5 w-1.5 rounded-full bg-success" />
                             No Credit Card Required
                         </span>
-                        <span className="flex items-center gap-2 text-xs text-muted-foreground">
+                        <span className="flex items-center gap-2 text-xs text-[#a0a0a0]">
                             <span className="h-1.5 w-1.5 rounded-full bg-success" />
                             Cancel Anytime
                         </span>
-                        <span className="flex items-center gap-2 text-xs text-muted-foreground">
+                        <span className="flex items-center gap-2 text-xs text-[#a0a0a0]">
                             <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                             99.9% Uptime
                         </span>

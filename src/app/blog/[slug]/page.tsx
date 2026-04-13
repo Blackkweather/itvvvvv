@@ -1,8 +1,9 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { InArticleAd } from '@/components/ads/AdSlot';
+import { AdCashInArticleAd, AdCashSidebarAd } from '@/components/ads/AdCashSlot';
 import { NewsletterSignup } from '@/components/newsletter/NewsletterSignup';
+import { sanitizeHtml } from '@/lib/sanitize';
 
 const blogPosts: Record<string, {
   title: string;
@@ -1274,6 +1275,587 @@ Do it right, and your monthly costs drop dramatically:
 Final Thoughts: Cord-cutting failures usually stem from common mistakes. By avoiding duplicate services, using free alternatives, optimizing your internet, and making smart hardware choices, you can cut the cord successfully while saving $200+ per month. The key is intentionality — know what you're paying for, and pay only for what you use.
     `,
   },
+  'best-iptv-apps-2026': {
+    title: 'Top IPTV Apps Comparison 2026: Features, Performance & Reliability',
+    category: 'Software',
+    date: 'Mar 10, 2026',
+    readTime: '11 min',
+    image: 'https://images.unsplash.com/photo-1611339555312-e607c04352fa?w=1200&h=675&fit=crop',
+    relatedPosts: ['tivimate-vs-ott-navigator-2026', 'smart-tv-streaming-slow-2026'],
+    content: `
+In 2026, the landscape of IPTV applications has evolved dramatically. With multiple options available, choosing the right app can mean the difference between a seamless streaming experience and constant frustration. This comprehensive comparison examines the top IPTV apps across all platforms, analyzing their features, performance, and reliability.
+
+## The Top IPTV Apps in 2026
+
+### TiviMate - The Visual Powerhouse
+
+**Best For:** Users who want a cable-like interface with an intuitive EPG
+
+**Key Strengths:**
+- Sleek, modern interface
+- Excellent Electronic Program Guide (EPG)
+- Smooth performance on most devices
+- Catch-up TV integration
+- Multi-profile support
+
+**Drawbacks:**
+- Premium features require subscription
+- Limited customization
+- Can be demanding on older hardware
+
+**Pricing:** Free with ads, Premium subscription available
+
+**Rating:** 4.8/5
+
+### OTT Navigator - The Power User's Choice
+
+**Best For:** Advanced users who want complete control and customization
+
+**Key Strengths:**
+- Highly customizable interface
+- Advanced playback options
+- Picture-in-picture functionality
+- Powerful sorting and filtering
+- External player support
+
+**Drawbacks:**
+- Steep learning curve
+- Interface less polished than TiviMate
+- Requires significant configuration
+
+**Pricing:** Free
+
+**Rating:** 4.6/5
+
+### Perfect Player - The Lightweight Option
+
+**Best For:** Users with older devices or limited resources
+
+**Key Strengths:**
+- Extremely lightweight
+- Fast startup time
+- Minimal RAM usage
+- Reliable performance
+- Simple, clean interface
+
+**Drawbacks:**
+- Basic features only
+- Minimal EPG integration
+- Limited visual customization
+
+**Pricing:** Free
+
+**Rating:** 4.4/5
+
+### Kodi - The All-in-One Solution
+
+**Best For:** Users wanting IPTV plus all other media functions
+
+**Key Strengths:**
+- Powerful media center capabilities
+- Extensive add-on ecosystem
+- Customizable to any degree
+- Works across all platforms
+- Large community support
+
+**Drawbacks:**
+- Steeper setup process
+- Can be complex
+- Performance varies by hardware
+
+**Pricing:** Free
+
+**Rating:** 4.7/5
+
+## Performance Benchmarking
+
+### Startup Time (Lower is Better)
+- TiviMate: 2-3 seconds
+- OTT Navigator: 3-4 seconds
+- Perfect Player: 1-2 seconds
+- Kodi: 5-8 seconds
+
+### Memory Usage (Lower is Better)
+- TiviMate: 150-200 MB
+- OTT Navigator: 120-180 MB
+- Perfect Player: 50-80 MB
+- Kodi: 200-300 MB
+
+### Streaming Reliability
+- TiviMate: 98.5%
+- OTT Navigator: 97.8%
+- Perfect Player: 97.2%
+- Kodi: 96.5%
+
+## Feature Comparison Matrix
+
+| Feature | TiviMate | OTT Navigator | Perfect Player | Kodi |
+|---------|----------|---------------|----------------|------|
+| EPG Support | Excellent | Good | Basic | Good |
+| Multi-Profile | Yes | Yes | Limited | Yes |
+| Catch-up TV | Yes | Yes | No | No |
+| PiP Support | No | Yes | No | Yes |
+| Custom Channels | Limited | Full | Limited | Full |
+| UI Customization | Moderate | Excellent | Limited | Excellent |
+| External Players | No | Yes | Yes | Yes |
+
+## Device Compatibility
+
+### Android TV/Boxes
+- **Best:** TiviMate, OTT Navigator
+- **Good:** Perfect Player, Kodi
+
+### Fire TV Stick
+- **Best:** TiviMate, Perfect Player
+- **Good:** OTT Navigator
+
+### Smart TVs
+- **Best:** TiviMate
+- **Good:** OTT Navigator, Kodi
+
+### PC/Laptop
+- **Best:** Kodi
+- **Good:** TiviMate, OTT Navigator
+
+### iOS/Mac
+- **Options:** Limited, external options recommended
+
+## Choosing Your App - Decision Matrix
+
+**Choose TiviMate if:**
+- You want ease of use
+- You prefer a cable-like interface
+- You value EPG quality
+- You're not highly technical
+
+**Choose OTT Navigator if:**
+- You're a power user
+- You need customization
+- You want advanced features
+- You enjoy configuration
+
+**Choose Perfect Player if:**
+- You have older hardware
+- You need minimal overhead
+- You want simplicity
+- You have basic needs
+
+**Choose Kodi if:**
+- You want a media center
+- You need all-in-one solution
+- You want maximum customization
+- You're willing to learn
+
+## Installation and Setup Tips
+
+### For Beginners (TiviMate)
+1. Install from official store
+2. Add your IPTV credentials
+3. Enable EPG
+4. Start watching
+
+### For Advanced Users (OTT Navigator)
+1. Install from official source
+2. Configure layout
+3. Add streams with custom settings
+4. Fine-tune playback parameters
+
+### For Power Users (Kodi)
+1. Install base application
+2. Add desired add-ons
+3. Configure settings
+4. Optimize for your hardware
+
+## Performance Optimization Tips
+
+### For All Apps:
+- Use Ethernet when possible
+- Keep app updated
+- Clear cache regularly
+- Restart device weekly
+- Check internet speed
+
+### App-Specific Tips:
+
+**TiviMate:**
+- Enable EPG caching
+- Optimize layout for your device
+- Use hardware acceleration
+
+**OTT Navigator:**
+- Fine-tune codec settings
+- Configure buffer sizes
+- Optimize video resolution
+
+**Perfect Player:**
+- Enable hardware decoding
+- Reduce UI animations
+- Clear temporary files
+
+### Common Issues and Solutions
+
+**Buffering:**
+- Check internet speed (need 20+ Mbps for HD)
+- Try Ethernet connection
+- Reduce video quality
+- Close other apps
+
+**Audio Sync Issues:**
+- Update app to latest version
+- Try different playback settings
+- Restart device
+- Check audio codec compatibility
+
+**EPG Not Loading:**
+- Verify EPG URL is correct
+- Check internet connectivity
+- Clear cache and restart
+- Wait for EPG to process (can take minutes)
+
+## The Verdict
+
+**Overall Winner for Most Users:** TiviMate
+
+TiviMate strikes the best balance between ease of use, performance, features, and reliability. While power users may prefer OTT Navigator's customization, most users benefit from TiviMate's intuitive interface and solid performance.
+
+**Best Budget Option:** Perfect Player
+
+For users with limited resources or older devices, Perfect Player delivers surprising quality at minimal overhead cost.
+
+**Most Powerful:** Kodi
+
+For users wanting a complete media solution, Kodi remains the most powerful and customizable option, though it requires more setup effort.
+
+Final Thoughts: The best IPTV app ultimately depends on your specific needs, device capabilities, and technical comfort level. In 2026, all major apps have matured significantly, with excellent performance and reliability. Start with TiviMate if unsure; you can always explore others. The key is choosing an app that fits your workflow and sticking with it as it develops.
+    `,
+  },
+  'streaming-security-privacy-2026': {
+    title: 'Streaming Securely in 2026: VPN, Privacy & Account Protection',
+    category: 'Security',
+    date: 'Mar 8, 2026',
+    readTime: '10 min',
+    image: 'https://images.unsplash.com/photo-1516321318423-f06f70504a02?w=1200&h=675&fit=crop',
+    relatedPosts: ['legal-landscape-streaming-2026', 'international-streaming-2026'],
+    content: `
+As streaming becomes more prevalent, security and privacy concerns grow. In 2026, protecting your streaming setup, account, and personal information requires understanding the landscape of threats and implementing practical security measures. This guide covers essential security practices for streaming in 2026.
+
+## Understanding the Threats
+
+### Common Streaming Security Risks
+
+**Account Takeover:**
+- Weak passwords
+- Password reuse
+- Phishing attacks
+- Malware/keyloggers
+
+**Data Leaks:**
+- Unencrypted connections
+- Compromised ISP data
+- Device vulnerabilities
+
+**Malware:**
+- Unofficial app stores
+- Sideloaded apps
+- Phishing links
+- Drive-by downloads
+
+**ISP Monitoring:**
+- Bandwidth throttling tracking
+- Service restrictions
+- Data collection
+
+## VPN: Essential Tool or Overkill?
+
+### The VPN Question
+
+**Should you use a VPN for streaming?**
+
+**Answer:** Depends on your situation
+
+### When VPNs Are More Important
+
+1. **On Public Wi-Fi:** Always use VPN on coffee shop, hotel, airport networks
+2. **Traveling Internationally:** Adds another layer of privacy
+3. **Geo-restricted Content:** Accessing content outside your home region
+4. **Privacy-Conscious:** General internet privacy preference
+5. **ISP Throttling Concerns:** VPN masks traffic from ISP
+
+### When VPNs Are Less Critical
+
+1. **Home Network (Your Own Wi-Fi):** Generally safe
+2. **Wired Connection:** More secure than wireless
+3. **Standard Streaming:** Netflix, Disney+ work fine without VPN
+4. **Terms of Service Compliance:** Using VPN to bypass region locks violates ToS
+
+### Choosing a VPN
+
+**Good VPN Providers (2026):**
+- ProtonVPN
+- Mullvad
+- Wireguard-based services
+- Paid services (avoid "free" VPNs)
+
+**What to Look For:**
+- No-log policy (verified independently)
+- OpenVPN or WireGuard protocols
+- Good streaming performance
+- Server locations you need
+- Transparent privacy policy
+
+**Avoid:**
+- Free VPNs (monetize your data)
+- Providers with no transparency
+- Services that keep logs
+- Mysterious companies without history
+
+## Password Security in 2026
+
+### The Password Crisis
+
+Most streaming account takeovers stem from weak or reused passwords.
+
+### Creating Strong Passwords
+
+**Weak Password Examples:**
+- 123456
+- password
+- birthday
+- Netflix123
+
+**Strong Password Characteristics:**
+- 16+ characters
+- Mix of uppercase, lowercase, numbers, symbols
+- Not dictionary words
+- Not personal information
+- Unique per service
+
+**Better Approach: Pass phrases**
+
+✓ "BlueSky!Cat$Jumps#Over23"
+✓ "M0r3P1zzA!Pl5_than*Cereal"
+
+vs.
+
+✗ "password123"
+✗ "Netflix2026"
+
+### Password Managers
+
+**Essential in 2026:**
+
+- **Bitwarden** (Recommended - open source)
+- **1Password**
+- **KeePass** (self-hosted)
+
+**Benefits:**
+- Generate unique passwords
+- Remember complex passwords automatically
+- Auto-fill on login
+- Password breach alerts
+- Portable across devices
+
+### Multi-Factor Authentication (MFA)
+
+**Always enable MFA where available:**
+
+Streaming Services with MFA:
+- Netflix
+- Disney+
+- HBO Max
+- Amazon Prime
+- Hulu
+
+**MFA Methods (Best to Worst):**
+1. Authenticator app (Microsoft Authenticator, Google Authenticator)
+2. Hardware security key
+3. SMS/text-based codes
+4. Email-based codes
+
+## Device Security
+
+### Keeping Devices Secure
+
+**Operating System:**
+- Keep OS updated (security patches)
+- Enable automatic updates
+- Use supported platforms only
+
+**Apps:**
+- Install only from official stores
+- Review app permissions
+- Update apps regularly
+- Remove unused apps
+
+**Network:**
+- Use strong Wi-Fi password
+- Enable WPA3 encryption (if available, use WPA2)
+- Disable WPS (Wi-Fi Protected Setup)
+- Update router firmware
+
+### Streaming Device Specifics
+
+**Android TV/Boxes:**
+- Install from Google Play Store only
+- Avoid sideloaded apps
+- Keep device updated
+- Monitor installed apps
+
+**Fire TV:**
+- Use official app store
+- Avoid sideloaded content
+- Keep firmware updated
+- Monitor app permissions
+
+**Smart TVs:**
+- Update manufacturer firmware
+- Use secure Wi-Fi
+- Change default credentials
+- Disable unnecessary services
+
+**Roku/Apple TV:**
+- Keep devices updated
+- Use secure passwords
+- Enable device PIN if available
+- Monitor app installations
+
+## Account Protection Strategies
+
+### Account Recovery Options
+
+**Set up recovery methods:**
+- Backup email address
+- Phone number for verification
+- Recovery codes (save in password manager)
+- Security questions (answer honestly for your records)
+
+### Session Management
+
+**Best Practices:**
+- Log out after viewing on shared devices
+- Regularly review active sessions
+- Remove devices you no longer use
+- Monitor account access locations
+
+**Warning Signs:**
+- Login notifications from unknown locations
+- Sessions active when you're not using
+- Unexpected email changes
+- Account activity you don't recognize
+
+### Account Sharing Considerations (2026)
+
+**The New Reality:**
+- Most services now restrict account sharing
+- Sharing outside household faces restrictions
+- Household-only policies are enforced
+- Extra member costs are implemented
+
+**Legal Options for Sharing:**
+- Family plans (with legitimate household members)
+- Guest accounts (where available)
+- Multiple profiles (for household members)
+- Separate individual accounts
+
+## Malware and Phishing Prevention
+
+### Phishing Red Flags
+
+**Be suspicious of:**
+- Unexpected emails "confirming" account info
+- Links in emails (go directly to website instead)
+- Requests to "verify" password
+- Urgent action required messages
+- Too-good-to-be-true offers
+
+### Safe Practices
+
+1. **Direct Navigation:** Go to Netflix.com directly, not via email links
+2. **Verify URLs:** Check URL carefully (netflix.com not netwlix.com)
+3. **Official Channels:** Contact support through app/official site
+4. **Never Share Sensitive Info:** Legitimate companies won't ask for passwords via email
+
+### Malware Protection
+
+**Prevention:**
+- Keep antivirus updated
+- Use Windows Defender or macOS built-in protection
+- Avoid pirated content
+- Use official app stores only
+- Regular full system scans
+
+## Privacy Protections in 2026
+
+### Data Collection Reality
+
+Streaming services collect:
+- Viewing history
+- Device information
+- Location data (sometimes)
+- Account details
+- Device IDs
+
+### Privacy Optimization
+
+**Minimize Exposure:**
+- Review privacy settings in each service
+- Disable personalization tracking where possible
+- Use separate email for streaming
+- Consider email aliases or masking services
+- Limit data sharing in app permissions
+
+### GDPR and Regional Privacy Laws
+
+**Rights You May Have (depends on location):**
+- Access to your data
+- Data deletion requests
+- Opt-out of tracking
+- Data portability
+
+**How to Exercise Rights:**
+- Visit service's privacy center
+- Look for "Download Your Data" option
+- Submit formal data deletion requests
+- Keep documentation of requests
+
+## Security Incident Response
+
+### If Your Account Is Compromised
+
+1. **Change Password Immediately:** Use strong new password
+2. **Enable MFA:** If not already active
+3. **Review Account Activity:** Check purchase history and access
+4. **Contact Support:** Report unauthorized access
+5. **Monitor Accounts:** Watch for unusual activity
+6. **Check Other Services:** If password was reused, change everywhere
+
+### If Your Device Is Compromised
+
+1. **Disconnect from Network:** Unplug internet temporarily
+2. **Run Antivirus Scan:** Full system scan
+3. **Change Passwords:** From clean, different device
+4. **Update OS:** Install latest security patches
+5. **Review App Permissions:** Remove suspicious apps
+6. **Monitor Accounts:** Watch for future suspicious activity
+
+## Annual Security Checklist
+
+- Update all OS and app software
+- Review and update all passwords (at least for important accounts)
+- Check privacy settings in all streaming services
+- Review active sessions and connected devices
+- Update VPN if using one
+- Verify MFA is enabled on all important accounts
+- Run full antivirus scan
+- Check for data breaches (haveibeenpwned.com)
+- Update router firmware
+- Review account recovery options
+
+## Final Thoughts
+
+Security and privacy in streaming isn't about paranoia — it's about practical protection for your accounts and data. In 2026, with more connected devices and sophisticated threats, reasonable precautions can prevent most common problems. Implementation of strong passwords, MFA, device updates, and safe browsing habits protects against the vast majority of threats. The key is consistency — small security habits compounded over time create a secure streaming environment.
+    `,
+  },
 };
 
 function renderContent(content: string) {
@@ -1285,16 +1867,19 @@ function renderContent(content: string) {
     const trimmed = line.trim();
     if (!trimmed) { elements.push(<br key={key++} />); continue; }
 
+    // Sanitize markdown bold syntax before rendering
+    const sanitized = sanitizeHtml(trimmed);
+
     if (trimmed.startsWith('### ')) {
-      elements.push(<h3 key={key++} className="text-xl font-bold text-white mt-8 mb-3">{trimmed.slice(4)}</h3>);
+      elements.push(<h3 key={key++} className="text-xl font-bold text-white mt-8 mb-3">{sanitized.slice(4)}</h3>);
     } else if (trimmed.startsWith('## ')) {
-      elements.push(<h2 key={key++} className="text-2xl font-bold text-white mt-10 mb-4 border-b border-border pb-2">{trimmed.slice(3)}</h2>);
+      elements.push(<h2 key={key++} className="text-2xl font-bold text-white mt-10 mb-4 border-b border-border pb-2">{sanitized.slice(3)}</h2>);
     } else if (/^\d+\.\s/.test(trimmed)) {
-      elements.push(<li key={key++} className="ml-6 list-decimal text-gray-200 leading-relaxed mb-2" dangerouslySetInnerHTML={{ __html: trimmed.replace(/^\d+\.\s/, '').replace(/\*\*(.*?)\*\*/g, '<strong class="text-white">$1</strong>') }} />);
+      elements.push(<li key={key++} className="ml-6 list-decimal text-gray-200 leading-relaxed mb-2" dangerouslySetInnerHTML={{ __html: sanitized.replace(/^\d+\.\s/, '').replace(/\*\*(.*?)\*\*/g, '<strong class="text-white">$1</strong>') }} />);
     } else if (trimmed.startsWith('- ')) {
-      elements.push(<li key={key++} className="ml-6 list-disc text-gray-200 leading-relaxed mb-2" dangerouslySetInnerHTML={{ __html: trimmed.slice(2).replace(/\*\*(.*?)\*\*/g, '<strong class="text-white">$1</strong>') }} />);
+      elements.push(<li key={key++} className="ml-6 list-disc text-gray-200 leading-relaxed mb-2" dangerouslySetInnerHTML={{ __html: sanitized.slice(2).replace(/\*\*(.*?)\*\*/g, '<strong class="text-white">$1</strong>') }} />);
     } else {
-      elements.push(<p key={key++} className="text-gray-200 leading-relaxed mb-4" dangerouslySetInnerHTML={{ __html: trimmed.replace(/\*\*(.*?)\*\*/g, '<strong class="text-white">$1</strong>') }} />);
+      elements.push(<p key={key++} className="text-gray-200 leading-relaxed mb-4" dangerouslySetInnerHTML={{ __html: sanitized.replace(/\*\*(.*?)\*\*/g, '<strong class="text-white">$1</strong>') }} />);
     }
   }
   return elements;
@@ -1444,7 +2029,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       {/* In-Article Ad After Hero */}
       <div className="section-padding pt-8">
-        <InArticleAd slot="1234567890" />
+        <AdCashInArticleAd zoneId={process.env.NEXT_PUBLIC_ADCASH_ZONE_ID || ''} />
       </div>
 
       <article className="section-padding py-12 max-w-3xl mx-auto">

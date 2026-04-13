@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Twitter, Instagram, Youtube, Mail } from 'lucide-react';
+import { Twitter, Instagram, Youtube, MessageCircle, Send } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
 
 const footerSections = [
@@ -15,17 +15,17 @@ const footerSections = [
     {
         title: 'Resources',
         links: [
-            { label: 'Resources', href: '/blog' },
+            { label: 'Blog', href: '/blog' },
             { label: 'Setup Guide', href: '#faq' },
-            { label: 'FAQ', href: '#faq' },
             { label: 'Refund Policy', href: '/legal/refund-policy' },
+            { label: 'Subscribe', href: '/free-trial' },
         ],
     },
     {
         title: 'Company',
         links: [
-            { label: 'About Us', href: '/#' },
-            { label: 'Contact', href: 'mailto:support@streampro.space' },
+            { label: 'About Us', href: '/about' },
+            { label: 'WhatsApp', href: 'https://wa.me/447853402172' },
             { label: 'Privacy Policy', href: '/legal/privacy-policy' },
             { label: 'Terms of Service', href: '/legal/terms-of-service' },
         ],
@@ -36,7 +36,8 @@ const socialLinks = [
     { icon: Twitter, href: 'https://twitter.com/streampro', label: 'Twitter' },
     { icon: Instagram, href: 'https://instagram.com/streampro', label: 'Instagram' },
     { icon: Youtube, href: 'https://youtube.com/@streampro', label: 'Youtube' },
-    { icon: Mail, href: 'mailto:support@streampro.space', label: 'Email' },
+    { icon: MessageCircle, href: 'https://wa.me/447853402172', label: 'WhatsApp' },
+    { icon: Send, href: 'https://t.me/streamprospace', label: 'Telegram' },
 ];
 
 export function Footer() {
@@ -52,7 +53,7 @@ export function Footer() {
                         <Link href="/" className="mb-6 inline-block group">
                             <Logo />
                         </Link>
-                        <p className="text-white text-sm leading-relaxed max-w-sm mb-8">
+                        <p className="text-[#f0f0f0] text-sm leading-relaxed max-w-sm mb-8">
                             Professional streaming consultation and technical support services.
                             Expert solutions for all your entertainment needs.
                         </p>
@@ -61,11 +62,11 @@ export function Footer() {
                         <div className="flex flex-wrap gap-4 mb-8">
                             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/5 bg-white/[0.02]">
                                 <div className="h-1.5 w-1.5 rounded-full bg-success shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
-                                <span className="text-[10px] uppercase tracking-widest text-gray-300 font-bold">Secure SSL</span>
+                                <span className="text-[10px] uppercase tracking-widest text-[#a0a0a0] font-bold">Secure SSL</span>
                             </div>
                             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/5 bg-white/[0.02]">
                                 <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-                                <span className="text-[10px] uppercase tracking-widest text-gray-300 font-bold">Premium Quality</span>
+                                <span className="text-[10px] uppercase tracking-widest text-[#a0a0a0] font-bold">Premium Quality</span>
                             </div>
                         </div>
 
@@ -84,17 +85,17 @@ export function Footer() {
                     </div>
 
                     {/* Link Columns */}
-                    {footerSections.map((section) => (
-                        <div key={section.title}>
-                            <h4 className="font-semibold text-sm text-white mb-5 uppercase tracking-wider">
+                    {footerSections.map((section, sectionIndex) => (
+                        <div key={`footer-section-${sectionIndex}`}>
+                            <h4 className="font-semibold text-sm text-[#f0f0f0] mb-5 uppercase tracking-wider">
                                 {section.title}
                             </h4>
                             <ul className="space-y-3">
-                                {section.links.map((link) => (
-                                    <li key={link.label}>
+                                {section.links.map((link, linkIndex) => (
+                                    <li key={`${section.title}-${linkIndex}`}>
                                         <Link
                                             href={link.href}
-                                            className="text-sm text-gray-300 hover:text-white transition-colors duration-200"
+                                            className="text-sm text-[#a0a0a0] hover:text-[#f0f0f0] transition-colors duration-200"
                                         >
                                             {link.label}
                                         </Link>
@@ -107,7 +108,7 @@ export function Footer() {
 
                 {/* Bottom Bar */}
                 <div className="border-t border-white/[0.06] pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-xs text-[#a0a0a0]">
                         &copy; {new Date().getFullYear()} StreamPro. All rights reserved. Professional Grade Entertainment.
                     </p>
                     <div className="flex items-center gap-4 grayscale opacity-40">

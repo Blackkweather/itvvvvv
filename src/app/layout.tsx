@@ -33,8 +33,8 @@ export const metadata: Metadata = {
     default: "StreamPro — Best Premium IPTV Service | 15,000+ Live Channels",
     template: "%s | StreamPro",
   },
-  description:
-    "StreamPro offers the best IPTV service with 15,000+ live channels, movies, sports, and VOD. Watch NFL, NBA, Premier League, and more in HD. 24/7 support. Starting at $9.99/month.",
+   description:
+     "StreamPro offers the best IPTV service with 15,000+ live channels, movies, sports, and VOD. Watch NFL, NBA, Premier League, and more in HD. 24/7 support. Starting at $14.99/month.",
   keywords: [
     "IPTV",
     "best IPTV service",
@@ -161,47 +161,47 @@ export default function RootLayout({
       "@type": "Brand",
       "name": "StreamPro"
     },
-    "offers": {
-      "@type": "AggregateOffer",
-      "lowPrice": "15",
-      "highPrice": "35",
-      "priceCurrency": "USD",
-      "offerCount": 12,
-      "offers": [
-        {
-          "@type": "Offer",
-          "name": "1 Device - 1 Month",
-          "price": "15",
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/InStock",
-          "url": "https://streampro.space/dashboard/subscription"
-        },
-        {
-          "@type": "Offer",
-          "name": "1 Device - 12 Months",
-          "price": "75",
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/InStock",
-          "url": "https://streampro.space/dashboard/subscription"
-        },
-        {
-          "@type": "Offer",
-          "name": "2 Devices - 1 Month",
-          "price": "25",
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/InStock",
-          "url": "https://streampro.space/dashboard/subscription"
-        },
-        {
-          "@type": "Offer",
-          "name": "3 Devices - 1 Month",
-          "price": "35",
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/InStock",
-          "url": "https://streampro.space/dashboard/subscription"
-        }
-      ]
-    },
+     "offers": {
+       "@type": "AggregateOffer",
+       "lowPrice": "20",
+       "highPrice": "40",
+       "priceCurrency": "USD",
+       "offerCount": 12,
+       "offers": [
+         {
+           "@type": "Offer",
+           "name": "1 Device - 1 Month",
+           "price": "20",
+           "priceCurrency": "USD",
+           "availability": "https://schema.org/InStock",
+           "url": "https://streampro.space/dashboard/subscription"
+         },
+         {
+           "@type": "Offer",
+           "name": "1 Device - 12 Months",
+           "price": "80",
+           "priceCurrency": "USD",
+           "availability": "https://schema.org/InStock",
+           "url": "https://streampro.space/dashboard/subscription"
+         },
+         {
+           "@type": "Offer",
+           "name": "2 Devices - 1 Month",
+           "price": "30",
+           "priceCurrency": "USD",
+           "availability": "https://schema.org/InStock",
+           "url": "https://streampro.space/dashboard/subscription"
+         },
+         {
+           "@type": "Offer",
+           "name": "3 Devices - 1 Month",
+           "price": "40",
+           "priceCurrency": "USD",
+           "availability": "https://schema.org/InStock",
+           "url": "https://streampro.space/dashboard/subscription"
+         }
+       ]
+     },
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.8",

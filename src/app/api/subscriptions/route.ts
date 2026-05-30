@@ -18,9 +18,9 @@ import { verifyCsrfToken } from '@/lib/csrf';
 
 // Plan prices (in USD) - matches pricing page
 const PLAN_PRICES: Record<string, { prices: { [duration: string]: number } }> = {
-  '1D': { prices: { '1': 15, '3': 35, '6': 50, '12': 75 } },
-  '2D': { prices: { '1': 25, '3': 60, '6': 85, '12': 125 } },
-  '3D': { prices: { '1': 35, '3': 85, '6': 125, '12': 175 } },
+   '1D': { prices: { '1': 20, '3': 40, '6': 55, '12': 80 } },
+   '2D': { prices: { '1': 30, '3': 65, '6': 90, '12': 130 } },
+   '3D': { prices: { '1': 40, '3': 90, '6': 130, '12': 180 } },
 };
 
 // GET - Get current subscription

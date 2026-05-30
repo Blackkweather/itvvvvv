@@ -16,45 +16,45 @@ import {
 } from '@/components/ui/Icons';
 
 const MESSAGING = {
-  whatsappNumber: '+447853402172',
-  telegramUsername: 'streampro'
+  whatsappNumber: '+447400706005',
+  telegramUsername: 'streamprospace'
 };
 
 const PACKS = [
-  {
-    id: '1d',
-    name: '1 Device',
-    devices: 1,
-    plans: [
-      { id: '1M-1d', duration: '1 Month', price: 15, originalPrice: null },
-      { id: '3M-1d', duration: '3 Months', price: 35, originalPrice: 45, save: 10 },
-      { id: '6M-1d', duration: '6 Months', price: 50, originalPrice: 70, save: 20 },
-      { id: '12M-1d', duration: '12 Months', price: 75, originalPrice: 110, save: 35 },
-    ]
-  },
-  {
-    id: '2d',
-    name: '2 Devices',
-    devices: 2,
-    plans: [
-      { id: '1M-2d', duration: '1 Month', price: 25, originalPrice: null },
-      { id: '3M-2d', duration: '3 Months', price: 60, originalPrice: 90, save: 30 },
-      { id: '6M-2d', duration: '6 Months', price: 85, originalPrice: 140, save: 55 },
-      { id: '12M-2d', duration: '12 Months', price: 125, originalPrice: 210, save: 85 },
-    ]
-  },
-  {
-    id: '3d',
-    name: '3 Devices',
-    devices: 3,
-    plans: [
-      { id: '1M-3d', duration: '1 Month', price: 35, originalPrice: null },
-      { id: '3M-3d', duration: '3 Months', price: 85, originalPrice: 110, save: 25 },
-      { id: '6M-3d', duration: '6 Months', price: 125, originalPrice: 200, save: 75 },
-      { id: '12M-3d', duration: '12 Months', price: 175, originalPrice: 280, save: 105 },
-    ]
-  },
-];
+   {
+     id: '1d',
+     name: '1 Device',
+     devices: 1,
+     plans: [
+       { id: '1M-1d', duration: '1 Month', price: 20, originalPrice: null },
+       { id: '3M-1d', duration: '3 Months', price: 40, originalPrice: 50, save: 10 },
+       { id: '6M-1d', duration: '6 Months', price: 55, originalPrice: 75, save: 20 },
+       { id: '12M-1d', duration: '12 Months', price: 80, originalPrice: 115, save: 35 },
+     ]
+   },
+   {
+     id: '2d',
+     name: '2 Devices',
+     devices: 2,
+     plans: [
+       { id: '1M-2d', duration: '1 Month', price: 30, originalPrice: null },
+       { id: '3M-2d', duration: '3 Months', price: 65, originalPrice: 95, save: 30 },
+       { id: '6M-2d', duration: '6 Months', price: 90, originalPrice: 145, save: 55 },
+       { id: '12M-2d', duration: '12 Months', price: 130, originalPrice: 215, save: 85 },
+     ]
+   },
+   {
+     id: '3d',
+     name: '3 Devices',
+     devices: 3,
+     plans: [
+       { id: '1M-3d', duration: '1 Month', price: 40, originalPrice: null },
+       { id: '3M-3d', duration: '3 Months', price: 90, originalPrice: 115, save: 25 },
+       { id: '6M-3d', duration: '6 Months', price: 130, originalPrice: 205, save: 75 },
+       { id: '12M-3d', duration: '12 Months', price: 180, originalPrice: 285, save: 105 },
+     ]
+   },
+ ];
 
 const FEATURES = [
   { icon: IconFilm, title: '30,000+ Channels', description: 'Live TV worldwide' },

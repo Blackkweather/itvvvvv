@@ -18,25 +18,25 @@ import {
 } from '@/components/ui/Icons';
 
 const PLANS = {
-  1: [
-    { id: '1D_1M', name: '1 Month', price: 15, originalPrice: null, duration: 'month', popular: true },
-    { id: '1D_3M', name: '3 Months', price: 35, originalPrice: 45, duration: '3 months', save: 10 },
-    { id: '1D_6M', name: '6 Months', price: 50, originalPrice: 70, duration: '6 months', save: 20 },
-    { id: '1D_12M', name: '12 Months', price: 75, originalPrice: 110, duration: 'year', save: 35 },
-  ],
-  2: [
-    { id: '2D_1M', name: '1 Month', price: 25, originalPrice: null, duration: 'month', popular: true },
-    { id: '2D_3M', name: '3 Months', price: 60, originalPrice: 90, duration: '3 months', save: 30 },
-    { id: '2D_6M', name: '6 Months', price: 85, originalPrice: 140, duration: '6 months', save: 55 },
-    { id: '2D_12M', name: '12 Months', price: 125, originalPrice: 210, duration: 'year', save: 85 },
-  ],
-  3: [
-    { id: '3D_1M', name: '1 Month', price: 35, originalPrice: null, duration: 'month', popular: true },
-    { id: '3D_3M', name: '3 Months', price: 85, originalPrice: 110, duration: '3 months', save: 25 },
-    { id: '3D_6M', name: '6 Months', price: 125, originalPrice: 200, duration: '6 months', save: 75 },
-    { id: '3D_12M', name: '12 Months', price: 175, originalPrice: 280, duration: 'year', save: 105 },
-  ],
-};
+   1: [
+     { id: '1D_1M', name: '1 Month', price: 20, originalPrice: null, duration: 'month', popular: true },
+     { id: '1D_3M', name: '3 Months', price: 40, originalPrice: 50, duration: '3 months', save: 10 },
+     { id: '1D_6M', name: '6 Months', price: 55, originalPrice: 75, duration: '6 months', save: 20 },
+     { id: '1D_12M', name: '12 Months', price: 80, originalPrice: 115, duration: 'year', save: 35 },
+   ],
+   2: [
+     { id: '2D_1M', name: '1 Month', price: 30, originalPrice: null, duration: 'month', popular: true },
+     { id: '2D_3M', name: '3 Months', price: 65, originalPrice: 95, duration: '3 months', save: 30 },
+     { id: '2D_6M', name: '6 Months', price: 90, originalPrice: 145, duration: '6 months', save: 55 },
+     { id: '2D_12M', name: '12 Months', price: 130, originalPrice: 215, duration: 'year', save: 85 },
+   ],
+   3: [
+     { id: '3D_1M', name: '1 Month', price: 40, originalPrice: null, duration: 'month', popular: true },
+     { id: '3D_3M', name: '3 Months', price: 90, originalPrice: 115, duration: '3 months', save: 25 },
+     { id: '3D_6M', name: '6 Months', price: 130, originalPrice: 205, duration: '6 months', save: 75 },
+     { id: '3D_12M', name: '12 Months', price: 180, originalPrice: 285, duration: 'year', save: 105 },
+   ],
+ };
 
 const DEVICE_OPTIONS = [
   { devices: 1, label: '1 Device', description: 'Personal use' },

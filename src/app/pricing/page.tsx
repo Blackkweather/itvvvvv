@@ -15,25 +15,25 @@ import {
 } from '@/components/ui/Icons';
 
 const PLANS = {
-  1: [
-    { id: '1D_1M', name: '1 Month', price: 15, originalPrice: null, duration: 'month' },
-    { id: '1D_3M', name: '3 Months', price: 35, originalPrice: 45, duration: '3 months', save: 10 },
-    { id: '1D_6M', name: '6 Months', price: 50, originalPrice: 70, duration: '6 months', save: 20 },
-    { id: '1D_12M', name: '12 Months', price: 75, originalPrice: 110, duration: 'year', save: 35 },
-  ],
-  2: [
-    { id: '2D_1M', name: '1 Month', price: 25, originalPrice: null, duration: 'month' },
-    { id: '2D_3M', name: '3 Months', price: 60, originalPrice: 90, duration: '3 months', save: 30 },
-    { id: '2D_6M', name: '6 Months', price: 85, originalPrice: 140, duration: '6 months', save: 55 },
-    { id: '2D_12M', name: '12 Months', price: 125, originalPrice: 210, duration: 'year', save: 85 },
-  ],
-  3: [
-    { id: '3D_1M', name: '1 Month', price: 35, originalPrice: null, duration: 'month' },
-    { id: '3D_3M', name: '3 Months', price: 85, originalPrice: 110, duration: '3 months', save: 25 },
-    { id: '3D_6M', name: '6 Months', price: 125, originalPrice: 200, duration: '6 months', save: 75 },
-    { id: '3D_12M', name: '12 Months', price: 175, originalPrice: 280, duration: 'year', save: 105 },
-  ],
-};
+   1: [
+     { id: '1D_1M', name: '1 Month', price: 20, originalPrice: null, duration: 'month' },
+     { id: '1D_3M', name: '3 Months', price: 40, originalPrice: 50, duration: '3 months', save: 10 },
+     { id: '1D_6M', name: '6 Months', price: 55, originalPrice: 75, duration: '6 months', save: 20 },
+     { id: '1D_12M', name: '12 Months', price: 80, originalPrice: 115, duration: 'year', save: 35 },
+   ],
+   2: [
+     { id: '2D_1M', name: '1 Month', price: 30, originalPrice: null, duration: 'month' },
+     { id: '2D_3M', name: '3 Months', price: 65, originalPrice: 95, duration: '3 months', save: 30 },
+     { id: '2D_6M', name: '6 Months', price: 90, originalPrice: 145, duration: '6 months', save: 55 },
+     { id: '2D_12M', name: '12 Months', price: 130, originalPrice: 215, duration: 'year', save: 85 },
+   ],
+   3: [
+     { id: '3D_1M', name: '1 Month', price: 40, originalPrice: null, duration: 'month' },
+     { id: '3D_3M', name: '3 Months', price: 90, originalPrice: 115, duration: '3 months', save: 25 },
+     { id: '3D_6M', name: '6 Months', price: 130, originalPrice: 205, duration: '6 months', save: 75 },
+     { id: '3D_12M', name: '12 Months', price: 180, originalPrice: 285, duration: 'year', save: 105 },
+   ],
+ };
 
 const DEVICE_OPTIONS = [
   { devices: 1, label: '1 Device', description: 'Perfect for personal use' },
@@ -70,9 +70,9 @@ export default function PricingPage() {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6"
             >
               <IconZap className="h-4 w-4 text-primary" />
-              <span className="text-xs font-medium uppercase tracking-wider text-primary">
-                Starting at $15/month
-              </span>
+               <span className="text-xs font-medium uppercase tracking-wider text-primary">
+                 Starting at $20/month
+               </span>
             </motion.div>
 
             <motion.h1
@@ -107,7 +107,7 @@ export default function PricingPage() {
             {DEVICE_OPTIONS.map((option) => {
               const isSelected = selectedDevices === option.devices;
               const devicePlans = PLANS[option.devices as keyof typeof PLANS];
-              const monthlyPrice = devicePlans.find(p => p.duration === 'month')?.price || 15;
+               const monthlyPrice = devicePlans.find(p => p.duration === 'month')?.price || 20;
               
               return (
                 <motion.button
@@ -245,7 +245,7 @@ export default function PricingPage() {
 
                       {/* CTA Button */}
                       <a
-                        href={`https://wa.me/447853402172?text=Hi%2C%20I'm%20interested%20in%20the%20${plan.name}%20${selectedDevices}%20Device%20plan%20(%24${plan.price})`}
+                        href={`https://wa.me/447400706005?text=Hi%2C%20I'm%20interested%20in%20the%20${plan.name}%20${selectedDevices}%20Device%20plan%20(%24${plan.price})`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={`block w-full py-3.5 rounded-xl font-bold text-center transition-all duration-300 transform hover:scale-105 ${
@@ -339,7 +339,7 @@ export default function PricingPage() {
                 View FAQ
               </Link>
               <a
-                href="https://wa.me/+447853402172"
+                href="https://wa.me/+447400706005"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-3 rounded-xl font-bold bg-primary text-black hover:bg-primary/90 transition-colors"

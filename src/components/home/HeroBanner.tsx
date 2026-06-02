@@ -141,7 +141,7 @@ export function HeroBanner() {
                         className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-2 sm:px-0"
                     >
                         <Magnetic strength={0.1}>
-                            <a href="https://wa.me/+447853402172" target="_blank" rel="noopener noreferrer" className="bg-white text-black px-8 sm:px-10 py-4 sm:py-[18px] rounded-lg sm:rounded-xl font-bold text-[11px] sm:text-xs uppercase tracking-widest hover:bg-white/90 transition-all duration-300 active:scale-[0.98] min-h-[48px] w-full sm:w-auto text-center">
+                             <a href="https://wa.me/34673317263" target="_blank" rel="noopener noreferrer" className="bg-white text-black px-8 sm:px-10 py-4 sm:py-[18px] rounded-lg sm:rounded-xl font-bold text-[11px] sm:text-xs uppercase tracking-widest hover:bg-white/90 transition-all duration-300 active:scale-[0.98] min-h-[48px] w-full sm:w-auto text-center">
                                 CHAT ON WHATSAPP
                             </a>
                         </Magnetic>

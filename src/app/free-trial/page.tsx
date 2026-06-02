@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/Icons';
 
 const MESSAGING = {
-  whatsappNumber: '+447400706005',
+  whatsappNumber: '34673317263',
   telegramUsername: 'streamprospace'
 };
 

@@ -9,7 +9,7 @@ export default function SupportFloat() {
             name: 'WhatsApp',
             icon: <MessageCircle className="h-6 w-6" />,
             color: 'bg-[#25D366]',
-            link: 'https://wa.me/+447853402172?text=Hello%2C%20I%20want%20free%20trial%20please.',
+            link: 'https://wa.me/34673317263?text=Hello%2C%20I%20want%20free%20trial%20please.',
         },
         {
             name: 'Telegram',

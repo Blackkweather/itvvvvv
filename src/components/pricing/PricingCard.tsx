@@ -125,7 +125,7 @@ export default function PricingCard({ plan, index }: PricingCardProps) {
                 <div className="mb-6">
                     <Magnetic strength={0.1}>
                         <Link
-                            href="https://wa.me/+447853402172"
+                            href="https://wa.me/34673317263"
                             target="_blank"
                             rel="noopener noreferrer"
                             className={`w-full group/btn relative flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl font-bold text-sm transition-all duration-300 ${

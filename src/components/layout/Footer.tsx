@@ -25,7 +25,7 @@ const footerSections = [
         title: 'Company',
         links: [
             { label: 'About Us', href: '/about' },
-            { label: 'WhatsApp', href: 'https://wa.me/447853402172' },
+            { label: 'WhatsApp', href: 'https://wa.me/34673317263' },
             { label: 'Privacy Policy', href: '/legal/privacy-policy' },
             { label: 'Terms of Service', href: '/legal/terms-of-service' },
         ],
@@ -36,7 +36,7 @@ const socialLinks = [
     { icon: Twitter, href: 'https://twitter.com/streampro', label: 'Twitter' },
     { icon: Instagram, href: 'https://instagram.com/streampro', label: 'Instagram' },
     { icon: Youtube, href: 'https://youtube.com/@streampro', label: 'Youtube' },
-    { icon: MessageCircle, href: 'https://wa.me/447853402172', label: 'WhatsApp' },
+    { icon: MessageCircle, href: 'https://wa.me/34673317263', label: 'WhatsApp' },
     { icon: Send, href: 'https://t.me/streamprospace', label: 'Telegram' },
 ];
 

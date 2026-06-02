@@ -157,7 +157,7 @@ export default function ResellerPage() {
                                     <div className="text-4xl font-bold text-primary mb-2">${pack.price}</div>
                                     <div className="text-xs text-[#a0a0a0] uppercase tracking-wide mb-6">{pack.savings}</div>
                                     <a
-                                        href={`https://wa.me/447853402172?text=Hi%2C%20I'm%20interested%20in%20the%20${pack.packName}%20Reseller%20Pack%20(${pack.credits}%20Credits%20-%20%24${pack.price})`}
+                                        href={`https://wa.me/34673317263?text=Hi%2C%20I'm%20interested%20in%20the%20${pack.packName}%20Reseller%20Pack%20(${pack.credits}%20Credits%20-%20%24${pack.price})`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="w-full py-3 rounded-xl bg-primary text-black font-bold text-sm uppercase tracking-wider hover:bg-primary/90 transition-colors inline-flex justify-center"
@@ -189,7 +189,7 @@ export default function ResellerPage() {
                         <p className="text-secondary-foreground font-light uppercase tracking-widest">Custom packages available. Contact sales for bulk orders.</p>
                     </div>
                     <Magnetic strength={0.2}>
-                        <Link href="https://wa.me/+447853402172" target="_blank" rel="noopener noreferrer" className="btn-primary !px-16 !py-6 !text-[13px] !tracking-[0.4em]">
+                        <Link href="https://wa.me/34673317263" target="_blank" rel="noopener noreferrer" className="btn-primary !px-16 !py-6 !text-[13px] !tracking-[0.4em]">
                             CONTACT SALES
                         </Link>
                     </Magnetic>

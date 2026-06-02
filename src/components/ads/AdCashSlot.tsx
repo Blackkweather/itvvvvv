@@ -13,6 +13,7 @@ interface AdCashSlotProps {
 export function AdCashSlot({ zoneId, siteId, className = '', label = 'Advertisement', style }: AdCashSlotProps) {
   const adRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!zoneId) return;
@@ -28,21 +29,29 @@ export function AdCashSlot({ zoneId, siteId, className = '', label = 'Advertisem
           setIsLoaded(true);
         } catch (e) {
           console.error('AdCash AutoTag error:', e);
+          setError('AutoTag execution failed');
         }
       } else {
+        // CDN URL from env or default
+        const cdnUrl = process.env.NEXT_PUBLIC_ADCASH_CDN_URL || 'https://cdn.aclibintelligence.com/lib.js';
+        
         // Load the anti-adblock library from CDN
         const script = document.createElement('script');
         script.type = 'text/javascript';
-        script.src = 'https://cdn.aclibintelligence.com/lib.js';
+        script.src = cdnUrl;
         script.async = true;
         script.onload = () => {
           if ((window as any).aclib) {
             (window as any).aclib.runAutoTag({ zoneId: zoneId });
             setIsLoaded(true);
+          } else {
+            setError('Script loaded but aclib not available');
           }
         };
         script.onerror = () => {
-          console.error('Failed to load AdCash library');
+          const errorMsg = `Failed to load AdCash library from ${cdnUrl}`;
+          console.error(errorMsg);
+          setError(errorMsg);
         };
         document.head.appendChild(script);
       }
@@ -55,6 +64,9 @@ export function AdCashSlot({ zoneId, siteId, className = '', label = 'Advertisem
 
   if (!zoneId) return null;
 
+  // Show error in development mode for debugging
+  const isDev = process.env.NODE_ENV === 'development';
+
   return (
     <div
       ref={adRef}
@@ -62,7 +74,13 @@ export function AdCashSlot({ zoneId, siteId, className = '', label = 'Advertisem
       data-ad-status={isLoaded ? 'filled' : 'unfilled'}
       aria-label={label}
       style={style}
-    />
+    >
+      {isDev && error && (
+        <div className="text-xs text-red-500 p-2 bg-red-50 rounded">
+          AdCash Error: {error}
+        </div>
+      )}
+    </div>
   );
 }
 

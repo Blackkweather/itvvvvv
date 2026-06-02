@@ -245,7 +245,7 @@ export default function PricingPage() {
 
                        {/* CTA Button */}
                        <a
-                         href={`https://wa.me/447400706005?text=Hi%2C%20I'm%20interested%20in%20the%20${plan.name}%20${selectedDevices}%20Device%20plan%20(%24${plan.price})`}
+                         href={`https://wa.me/34673317263?text=Hi%2C%20I'm%20interested%20in%20the%20${plan.name}%20${selectedDevices}%20Device%20plan%20(%24${plan.price})`}
                          target="_blank"
                          rel="noopener noreferrer"
                          className={`block w-full py-4 rounded-xl font-bold text-center transition-all duration-300 transform hover:scale-105 ${
@@ -339,7 +339,7 @@ export default function PricingPage() {
                 View FAQ
               </Link>
               <a
-                href="https://wa.me/+447400706005"
+                href="https://wa.me/34673317263"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-3 rounded-xl font-bold bg-primary text-black hover:bg-primary/90 transition-colors"

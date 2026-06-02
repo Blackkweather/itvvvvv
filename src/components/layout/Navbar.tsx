@@ -13,7 +13,7 @@ const navLinks = [
     { label: 'Pricing', href: '/pricing', icon: Zap },
     { label: 'FAQ', href: '#faq', icon: BookOpen },
     { label: 'Reseller', href: '/reseller', icon: Users },
-    { label: 'Contact', href: 'https://wa.me/447853402172', icon: Info },
+    { label: 'Contact', href: 'https://wa.me/34673317263', icon: Info },
 ];
 
 const bottomNavItems = [

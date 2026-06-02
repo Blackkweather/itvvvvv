@@ -187,20 +187,20 @@ export default function AboutPage() {
                     <p className="text-secondary-foreground mb-10 max-w-xl mx-auto">
                         Experience the future of streaming. Start your free trial today and see why hundreds of thousands choose StreamPro.
                     </p>
-                    <div className="flex flex-col sm:flex-row justify-center gap-4">
-                        <a
-                            href="https://wa.me/+447853402172"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-white/10 text-white px-10 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-white/20 border border-white/10 transition-all"
+<div className="flex flex-col sm:flex-row justify-center gap-4">
+                         <a
+                             href="https://wa.me/34673317263"
+                             target="_blank"
+                             rel="noopener noreferrer"
+                             className="bg-white/10 text-white px-10 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-white/20 border border-white/10 transition-all"
                         >
                             Contact Us
                         </a>
-                        <a
-                            href="https://wa.me/+447853402172"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-white/10 text-white px-10 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-white/20 border border-white/10 transition-all"
+                         <a
+                             href="https://wa.me/34673317263"
+                             target="_blank"
+                             rel="noopener noreferrer"
+                             className="bg-white/10 text-white px-10 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-white/20 border border-white/10 transition-all"
                         >
                             Contact Us
                         </a>

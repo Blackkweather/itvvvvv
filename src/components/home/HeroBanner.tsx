@@ -146,7 +146,7 @@ export function HeroBanner() {
                             </a>
                         </Magnetic>
                         <Magnetic strength={0.1}>
-                            <a href="https://t.me/streamprospace" target="_blank" rel="noopener noreferrer" className="bg-transparent border border-white/20 text-white px-8 sm:px-10 py-4 sm:py-[18px] rounded-lg sm:rounded-xl font-bold text-[11px] sm:text-xs uppercase tracking-widest hover:bg-white/5 transition-all duration-300 active:scale-[0.98] min-h-[48px] w-full sm:w-auto text-center">
+                             <a href="https://t.me/+34673317263" target="_blank" rel="noopener noreferrer" className="bg-transparent border border-white/20 text-white px-8 sm:px-10 py-4 sm:py-[18px] rounded-lg sm:rounded-xl font-bold text-[11px] sm:text-xs uppercase tracking-widest hover:bg-white/5 transition-all duration-300 active:scale-[0.98] min-h-[48px] w-full sm:w-auto text-center">
                                 TELEGRAM
                             </a>
                         </Magnetic>

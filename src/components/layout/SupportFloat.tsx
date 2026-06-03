@@ -15,7 +15,7 @@ export default function SupportFloat() {
             name: 'Telegram',
             icon: <Send className="h-6 w-6" />,
             color: 'bg-[#0088cc]',
-            link: 'https://t.me/streamprospace',
+            link: 'https://t.me/+34673317263',
         },
     ];
 

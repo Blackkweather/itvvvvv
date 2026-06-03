@@ -17,7 +17,7 @@ import {
 
 const MESSAGING = {
   whatsappNumber: '34673317263',
-  telegramUsername: 'streamprospace'
+   telegramUsername: '+34673317263'
 };
 
 const PACKS = [

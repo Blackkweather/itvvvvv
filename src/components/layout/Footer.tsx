@@ -37,7 +37,7 @@ const socialLinks = [
     { icon: Instagram, href: 'https://instagram.com/streampro', label: 'Instagram' },
     { icon: Youtube, href: 'https://youtube.com/@streampro', label: 'Youtube' },
     { icon: MessageCircle, href: 'https://wa.me/34673317263', label: 'WhatsApp' },
-    { icon: Send, href: 'https://t.me/+34673317263', label: 'Telegram' },
+    { icon: Send, href: 'https://t.me/Prostreampro', label: 'Telegram' },
 ];
 
 export function Footer() {

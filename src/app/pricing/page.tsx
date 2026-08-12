@@ -10,11 +10,12 @@ import {
   IconClock,
   IconFilm,
   IconHeadphones,
-  IconArrowRight,
   IconMonitor
 } from '@/components/ui/Icons';
+import PlanCard, { type Plan } from '@/components/pricing/PlanCard';
+import { useCurrency } from '@/hooks/useCurrency';
 
-const PLANS = {
+const PLANS: Record<number, Plan[]> = {
    1: [
      { id: '1D_1M', name: '1 Month', price: 20, originalPrice: null, duration: 'month' },
      { id: '1D_3M', name: '3 Months', price: 40, originalPrice: 50, duration: '3 months', save: 10 },
@@ -35,6 +36,14 @@ const PLANS = {
    ],
  };
 
+const INCLUDED_IN_EVERY_PLAN = [
+  '30,000+ Channels',
+  '4K Quality',
+  '120,000+ VOD',
+  '24/7 Support',
+  'Anti-Freeze',
+];
+
 const DEVICE_OPTIONS = [
   { devices: 1, label: '1 Device', description: 'Perfect for personal use' },
   { devices: 2, label: '2 Devices', description: 'Great for couples' },
@@ -53,10 +62,17 @@ export default function PricingPage() {
   const [selectedDevices, setSelectedDevices] = useState(1);
   const [selectedPlan, setSelectedPlan] = useState('1D_1M');
   const currentPlans = PLANS[selectedDevices as keyof typeof PLANS] || PLANS[1];
+  const { symbol } = useCurrency();
+  const activePlan = currentPlans.find((p) => p.id === selectedPlan);
+  // Highlight the plan with the biggest discount (the 12-month plan).
+  const bestValueIndex = currentPlans.reduce(
+    (best, plan, i) => ((plan.save ?? 0) > (currentPlans[best].save ?? 0) ? i : best),
+    0
+  );
 
   return (
     <div className="min-h-screen bg-background">
-      <main className="pt-32 pb-20" id="pricing">
+      <main className="pt-28 pb-16" id="pricing">
         {/* Hero */}
         <section className="relative overflow-hidden">
           <div className="absolute inset-0 z-0">
@@ -71,7 +87,7 @@ export default function PricingPage() {
             >
               <IconZap className="h-4 w-4 text-primary" />
                <span className="text-xs font-medium uppercase tracking-wider text-primary">
-                 Starting at $20/month
+                 Starting at {symbol}20/month
                </span>
             </motion.div>
 
@@ -88,58 +104,62 @@ export default function PricingPage() {
                initial={{ opacity: 0, y: 20 }}
                animate={{ opacity: 1, y: 0 }}
                transition={{ delay: 0.2 }}
-               className="text-base text-[#a0a0a0] max-w-2xl mx-auto mb-6"
+               className="text-sm sm:text-base text-[#a0a0a0] max-w-2xl mx-auto mb-2"
              >
-               Select the perfect plan for your streaming needs. 
-               All plans include 30,000+ channels and 120,000+ VOD.
+               Pick your device count, then your term. Cancel anytime.
              </motion.p>
           </div>
         </section>
 
          {/* Device Selection */}
-         <section className="max-w-4xl mx-auto px-6 mb-12">
-           <div className="text-center mb-8">
-             <h2 className="text-2xl font-bold text-[#f0f0f0] mb-2">How Many Devices?</h2>
-             <p className="text-[#a0a0a0]">Select the number of simultaneous connections</p>
+         <section className="max-w-6xl mx-auto px-4 sm:px-6 mb-4">
+           <div className="mb-3">
+             <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-[#a0a0a0]">
+               Devices
+             </h2>
            </div>
-           
-           <div className="grid grid-cols-1 gap-6">
-             {DEVICE_OPTIONS.map((option) => {
+
+           <div className="grid grid-cols-3 gap-2 sm:gap-3">
+             {DEVICE_OPTIONS.map((option, i) => {
                const isSelected = selectedDevices === option.devices;
                const devicePlans = PLANS[option.devices as keyof typeof PLANS];
-                const monthlyPrice = devicePlans.find(p => p.duration === 'month')?.price || 20;
-               
+               const monthlyPrice = devicePlans.find(p => p.duration === 'month')?.price || 20;
+
                return (
                  <motion.button
                    key={option.devices}
-                   initial={{ opacity: 0, y: 20 }}
+                   initial={{ opacity: 0, y: 12 }}
                    whileInView={{ opacity: 1, y: 0 }}
                    viewport={{ once: true }}
-                   onClick={() => setSelectedDevices(option.devices)}
-                   className={`relative p-8 rounded-2xl border-2 transition-all duration-300 text-left ${
+                   transition={{ type: 'spring', stiffness: 100, damping: 20, delay: i * 0.05 }}
+                   whileTap={{ scale: 0.985 }}
+                   aria-pressed={isSelected}
+                   onClick={() => {
+                     setSelectedDevices(option.devices);
+                     setSelectedPlan((prev) => prev.replace(/^\d+D/, `${option.devices}D`));
+                   }}
+                   className={`relative flex items-center gap-2 rounded-xl border px-3 py-2.5 text-left transition-colors duration-300 sm:px-4 ${
                      isSelected
-                       ? 'border-primary bg-primary/10 shadow-lg shadow-primary/10'
-                       : 'border-border hover:border-primary/50 hover:bg-white/5'
+                       ? 'border-primary/70 bg-primary/[0.07] shadow-[inset_0_1px_0_rgba(255,255,255,0.09)]'
+                       : 'border-white/10 bg-white/[0.02] hover:border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]'
                    }`}
                  >
-                   {isSelected && (
-                     <div className="absolute top-3 right-3 w-6 h-6 rounded-full bg-primary flex items-center justify-center">
-                       <IconCheck className="h-4 w-4 text-black" />
+                   <IconMonitor className={`hidden h-5 w-5 shrink-0 sm:block ${isSelected ? 'text-primary' : 'text-white/40'}`} />
+
+                   <div className="min-w-0">
+                     <div className="truncate text-xs font-semibold text-[#f0f0f0] sm:text-sm">
+                       {option.label}
                      </div>
-                   )}
-                   
-                   <div className="flex items-center gap-4 mb-6">
-                                             <IconMonitor className={`h-8 w-8 ${isSelected ? 'text-primary' : 'text-[#a0a0a0]'}`} />
-                                             <div className="text-3xl font-bold text-[#f0f0f0]">{option.devices}</div>
-                                         </div>
-                                         
-                                         <div className="font-medium text-[#f0f0f0] mb-2">{option.label}</div>
-                                         <p className="text-[#a0a0a0] mb-4">{option.description}</p>
-                   
-                   <div className="pt-6 border-t border-border">
-                     <span className="text-4xl font-bold text-primary">${monthlyPrice}</span>
-                     <span className="text-gray-400">/month</span>
+                     <div className="whitespace-nowrap text-[11px] tabular-nums text-[#a0a0a0]">
+                       from <span className="text-primary">{symbol}{monthlyPrice}</span>/mo
+                     </div>
                    </div>
+
+                   {isSelected && (
+                     <span className="absolute right-2 top-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary">
+                       <IconCheck className="h-2.5 w-2.5 text-black" />
+                     </span>
+                   )}
                  </motion.button>
                );
              })}
@@ -147,151 +167,70 @@ export default function PricingPage() {
          </section>
 
          {/* Pricing Plans */}
-         <section className="max-w-6xl mx-auto px-6 mb-20">
+         <section className="max-w-6xl mx-auto px-4 sm:px-6 mb-20">
            <AnimatePresence mode="wait">
              <motion.div
                key={selectedDevices}
-               initial={{ opacity: 0, y: 20 }}
-               animate={{ opacity: 1, y: 0 }}
-               exit={{ opacity: 0, y: -20 }}
-               className="grid grid-cols-1 gap-8"
+               initial="hidden"
+               animate="show"
+               exit="exit"
+               variants={{
+                 hidden: {},
+                 show: { transition: { staggerChildren: 0.07 } },
+                 exit: { transition: { staggerChildren: 0.03 } },
+               }}
+               className="grid grid-cols-2 gap-2.5 sm:grid-cols-4 sm:gap-3 items-stretch"
              >
-               {currentPlans.map((plan, index) => {
-                 const isSelected = selectedPlan === plan.id;
-                 
-                 return (
-                   <motion.div
-                     key={plan.id}
-                     initial={{ opacity: 0, y: 20 }}
-                     animate={{ opacity: 1, y: 0 }}
-                     transition={{ delay: index * 0.1 }}
-                     onClick={() => setSelectedPlan(plan.id)}
-                     className={`relative group rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer ${
-                       isSelected ? 'ring-2 ring-primary' : ''
-                     } ${
-                       index === 0 
-                         ? 'lg:scale-105 lg:shadow-2xl lg:shadow-primary/20' 
-                         : ''
-                     }`}
-                   >
-                     {/* Background gradient */}
-                     <div className={`absolute inset-0 ${
-                       isSelected
-                         ? 'bg-gradient-to-br from-primary/30 via-primary/15 to-transparent'
-                         : index === 0
-                         ? 'bg-gradient-to-br from-primary/20 via-primary/10 to-transparent'
-                         : 'bg-gradient-to-br from-white/5 to-transparent'
-                     }`} />
-                     
-                     {/* Border glow effect */}
-                     <div className={`absolute inset-0 rounded-2xl border ${
-                       isSelected
-                         ? 'border-primary shadow-[inset_0_0_30px_rgba(0,212,255,0.2)]'
-                         : index === 0
-                         ? 'border-primary/50 shadow-[inset_0_0_30px_rgba(0,212,255,0.1)]'
-                         : 'border-white/10 group-hover:border-primary/30'
-                     } transition-all duration-300`} />
- 
-                     <div className="relative p-8 md:p-10 h-full flex flex-col">
-                       {/* Badge */}
-                       {plan.save && (
-                         <div className="mb-4">
-                           <span className="inline-block bg-gradient-to-r from-primary via-primary to-accent/80 text-black text-xs font-black px-3 py-1.5 rounded-full">
-                             💰 SAVE ${plan.save}
-                           </span>
-                         </div>
-                       )}
-                       {index === 0 && !plan.save && (
-                         <div className="mb-4">
-                           <span className="inline-block bg-primary/20 border border-primary/50 text-primary text-xs font-bold px-3 py-1.5 rounded-full">
-                             MOST POPULAR
-                           </span>
-                         </div>
-                       )}
-
-                       {/* Plan Name */}
-                       <h3 className="text-lg font-bold text-white mb-4">{plan.name}</h3>
-                       
-                       {/* Price Section */}
-                       <div className="mb-6">
-                         {plan.originalPrice && (
-                           <div className="flex items-baseline gap-2 mb-2">
-                             <span className="text-sm text-gray-400 font-medium">Was</span>
-                             <span className="text-lg text-gray-500 line-through font-semibold">${plan.originalPrice}</span>
-                           </div>
-                         )}
-                       <div className="flex items-baseline gap-2">
-                           <span className={`${index === 0 ? 'text-5xl' : 'text-4xl'} font-black bg-gradient-to-r from-primary via-primary to-accent/80 bg-clip-text text-transparent`}>
-                             ${plan.price}
-                           </span>
-                           <span className="text-[#a0a0a0] font-medium">/{plan.duration}</span>
-                         </div>
-                       </div>
-
-                       {/* Divider */}
-                       <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6" />
-
-                       {/* Features */}
-                       <ul className="space-y-4 mb-8 flex-grow">
-                         {['30,000+ Channels', '4K Quality', '120,000+ VOD', '24/7 Support', 'Anti-Freeze'].map((feature, i) => (
-                           <li key={i} className="flex items-start gap-4 text-sm leading-relaxed">
-                             <div className={`mt-0.5 rounded-full shrink-0 ${index === 0 ? 'bg-primary/20' : 'bg-white/10'}`}>
-                               <IconCheck className={`h-3.5 w-3.5 ${index === 0 ? 'text-primary' : 'text-green-400'}`} />
-                             </div>
-                             <span className="text-[#f0f0f0] font-medium">{feature}</span>
-                           </li>
-                         ))}
-                       </ul>
-
-                       {/* CTA Button */}
-                       <a
-                         href={`https://wa.me/34673317263?text=Hi%2C%20I'm%20interested%20in%20the%20${plan.name}%20${selectedDevices}%20Device%20plan%20(%24${plan.price})`}
-                         target="_blank"
-                         rel="noopener noreferrer"
-                         className={`block w-full py-4 rounded-xl font-bold text-center transition-all duration-300 transform hover:scale-105 ${
-                           isSelected
-                             ? 'bg-gradient-to-r from-primary via-primary to-accent/80 text-black shadow-lg shadow-primary/50 font-black'
-                             : index === 0
-                             ? 'bg-gradient-to-r from-primary/60 via-primary/60 to-accent/50 text-black shadow-lg shadow-primary/30 hover:shadow-primary/50 font-black'
-                             : 'bg-white/5 text-[#f0f0f0] hover:bg-white/10 border border-white/20 hover:border-primary/50'
-                         }`}
-                       >
-                         {isSelected ? '✅ Plan Selected' : index === 0 ? '🚀 Get This Plan' : 'Select Plan'}
-                       </a>
-                     </div>
-                   </motion.div>
-                 );
-               })}
+               {currentPlans.map((plan, index) => (
+                 <PlanCard
+                   key={plan.id}
+                   plan={plan}
+                   devices={selectedDevices}
+                   isSelected={selectedPlan === plan.id}
+                   isFeatured={index === bestValueIndex}
+                   symbol={symbol}
+                   onSelect={setSelectedPlan}
+                 />
+               ))}
              </motion.div>
            </AnimatePresence>
 
-           {/* Selected Plan Summary */}
-           {selectedPlan && (
+           {/* Stated once instead of repeated inside all four cards */}
+           <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 rounded-xl border border-white/[0.08] bg-white/[0.02] px-4 py-3">
+             <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#a0a0a0]">
+               Every plan includes
+             </span>
+             {INCLUDED_IN_EVERY_PLAN.map((item) => (
+               <span key={item} className="flex items-center gap-1.5 text-xs text-[#d4d4d4]">
+                 <IconCheck className="h-3 w-3 shrink-0 text-primary" />
+                 {item}
+               </span>
+             ))}
+           </div>
+
+           {/* Selected plan — one compact line instead of a three-column block */}
+           {activePlan && (
              <motion.div
-               initial={{ opacity: 0, y: 20 }}
-               animate={{ opacity: 1, y: 0 }}
-               className="mt-12 p-6 md:p-8 rounded-2xl bg-gradient-to-r from-primary/10 via-accent/5 to-primary/10 border border-primary/20"
+               layout
+               transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+               className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 rounded-xl border border-primary/25 bg-primary/[0.06] px-4 py-3"
              >
-               <div className="grid grid-cols-1 gap-6 md:grid-cols-3 items-center text-center">
-                 <div>
-                   <p className="text-[#a0a0a0] text-sm mb-2">Selected Plan</p>
-                   <h3 className="text-2xl font-bold text-[#f0f0f0]">
-                     {currentPlans.find(p => p.id === selectedPlan)?.name}
-                   </h3>
-                 </div>
-                 <div>
-                   <p className="text-[#a0a0a0] text-sm mb-2">Devices</p>
-                   <h3 className="text-2xl font-bold text-[#f0f0f0]">
-                     {selectedDevices} Device{selectedDevices !== 1 ? 's' : ''}
-                   </h3>
-                 </div>
-                 <div className="text-center">
-                   <p className="text-[#a0a0a0] text-sm mb-2">Total Price</p>
-                   <h3 className="text-3xl font-black bg-gradient-to-r from-primary to-accent/80 bg-clip-text text-transparent">
-                     ${currentPlans.find(p => p.id === selectedPlan)?.price}
-                   </h3>
-                 </div>
-               </div>
+               <span className="text-sm text-[#d4d4d4]">
+                 {activePlan.name} · {selectedDevices} device{selectedDevices !== 1 ? 's' : ''}
+               </span>
+               <span className="text-xl font-semibold tabular-nums text-primary">
+                 {symbol}{activePlan.price}
+               </span>
+               <a
+                 href={`https://wa.me/34673317263?text=${encodeURIComponent(
+                   `Hi, I'd like the ${activePlan.name} plan for ${selectedDevices} device${selectedDevices !== 1 ? 's' : ''} (${symbol}${activePlan.price}).`
+                 )}`}
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="ml-auto rounded-lg bg-primary px-4 py-2 text-xs font-semibold text-black transition-colors hover:bg-primary/90 active:translate-y-px sm:text-sm"
+               >
+                 Order on WhatsApp
+               </a>
              </motion.div>
            )}
         </section>

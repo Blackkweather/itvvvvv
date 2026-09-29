@@ -57,7 +57,7 @@ function addSecurityHeaders(response: NextResponse): NextResponse {
   response.headers.set('X-Stealth-Mode', 'active');
   
   const existingCSP = response.headers.get('Content-Security-Policy') || '';
-  const nextConfigCSP = "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://aclib.acintelligence.com";
+  const nextConfigCSP = "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://aclib.acintelligence.com https://adcash.com https://cdn.aclibintelligence.com https://www.clarity.ms https://*.clarity.ms https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://adservice.google.com https://*.adtrafficquality.google https://www.google.com";
   const mergedCSP = existingCSP 
     ? `${existingCSP}; ${nextConfigCSP}`
     : nextConfigCSP;

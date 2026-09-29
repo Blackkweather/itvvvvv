@@ -383,6 +383,13 @@ export default function RootLayout({
           }}
         />
         {/* End Microsoft Clarity */}
+        {/* Google AdSense */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7398682838063782"
+          crossOrigin="anonymous"
+        />
+        {/* End Google AdSense */}
         {/* Autotag Library */}
         <script 
           async 

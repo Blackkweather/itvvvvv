@@ -1,1 +1,2 @@
 adcash.com, 1596388, DIRECT
+google.com, pub-7398682838063782, DIRECT, f08c47fec0942fa0

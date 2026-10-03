@@ -32,11 +32,12 @@ export const structuredData: StructuredDataProps = {
 };
 
 interface StructuredItem {
-  type: string;
   '@context'?: string;
+  '@type': string;
   '@id'?: string;
   'position'?: number;
   'item'?: any;
+  [key: string]: any;
 }
 
 // Main Organization Schema

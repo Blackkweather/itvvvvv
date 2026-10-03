@@ -79,7 +79,7 @@ export interface PortalSEOPage {
   routePath: string;
  _market_code: string;
   country: string;
- _currency: string;
+  currency: string;
   trialDays: number;
   primaryKeyword: string;
   title: string;

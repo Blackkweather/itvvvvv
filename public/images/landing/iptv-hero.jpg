@@ -1,0 +1,6 @@
+// Public image placeholder for IPTV landing hero
+// This should be replaced with an actual high-quality image file
+export const iptvHero = {
+  url: '/images/landing/iptv-hero.jpg',
+  alt: 'Best IPTV Subscription Plan for Live TV and Sports [2026] - Global Channels 4K'
+};

@@ -1,0 +1,112 @@
+# Money Robot Campaign Configuration for ProStream IPTV
+
+## Campaign Name: ProStream-IPTV-SEO-2026
+
+## General Settings:
+- Campaign Type: Web 2.0 + Social Media
+- Target Platforms: Meneame-style domains, social bookmarking sites
+- Posting Rate: 5-10 posts per day
+- Rotation: Enabled (spun content)
+- Captcha Solving: 2Captcha API (built-in Money Robot)
+- Proxies: Rotating residential proxies required
+
+## Content Sources:
+1. Main Article File: seo-articles-for-money-robot.txt
+2. Blog Posts Directory: src/app/blog/
+3. Landing Pages: 
+   - /best-iptv-live-sports-subscription-plan
+   - /pricing
+   - Other key pages from sitemap
+
+## Target URLs for Posts:
+- Primary: https://prostream.space/best-iptv-live-sports-subscription-plan
+- Secondary: https://prostream.space/pricing
+- Blog Posts: https://prostream.space/blog/[slug]
+
+## Title Templates (Spun):
+{BEGIN_SPIN}
+[Best|Top|Ultimate] IPTV [for Sports|for Movies|for Firestick] [2026|Updated] - [Watch|Stream] [Premier League|NBA|NFL] in [4K|HD]
+[IPTV vs Cable|Streaming Revolution] [2026|Guide] - [Save 50%|Cut Costs] with [Best|Premium] IPTV
+[Easy|Simple] [IPTV Setup|Installation] [Guide|Tutorial] [2026|Updated] - [Works on|Compatible with] [Firestick|Smart TV|Android]
+[Review|Comparison]: [Best IPTV Service|ProStream IPTV] [2026|Updated] - [30,000+|50,000+] Channels [4K|HD] Quality
+[Free|No Credit Card Required] [7-Day|14-Day] [IPTV Trial|Streaming Test] [2026|Updated] - [Try Now|Start Today]
+{END_SPIN}
+
+## Description Templates (Spun):
+{BEGIN_SPIN}
+[Experience|Discover] the [best|top] IPTV service of [2026|today]. [30,000+|50,000+] live channels, [150,000+|200,000+] movies/series, [4K|HD] quality streaming. [7-day|14-day] free trial, [no credit card|required]. [Works on|Compatible with] all devices: [Smart TV|Firestick|Android|iOS|PC].
+[Save 50%|Cut costs] compared to cable TV. [30,000+|50,000+] channels, [4K|HD] quality, [zero|no] buffering. [7-day|14-day] free trial available. [Try it now|Start your trial] risk-free and [experience|discover] the [future|best] of streaming.
+[Tired of|Sick of] [expensive cable|buffering IPTV]? Try our [premium|advanced] IPTV service with [anti-freeze|buffer-free] technology. [30,000+|50,000+] channels, [4K|HD] quality, [instant|immediate] activation. [7-day|14-day] free trial.
+{END_SPIN}
+
+## Tags/Keywords (Spun):
+{BEGIN_SPIN}
+#iptv #streaming #iptv2026 #bestiptv #iptvsports #premierleague #nba #nfl #ufc #4kstreaming #firestick #smarttv #android #ios #pc #movies #series #vod #freedownload #freeiptv #iptvtrial #iptvapp #streaming2026 #tvchannels #livetv #sportsstreaming #moviestreaming #seriesstreaming #iptvfreetrial #iptvpremium #iptvquality #iptvsetup #iptvguide #iptvreviews #iptvdeals #iptvdiscount #iptvoffer #iptvpromotion #iptvnews #iptvupdate #iptv2026review #bestiptvservice #iptvsubscription #iptvpackages #iptvchannels #iptv4k #iptvhd #iptvbuffering #iptvfix #iptvsolution #iptvtechnology #iptvtrends #iptvfuture
+{END_SPIN}
+
+## Platform-Specific Settings:
+
+### Meneame-style Domains:
+- Submit URL Pattern: [domain]/submit?url=[target_url]&title=[title]&description=[description]
+- Required Fields: url, title, description
+- Optional Fields: tags, category
+- Success Indicators: "submitted successfully", "thank you for sharing"
+
+### Social Bookmarking Sites:
+- Submit URL Pattern: [domain]/submit.php
+- Form Fields: url, title, description, tags, category
+- Success Indicators: "submission received", "link added"
+
+## Indexing Settings:
+- Use Built-in Money Robot Indexer first
+- Backup: SpeedyIndex or OneHourIndexing
+- Indexing Frequency: Every 24 hours
+- Priority URLs: 
+  - https://prostream.space/best-iptv-live-sports-subscription-plan
+  - https://prostream.space/pricing
+  - Top blog posts from sitemap
+
+## Monitoring & Analytics:
+- Track Posted URLs in spreadsheet
+- Monitor Google Search Console for indexed pages
+- Check referral traffic from posted domains
+- Measure trial signups from campaign URLs
+- Weekly report on campaign performance
+
+## Risk Management:
+- Limit posts to 10 per day per proxy IP
+- Rotate content every 3-5 days
+- Avoid duplicate titles/descriptions
+- Use human-like posting patterns
+- Monitor for spam complaints or bans
+- Keep content quality high and relevant
+
+## Required Tools & Services:
+1. Rotating Residential Proxies ($20-70/month)
+2. 2Captcha API Credits ($3-10/month)
+3. Verified Link Lists for Meneame domains ($15 one-time)
+4. SpeedyIndex Account (optional, $10/month)
+
+## Setup Instructions:
+1. Configure proxies in Money Robot Settings → Proxy
+2. Add 2Captcha API key in Money Robot Settings → Captcha
+3. Import link lists for Meneame-style domains
+4. Load seo-articles-for-money-robot.txt as content source
+5. Configure campaign with settings above
+6. Set posting schedule to 5-10 posts per day
+7. Enable built-in indexer
+8. Monitor and adjust based on results
+
+## Expected Results Timeline:
+- Week 1: Setup and initial posts
+- Week 2-3: Indexing begins, first referral traffic
+- Month 1: Measurable referral traffic and trial signups
+- Month 2-3: Significant increase in organic visibility
+- Month 4+: Consistent referral traffic and conversions
+
+## Budget Estimate:
+- Proxies: $20-70/month
+- Captcha solving: $3-10/month
+- Link lists: $15 (one-time)
+- Indexer (optional): $10/month
+- TOTAL INITIAL INVESTMENT: $38-135 for first month

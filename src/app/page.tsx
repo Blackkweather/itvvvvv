@@ -7,6 +7,12 @@ import { FAQSection } from '@/components/home/FAQSection';
 import { CTASection } from '@/components/home/CTASection';
 import { LiveTicker } from '@/components/ui/LiveTicker';
 import { AdCashSlot } from '@/components/ads/AdCashSlot';
+import { ChannelsBanner } from '@/components/home/ChannelsBanner';
+import { FootballNewsSection } from '@/components/home/FootballNewsSection';
+import { PricingSection } from '@/components/home/PricingSection';
+
+// Regenerate the page (and its server-rendered football news) every 5 minutes.
+export const revalidate = 300;
 
 export default function Home() {
   const zoneId = process.env.NEXT_PUBLIC_ADCASH_ZONE_ID || '';
@@ -16,6 +22,7 @@ export default function Home() {
     <div className="min-h-screen">
       <HeroBanner />
       <LiveTicker />
+      <ChannelsBanner />
       <ContentExplorer />
       <FeaturesSection />
       
@@ -27,8 +34,10 @@ export default function Home() {
       </div>
       
       <DevicesSection />
+      <FootballNewsSection />
       <TestimonialsSection />
-      
+      <PricingSection />
+
       {/* Ad Break 2 */}
       <div className="section-padding py-8">
         <div className="max-w-4xl mx-auto">

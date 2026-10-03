@@ -25,8 +25,8 @@ export function LiveTicker() {
                 
                 <div className="ticker-track">
                     {events.map((item, i) => (
-                        <div key={i} className="flex items-center gap-2 text-xs text-muted-foreground shrink-0">
-                            <item.icon className="h-3 w-3 text-primary" />
+                        <div key={i} className="flex items-center gap-2.5 text-[0.9375rem] text-muted-foreground shrink-0">
+                            <item.icon className="h-[15px] w-[15px] text-primary" />
                             <span className="font-medium">{item.event}</span>
                             <span className="text-white/30">•</span>
                             <span>{item.date}</span>

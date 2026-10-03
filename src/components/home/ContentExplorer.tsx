@@ -14,44 +14,31 @@ interface Poster {
 }
 
 // Local movie posters from geniustv-v2 repo
-const contentRows = [
+// Each poster appears in exactly one row. Rows that scroll are doubled for
+// the seamless marquee loop; the short Live Sports row is a static grid.
+const contentRows: { title: string; marquee: boolean; posters: Poster[] }[] = [
     {
-        title: "Trending Movies 2026",
+        title: "Trending Movies & Series",
+        marquee: true,
         posters: [
             { id: 1, img: "/images/posters/House-of-dragon.png", title: "House of the Dragon", quality: "4K HDR" },
             { id: 2, img: "/images/posters/Squid-game.png", title: "Squid Game", quality: "4K" },
             { id: 3, img: "/images/posters/The-witcher.png", title: "The Witcher", quality: "4K" },
-            { id: 4, img: "/images/posters/Champions-league.png", title: "Champions League", quality: "Live 4K" },
-            { id: 5, img: "/images/posters/premier-league.png", title: "Premier League", quality: "Live" },
-            { id: 6, img: "/images/posters/NFL.png", title: "NFL", quality: "Live 4K" },
-            { id: 7, img: "/images/posters/UFC.png", title: "UFC", quality: "Live" },
-            { id: 8, img: "/images/posters/Netflix.png", title: "Netflix Originals", quality: "4K" },
-        ]
-    },
-    {
-        title: "Popular TV Series",
-        posters: [
-            { id: 9, img: "/images/posters/House-of-dragon.png", title: "House of the Dragon", quality: "4K" },
-            { id: 10, img: "/images/posters/Squid-game.png", title: "Squid Game S2", quality: "4K" },
-            { id: 11, img: "/images/posters/The-witcher.png", title: "The Witcher", quality: "4K" },
-            { id: 12, img: "/images/posters/Carry-on.png", title: "Carry-On", quality: "4K" },
-            { id: 13, img: "/images/posters/Messi-Lamin-yamal.png", title: "Messi", quality: "4K" },
-            { id: 14, img: "/images/posters/Jordan.png", title: "Jordan", quality: "HD" },
-            { id: 15, img: "/images/posters/James-Lebron.png", title: "LeBron James", quality: "4K" },
-            { id: 16, img: "/images/posters/Champions-league.png", title: "Champions League", quality: "Live" },
+            { id: 4, img: "/images/posters/Carry-on.png", title: "Carry-On", quality: "4K" },
+            { id: 5, img: "/images/posters/Netflix.png", title: "Netflix Originals", quality: "4K" },
+            { id: 6, img: "/images/posters/Messi-Lamin-yamal.png", title: "Messi & Yamal", quality: "4K" },
+            { id: 7, img: "/images/posters/Jordan.png", title: "Michael Jordan", quality: "HD" },
+            { id: 8, img: "/images/posters/James-Lebron.png", title: "LeBron James", quality: "4K" },
         ]
     },
     {
         title: "Live Sports",
+        marquee: false,
         posters: [
-            { id: 17, img: "/images/posters/premier-league.png", title: "Premier League", quality: "Live 4K" },
-            { id: 18, img: "/images/posters/Champions-league.png", title: "Champions League", quality: "Live" },
-            { id: 19, img: "/images/posters/NFL.png", title: "NFL Football", quality: "Live 4K" },
-            { id: 20, img: "/images/posters/UFC.png", title: "UFC Fight Night", quality: "Live HD" },
-            { id: 21, img: "/images/posters/Champions-league.png", title: "UEFA", quality: "Live" },
-            { id: 22, img: "/images/posters/premier-league.png", title: "Premier League", quality: "Live" },
-            { id: 23, img: "/images/posters/NFL.png", title: "Super Bowl", quality: "4K" },
-            { id: 24, img: "/images/posters/UFC.png", title: "UFC", quality: "Live" },
+            { id: 9, img: "/images/posters/premier-league.png", title: "Premier League", quality: "Live 4K" },
+            { id: 10, img: "/images/posters/Champions-league.png", title: "Champions League", quality: "Live 4K" },
+            { id: 11, img: "/images/posters/NFL.png", title: "NFL", quality: "Live 4K" },
+            { id: 12, img: "/images/posters/UFC.png", title: "UFC", quality: "Live HD" },
         ]
     }
 ];
@@ -115,6 +102,13 @@ export function ContentExplorer() {
                                 </button>
                             </div>
 
+                            {!row.marquee ? (
+                                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-6 px-4 md:px-layout py-2 sm:py-4 max-w-5xl">
+                                    {row.posters.map((poster, i) => (
+                                        <PosterCard key={poster.id} poster={poster} index={i} />
+                                    ))}
+                                </div>
+                            ) : (
                             <div className="relative overflow-hidden -mx-4 md:-mx-layout py-2 sm:py-4">
                                 <motion.div
                                     animate={shouldReduceMotion ? {} : {
@@ -137,6 +131,7 @@ export function ContentExplorer() {
                                     ))}
                                 </motion.div>
                             </div>
+                            )}
 
                             {/* Secondary Brand Marquee - Inserted after the first content row */}
                             {rowIndex === 0 && (

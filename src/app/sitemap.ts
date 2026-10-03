@@ -12,12 +12,15 @@ const blogPosts = [
   'legal-landscape-streaming-2026',
   'international-streaming-2026',
   'ai-powered-epg-2026',
+  'best-iptv-apps-2026',
+  'streaming-security-privacy-2026',
 ];
 
 const staticRoutes = [
   { path: '', priority: 1.0, changefreq: 'daily' as const },
   { path: '/pricing', priority: 0.9, changefreq: 'weekly' as const },
   { path: '/blog', priority: 0.8, changefreq: 'weekly' as const },
+  { path: '/football-news', priority: 0.8, changefreq: 'hourly' as const },
   { path: '/about', priority: 0.6, changefreq: 'monthly' as const },
   { path: '/devices', priority: 0.7, changefreq: 'monthly' as const },
   { path: '/setup/firestick', priority: 0.7, changefreq: 'monthly' as const },
@@ -27,6 +30,7 @@ const staticRoutes = [
   { path: '/setup/mag-box', priority: 0.7, changefreq: 'monthly' as const },
   { path: '/faq', priority: 0.5, changefreq: 'monthly' as const },
   { path: '/contact', priority: 0.5, changefreq: 'monthly' as const },
+  { path: '/best-iptv-live-sports-subscription-plan', priority: 0.9, changefreq: 'weekly' as const },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

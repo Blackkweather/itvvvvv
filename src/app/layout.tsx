@@ -111,6 +111,7 @@ export const metadata: Metadata = {
 
 import { CinematicWrapper } from "@/components/layout/CinematicWrapper";
 import { StealthCloak } from "@/components/ui/RedditCloak";
+import { CookieConsent } from "@/components/layout/CookieConsent";
 import { Analytics } from "@vercel/analytics/next";
 
 export default function RootLayout({
@@ -349,7 +350,17 @@ export default function RootLayout({
               'analytics_storage': 'denied',
               'wait_for_update': 500
             });
-            gtag('set', 'ads_data_redaction', true);`,
+            gtag('set', 'ads_data_redaction', true);
+            try {
+              if (localStorage.getItem('cookie_consent') === 'granted') {
+                gtag('consent', 'update', {
+                  'ad_storage': 'granted',
+                  'ad_user_data': 'granted',
+                  'ad_personalization': 'granted',
+                  'analytics_storage': 'granted'
+                });
+              }
+            } catch (e) {}`,
           }}
         />
         <script
@@ -372,29 +383,7 @@ export default function RootLayout({
           }}
         />
         {/* End Google Tag Manager & Analytics */}
-        {/* Microsoft Clarity */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(c,l,a,r,i,t,y){
-              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "vtt176g0uw");`,
-          }}
-        />
-        {/* End Microsoft Clarity */}
-        {/* Google AdSense */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7398682838063782"
-          crossOrigin="anonymous"
-        />
-        {/* End Google AdSense */}
-        {/* Autotag Library */}
-        <script 
-          async 
-          src="https://aclib.acintelligence.com/aclib-min.js"
-        />
+        {/* Clarity, AdSense and Autotag load only after consent: see components/layout/CookieConsent */}
         {/* Skip to main content link for accessibility */}
         <style>{`
           .skip-link {
@@ -433,15 +422,7 @@ export default function RootLayout({
         <StealthCloak>
           <CinematicWrapper>{children}</CinematicWrapper>
         </StealthCloak>
-        {/* Autotag Zone */}
-        <script
-          type="text/javascript"
-          dangerouslySetInnerHTML={{
-            __html: `aclib.runAutoTag({
-              zoneId: 'zusoe0fva9',
-            });`
-          }}
-        />
+        <CookieConsent />
         <Analytics />
       </body>
     </html>

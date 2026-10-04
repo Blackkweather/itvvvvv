@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Twitter, Instagram, Youtube, MessageCircle, Send } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
+import { CookieSettingsButton } from '@/components/layout/CookieConsent';
 
 const footerSections = [
     {
@@ -111,6 +112,7 @@ export function Footer() {
                     <p className="text-xs text-[#a0a0a0]">
                         &copy; {new Date().getFullYear()} StreamPro. All rights reserved. Professional Grade Entertainment.
                     </p>
+                    <CookieSettingsButton className="text-xs text-[#a0a0a0] hover:text-[#f0f0f0] transition-colors duration-200" />
                     <div className="flex items-center gap-4 grayscale opacity-40">
                         {/* Payment icons placeholder or text labels for simplicity/cleanliness */}
                         <span className="text-[10px] font-bold tracking-[0.2em] uppercase">Visa</span>

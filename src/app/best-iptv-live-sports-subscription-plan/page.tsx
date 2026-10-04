@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import PricingPlans from '@/components/pricing/PricingPlans'
+import StartingPrice from './components/StartingPrice'
 import {
   ArrowRight,
   BadgePercent,
@@ -21,8 +23,9 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Best IPTV Subscription Plan for Live TV & Sports 2026 | ProStream',
+  title: { absolute: 'Best IPTV Subscription Plan for Live TV & Sports 2026 | ProStream' },
   description: 'Get the best IPTV subscription plan for live TV and sports in 2026. 30 000+ channels, 4K quality, 7-day trial, works on all devices. Start streaming today.',
+  alternates: { canonical: 'https://prostream.space/best-iptv-live-sports-subscription-plan' },
   keywords: ['best IPTV subscription plan live TV sports 2026', 'IPTV sports channels 4K', 'premium IPTV service', 'IPTV for live sports', 'stream live TV online'],
   openGraph: {
     title: 'Best IPTV Subscription Plan for Live TV & Sports 2026',
@@ -38,15 +41,8 @@ const features: { icon: LucideIcon; title: string; description: string }[] = [
   { icon: Trophy, title: 'All Major Sports', description: 'Premier League, La Liga, NBA, NFL, UFC, F1, Champions League, WWE, and more. Never miss a match.' },
   { icon: MonitorPlay, title: '4K & FHD Quality', description: 'Crystal-clear 4K resolution on supported channels. Anti-freeze technology for buffer-free streaming.' },
   { icon: Smartphone, title: 'Works on Every Device', description: 'Smart TV, Firestick, Android, iOS, PC, MAG box, Enigma, VLC. One subscription, all devices.' },
-  { icon: Film, title: '150 000+ Movies & Series (VOD)', description: 'Latest releases, classics, Netflix-style browsing. Updated daily with new content.' },
+  { icon: Film, title: '120 000+ Movies & Series (VOD)', description: 'Latest releases, classics, Netflix-style browsing. Updated daily with new content.' },
   { icon: Timer, title: '7-Day Free Trial', description: 'Test everything risk-free. No commitment, instant activation, cancel anytime.' },
-]
-
-const plans = [
-  { name: '1 Month', devices: 1, price: '€14.99' },
-  { name: '3 Months', devices: 2, price: '€29.99' },
-  { name: '6 Months', devices: 3, price: '€49.99' },
-  { name: '12 Months', devices: 5, price: '€79.99', best: true },
 ]
 
 const steps: { icon: LucideIcon; title: string; description: string }[] = [
@@ -56,7 +52,7 @@ const steps: { icon: LucideIcon; title: string; description: string }[] = [
 ]
 
 const testimonials = [
-  { quote: 'Best IPTV for sports. I watch Premier League and UFC in 4K — zero buffering. Saved €80/month compared to cable.', name: 'Ahmed', city: 'Casablanca' },
+  { quote: 'Best IPTV for sports. I watch Premier League and UFC in 4K — zero buffering. Way cheaper than my old cable bill.', name: 'Ahmed', city: 'Casablanca' },
   { quote: 'Tried the 7-day trial, subscribed the same day. 30 000 channels is no joke. Customer support answered in 2 minutes.', name: 'Maria', city: 'Madrid' },
   { quote: 'Works perfectly on Firestick and my iPhone. My whole family uses it. Best IPTV subscription I\'ve ever had.', name: 'Karim', city: 'Paris' },
 ]
@@ -113,10 +109,10 @@ export default function BestIptvSportsPage() {
             <div className="relative">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.15em] text-primary">
                 <BadgePercent className="h-4 w-4" strokeWidth={2} />
-                Limited Offer
+                All Plans Include Every Channel
               </div>
               <p className="mb-3 text-2xl font-black uppercase tracking-tight text-[#f0f0f0] md:text-3xl">
-                30% Off Your First Month
+                Starting at <StartingPrice />/month
               </p>
               <ul className="mb-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-[#a0a0a0]">
                 {['30 000+ channels', '4K quality', '7-day trial', 'Instant activation'].map((item) => (
@@ -126,7 +122,7 @@ export default function BestIptvSportsPage() {
                   </li>
                 ))}
               </ul>
-              <PrimaryCta href="/pricing">Get Started Now</PrimaryCta>
+              <PrimaryCta href="#plans">Get Started Now</PrimaryCta>
             </div>
           </div>
         </div>
@@ -161,52 +157,20 @@ export default function BestIptvSportsPage() {
       </section>
 
       {/* Plan comparison */}
-      <section className="relative section-padding py-16 md:py-24">
-        <div className="mx-auto max-w-5xl">
+      <section id="plans" className="relative scroll-mt-24 py-16 md:py-24">
+        <div className="section-padding mx-auto max-w-5xl">
           <div className="mb-12 text-center">
             <SectionBadge icon={BadgePercent} label="Plans" />
             <h2 className="text-3xl font-black uppercase leading-[0.95] tracking-tighter md:text-5xl">
               Compare IPTV Plans — Find Your Best Fit
             </h2>
+            <p className="mx-auto mt-4 max-w-xl text-sm text-[#a0a0a0] md:text-base">
+              Pick your device count, then your term. Every plan includes all channels in HD/4K.
+            </p>
           </div>
-          <div className="glass-strong overflow-hidden rounded-3xl">
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[640px] text-left text-sm">
-                <thead>
-                  <tr className="border-b border-white/[0.08] text-[10px] font-black uppercase tracking-[0.2em] text-[#a0a0a0]">
-                    {['Plan', 'Channels', 'Quality', 'Devices', 'Price', 'Trial'].map((heading) => (
-                      <th key={heading} scope="col" className="px-6 py-4">{heading}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {plans.map((plan) => (
-                    <tr
-                      key={plan.name}
-                      className={`border-b border-white/[0.05] last:border-0 ${plan.best ? 'bg-primary/[0.08]' : 'transition-colors hover:bg-white/[0.02]'}`}
-                    >
-                      <th scope="row" className="px-6 py-5 font-bold text-[#f0f0f0]">
-                        <span className="inline-flex items-center gap-2">
-                          {plan.name}
-                          {plan.best && (
-                            <span className="inline-flex items-center gap-1 rounded-full bg-primary px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-primary-foreground">
-                              <Crown className="h-3 w-3" strokeWidth={2.5} />
-                              Best Value
-                            </span>
-                          )}
-                        </span>
-                      </th>
-                      <td className="px-6 py-5 text-[#a0a0a0]">30 000+</td>
-                      <td className="px-6 py-5 text-[#a0a0a0]">HD/4K</td>
-                      <td className="px-6 py-5 text-[#a0a0a0]">{plan.devices}</td>
-                      <td className={`px-6 py-5 text-base font-black ${plan.best ? 'text-primary' : 'text-[#f0f0f0]'}`}>{plan.price}</td>
-                      <td className="px-6 py-5 text-[#a0a0a0]">7 days</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
+        </div>
+        <PricingPlans />
+        <div className="section-padding mx-auto max-w-5xl">
           <div className="mt-10 text-center">
             <PrimaryCta href="/pricing">See Full Pricing</PrimaryCta>
           </div>

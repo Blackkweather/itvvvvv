@@ -30,7 +30,29 @@ function timeAgo(iso: string, now: number | null): string {
   return `${Math.round(hours / 24)}d ago`;
 }
 
-function NewsImage({ src, alt, className }: { src: string | null; alt: string; className: string }) {
+// BBC's ichef CDN serves any width, so let the browser pick a sharp one for its slot.
+const BBC_WIDTH = /(ichef\.bbci\.co\.uk\/ace\/standard\/)\d+\//;
+const BBC_IC = /(ichef\.bbci\.co\.uk\/images\/ic\/)\d+x\d+\//;
+function srcSetFor(src: string): string | undefined {
+  const widths = [480, 800, 1024, 1536, 2048];
+  if (BBC_WIDTH.test(src)) return widths.map((w) => `${src.replace(BBC_WIDTH, `$1${w}/`)} ${w}w`).join(', ');
+  if (BBC_IC.test(src)) return widths.map((w) => `${src.replace(BBC_IC, `$1${w}x${Math.round((w * 9) / 16)}/`)} ${w}w`).join(', ');
+  return undefined;
+}
+
+function NewsImage({
+  src,
+  alt,
+  className,
+  sizes,
+  priority = false,
+}: {
+  src: string | null;
+  alt: string;
+  className: string;
+  sizes: string;
+  priority?: boolean;
+}) {
   const [failed, setFailed] = useState(false);
   if (!src || failed) {
     return (
@@ -43,8 +65,12 @@ function NewsImage({ src, alt, className }: { src: string | null; alt: string; c
     // eslint-disable-next-line @next/next/no-img-element -- remote RSS hosts vary, skip the optimizer
     <img
       src={src}
+      srcSet={srcSetFor(src)}
+      sizes={sizes}
       alt={alt}
-      loading="lazy"
+      loading={priority ? 'eager' : 'lazy'}
+      fetchPriority={priority ? 'high' : 'auto'}
+      decoding="async"
       referrerPolicy="no-referrer"
       onError={() => setFailed(true)}
       className={`${className} object-cover`}
@@ -251,6 +277,8 @@ export function FootballNewsFeed({ initialItems, variant = 'teaser' }: FootballN
                 <NewsImage
                   src={featured.image}
                   alt={featured.title}
+                  sizes="(min-width: 1024px) 66vw, 100vw"
+                  priority
                   className="aspect-[16/9] w-full transition-transform duration-700 group-hover:scale-[1.03] lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
                 />
                 <div className="relative p-5 lg:absolute lg:inset-x-0 lg:bottom-0 lg:bg-gradient-to-t lg:from-black lg:via-black/85 lg:to-transparent lg:p-7 lg:pt-24">
@@ -278,7 +306,7 @@ export function FootballNewsFeed({ initialItems, variant = 'teaser' }: FootballN
                   item.hot ? 'border-orange-500/30' : 'border-white/10 hover:border-white/20'
                 }`}
               >
-                <NewsImage src={item.image} alt="" className="h-20 w-28 shrink-0 rounded-lg" />
+                <NewsImage src={item.image} alt="" sizes="160px" className="h-24 w-32 shrink-0 rounded-lg" />
                 <div className="min-w-0 flex-1">
                   <div className="mb-1 flex flex-wrap items-center gap-1.5">
                     <Badges item={item} />

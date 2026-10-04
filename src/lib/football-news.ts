@@ -118,15 +118,53 @@ function parseDate(raw: string): Date | null {
   return Number.isNaN(d.getTime()) ? null : d;
 }
 
+// Feeds like the Guardian list several media:content sizes — take the widest.
+function largestMediaContent(item: string): string | null {
+  const tags = item.match(/<media:content\b[^>]*>/gi) ?? [];
+  let best: { url: string; width: number } | null = null;
+  for (const t of tags) {
+    const url = attr(t, 'media:content', 'url');
+    if (!url) continue;
+    const width = Number(t.match(/\bwidth=["'](\d+)["']/i)?.[1] ?? 0);
+    if (!best || width > best.width) best = { url, width };
+  }
+  return best?.url ?? null;
+}
+
 function pickImage(item: string): string | null {
   const url =
-    attr(item, 'media:content', 'url') ??
+    largestMediaContent(item) ??
     attr(item, 'media:thumbnail', 'url') ??
     attr(item, 'enclosure', 'url') ??
     attr(item, 'img', 'src');
   if (!url || !/^https:\/\//.test(url)) return null;
-  // BBC thumbnails come at 240px — ask for the larger rendition.
-  return url.replace(/(ichef\.bbci\.co\.uk\/ace\/standard\/)240\//, '$1480/');
+  // BBC thumbnails come at 240px; ichef serves any width, the client picks via srcset.
+  return url
+    .replace(/(ichef\.bbci\.co\.uk\/ace\/standard\/)\d+\//, '$11024/')
+    .replace(/(ichef\.bbci\.co\.uk\/images\/ic\/)\d+x\d+\//, '$11024x576/');
+}
+
+// ESPN's feed has no images — read the article's og:image (1296px) instead.
+// Cached for a day per article, so this only runs once per new story.
+async function fetchOgImage(link: string): Promise<string | null> {
+  try {
+    const res = await fetch(link, {
+      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; StreamProNews/1.0)' },
+      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+      next: { revalidate: 86_400, tags: ['football-news-og'] },
+    });
+    if (!res.ok) return null;
+    const html = await res.text();
+    const m =
+      html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i) ??
+      html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i);
+    const url = m ? decodeEntities(m[1]) : null;
+    // Skip generic logo fallbacks.
+    if (!url || !/^https:\/\//.test(url) || /espn_logos|\/logo/i.test(url)) return null;
+    return url;
+  } catch {
+    return null;
+  }
 }
 
 function parseFeed(xml: string, source: string) {
@@ -227,7 +265,15 @@ export async function getFootballNews(limit = 24): Promise<NewsItem[]> {
   // Keyword matches first; top up with general football news if too few.
   const matched = items.filter((i) => i.keywords.length > 0);
   const rest = items.filter((i) => i.keywords.length === 0);
-  return [...matched, ...rest]
+  const selected = [...matched, ...rest]
     .slice(0, limit)
     .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+
+  // Fill in missing images only for the stories we actually show.
+  await Promise.all(
+    selected.map(async (item) => {
+      if (!item.image) item.image = await fetchOgImage(item.link);
+    })
+  );
+  return selected;
 }

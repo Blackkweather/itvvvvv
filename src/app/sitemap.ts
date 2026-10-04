@@ -34,7 +34,7 @@ const staticRoutes = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://streampro.space';
+  const baseUrl = 'https://prostream.space';
   const now = new Date();
 
   const staticPages = staticRoutes.map((route) => ({

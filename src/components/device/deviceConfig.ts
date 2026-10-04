@@ -64,8 +64,8 @@ export const FIRESTICK_CONFIG: DeviceConfig = {
     "firestick live TV",
     "Amazon firestick streaming",
   ],
-  canonicalUrl: "https://streampro.space/iptv-firestick",
-  ogImage: "https://streampro.space/og-image.png",
+  canonicalUrl: "https://prostream.space/iptv-firestick",
+  ogImage: "https://prostream.space/og-image.png",
   h1: "Best IPTV Service for Amazon Firestick (2026)",
   intro: "Transform your Amazon Firestick into a powerhouse streaming device with StreamPro IPTV. Access 15,000+ live channels, thousands of movies, and premium sports content directly on your Firestick — no cable required.",
   features: [
@@ -131,7 +131,7 @@ export const FIRESTICK_CONFIG: DeviceConfig = {
   },
   breadcrumbParent: {
     name: "Home",
-    url: "https://streampro.space",
+    url: "https://prostream.space",
   },
   schema: {
     howTo: {
@@ -179,8 +179,8 @@ export const ANDROID_CONFIG: DeviceConfig = {
     "IPTV on chromecast",
     "google TV IPTV",
   ],
-  canonicalUrl: "https://streampro.space/iptv-android",
-  ogImage: "https://streampro.space/og-image.png",
+  canonicalUrl: "https://prostream.space/iptv-android",
+  ogImage: "https://prostream.space/og-image.png",
   h1: "Best IPTV Service for Android TV (2026)",
   intro: "Experience seamless streaming on your Android TV with StreamPro IPTV. Whether you're using a Google TV, Nvidia Shield, or any Android TV device, enjoy 15,000+ live channels and 50,000+ VOD titles in stunning 4K quality.",
   features: [
@@ -242,7 +242,7 @@ export const ANDROID_CONFIG: DeviceConfig = {
   },
   breadcrumbParent: {
     name: "Home",
-    url: "https://streampro.space",
+    url: "https://prostream.space",
   },
   schema: {
     howTo: {
@@ -291,8 +291,8 @@ export const SMART_TV_CONFIG: DeviceConfig = {
     "IPTV on tizen OS",
     "IPTV on webOS",
   ],
-  canonicalUrl: "https://streampro.space/iptv-smart-tv",
-  ogImage: "https://streampro.space/og-image.png",
+  canonicalUrl: "https://prostream.space/iptv-smart-tv",
+  ogImage: "https://prostream.space/og-image.png",
   h1: "Best IPTV Service for Smart TV (2026)",
   intro: "Bring the full StreamPro IPTV experience to your living room with our Smart TV app. Compatible with Samsung (Tizen), LG (webOS), and Sony Android TV — enjoy cinema-quality streaming without any additional hardware.",
   features: [
@@ -354,7 +354,7 @@ export const SMART_TV_CONFIG: DeviceConfig = {
   },
   breadcrumbParent: {
     name: "Home",
-    url: "https://streampro.space",
+    url: "https://prostream.space",
   },
   schema: {
     howTo: {
@@ -402,8 +402,8 @@ export const IPHONE_CONFIG: DeviceConfig = {
     "IPTV on apple TV",
     "ios IPTV app",
   ],
-  canonicalUrl: "https://streampro.space/iptv-iphone",
-  ogImage: "https://streampro.space/og-image.png",
+  canonicalUrl: "https://prostream.space/iptv-iphone",
+  ogImage: "https://prostream.space/og-image.png",
   h1: "Best IPTV Service for iPhone & iPad (2026)",
   intro: "Take your entertainment everywhere with StreamPro on iPhone and iPad. Whether you're at home or on the go, access 15,000+ live channels and 50,000+ VOD titles on your Apple devices.",
   features: [
@@ -465,7 +465,7 @@ export const IPHONE_CONFIG: DeviceConfig = {
   },
   breadcrumbParent: {
     name: "Home",
-    url: "https://streampro.space",
+    url: "https://prostream.space",
   },
   schema: {
     howTo: {
@@ -513,8 +513,8 @@ export const MAG_BOX_CONFIG: DeviceConfig = {
     "MAG 254 IPTV",
     "MAG 322 IPTV",
   ],
-  canonicalUrl: "https://streampro.space/iptv-mag-box",
-  ogImage: "https://streampro.space/og-image.png",
+  canonicalUrl: "https://prostream.space/iptv-mag-box",
+  ogImage: "https://prostream.space/og-image.png",
   h1: "Best IPTV Service for MAG Box (2026)",
   intro: "MAG boxes are purpose-built for IPTV, and StreamPro delivers the ultimate experience. Simply enter your portal URL and start streaming instantly — no complex setup required.",
   features: [
@@ -576,7 +576,7 @@ export const MAG_BOX_CONFIG: DeviceConfig = {
   },
   breadcrumbParent: {
     name: "Home",
-    url: "https://streampro.space",
+    url: "https://prostream.space",
   },
   schema: {
     howTo: {

@@ -1921,7 +1921,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       images: [post.image],
     },
     alternates: {
-      canonical: `https://streampro.space/blog/${slug}`,
+      canonical: `https://prostream.space/blog/${slug}`,
     },
   };
 }
@@ -1945,19 +1945,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     "author": {
       "@type": "Organization",
       "name": "StreamPro",
-      "url": "https://streampro.space"
+      "url": "https://prostream.space"
     },
     "publisher": {
       "@type": "Organization",
       "name": "StreamPro",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://streampro.space/logo.png"
+        "url": "https://prostream.space/logo.png"
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://streampro.space/blog/${slug}`
+      "@id": `https://prostream.space/blog/${slug}`
     }
   };
 
@@ -1969,19 +1969,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://streampro.space"
+        "item": "https://prostream.space"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Blog",
-        "item": "https://streampro.space/blog"
+        "item": "https://prostream.space/blog"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": post.title,
-        "item": `https://streampro.space/blog/${slug}`
+        "item": `https://prostream.space/blog/${slug}`
       }
     ]
   };

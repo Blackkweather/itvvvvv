@@ -11,10 +11,10 @@ export const metadata: Metadata = {
     title: 'StreamPro Blog - Streaming Guides, Tips & News',
     description: 'Stay up to date with the latest streaming tutorials, setup guides, cord-cutting tips, and entertainment news from StreamPro.',
     type: 'website',
-    url: 'https://streampro.space/blog',
+    url: 'https://prostream.space/blog',
     images: [
       {
-        url: 'https://streampro.space/og-image.png',
+        url: 'https://prostream.space/og-image.png',
         width: 1200,
         height: 630,
         alt: 'StreamPro Blog',
@@ -25,10 +25,10 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'StreamPro Blog - Streaming Guides, Tips & News',
     description: 'Latest streaming tutorials, setup guides, cord-cutting tips.',
-    images: ['https://streampro.space/og-image.png'],
+    images: ['https://prostream.space/og-image.png'],
   },
   alternates: {
-    canonical: 'https://streampro.space/blog',
+    canonical: 'https://prostream.space/blog',
   },
 };
 

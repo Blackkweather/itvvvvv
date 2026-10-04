@@ -6,7 +6,7 @@ import { FootballNewsFeed } from '@/components/home/FootballNewsFeed';
 // Regenerate every 5 minutes so the page (and its structured data) stays current 24/7.
 export const revalidate = 300;
 
-const PAGE_URL = 'https://streampro.space/football-news';
+const PAGE_URL = 'https://prostream.space/football-news';
 // The root layout's title template appends "| StreamPro".
 const TITLE = 'Live Football News 24/7 — Premier League, Champions League & Transfers';
 const DESCRIPTION =
@@ -25,13 +25,13 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     type: 'website',
     url: PAGE_URL,
-    images: [{ url: 'https://streampro.space/og-image.png', width: 1200, height: 630, alt: 'StreamPro live football news' }],
+    images: [{ url: 'https://prostream.space/og-image.png', width: 1200, height: 630, alt: 'StreamPro live football news' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: TITLE,
     description: DESCRIPTION,
-    images: ['https://streampro.space/og-image.png'],
+    images: ['https://prostream.space/og-image.png'],
   },
   robots: { index: true, follow: true, 'max-image-preview': 'large' },
 };
@@ -69,7 +69,7 @@ export default async function FootballNewsPage() {
         description: DESCRIPTION,
         inLanguage: 'en',
         dateModified: items[0]?.publishedAt ?? new Date().toISOString(),
-        isPartOf: { '@type': 'WebSite', name: 'StreamPro', url: 'https://streampro.space' },
+        isPartOf: { '@type': 'WebSite', name: 'StreamPro', url: 'https://prostream.space' },
         about: { '@type': 'Thing', name: 'Association football' },
         mainEntity: { '@id': `${PAGE_URL}#list` },
       },
@@ -93,7 +93,7 @@ export default async function FootballNewsPage() {
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://streampro.space' },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://prostream.space' },
           { '@type': 'ListItem', position: 2, name: 'Football News', item: PAGE_URL },
         ],
       },

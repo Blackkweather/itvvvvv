@@ -28,7 +28,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://streampro.space"),
+  metadataBase: new URL("https://prostream.space"),
   title: {
     default: "StreamPro — Best Premium IPTV Service | 15,000+ Live Channels",
     template: "%s | StreamPro",
@@ -63,13 +63,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://streampro.space",
+    url: "https://prostream.space",
     siteName: "StreamPro",
     title: "StreamPro — Best Premium IPTV Service | 15,000+ Live Channels",
     description: "StreamPro offers the best IPTV service with 15,000+ live channels, movies, sports, and VOD. Watch NFL, NBA, Premier League, and more in HD.",
     images: [
       {
-        url: "https://streampro.space/og-image.svg",
+        url: "https://prostream.space/og-image.svg",
         width: 1200,
         height: 630,
         alt: "StreamPro - Premium IPTV Service",
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
     title: "StreamPro — Best Premium IPTV Service",
     description: "15,000+ live channels, movies, sports. Watch NFL, NBA, Premier League in HD.",
     creator: "@streampro",
-    images: ["https://streampro.space/og-image.svg"],
+    images: ["https://prostream.space/og-image.svg"],
   },
   robots: {
     index: true,
@@ -95,14 +95,14 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://streampro.space",
+    canonical: "https://prostream.space",
     languages: {
-      "en-US": "https://streampro.space",
-      "en-GB": "https://streampro.space/en-gb",
-      "es": "https://streampro.space/es",
-      "fr": "https://streampro.space/fr",
-      "de": "https://streampro.space/de",
-      "it": "https://streampro.space/it",
+      "en-US": "https://prostream.space",
+      "en-GB": "https://prostream.space/en-gb",
+      "es": "https://prostream.space/es",
+      "fr": "https://prostream.space/fr",
+      "de": "https://prostream.space/de",
+      "it": "https://prostream.space/it",
     },
   },
   category: "technology",
@@ -124,9 +124,9 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "StreamPro",
-    "url": "https://streampro.space",
+    "url": "https://prostream.space",
     "description": "Premium IPTV streaming service with 15,000+ live channels worldwide including sports, movies, and entertainment",
-    "logo": "https://streampro.space/logo.png",
+    "logo": "https://prostream.space/logo.png",
     "foundingDate": "2024",
     "areaServed": {
       "@type": "Place",
@@ -149,7 +149,7 @@ export default function RootLayout({
     ],
     "potentialAction": {
       "@type": "ViewAction",
-      "target": "https://streampro.space/pricing",
+      "target": "https://prostream.space/pricing",
       "name": "View Pricing"
     }
   };
@@ -176,7 +176,7 @@ export default function RootLayout({
            "price": "20",
            "priceCurrency": "USD",
            "availability": "https://schema.org/InStock",
-           "url": "https://streampro.space/dashboard/subscription"
+           "url": "https://prostream.space/dashboard/subscription"
          },
          {
            "@type": "Offer",
@@ -184,7 +184,7 @@ export default function RootLayout({
            "price": "80",
            "priceCurrency": "USD",
            "availability": "https://schema.org/InStock",
-           "url": "https://streampro.space/dashboard/subscription"
+           "url": "https://prostream.space/dashboard/subscription"
          },
          {
            "@type": "Offer",
@@ -192,7 +192,7 @@ export default function RootLayout({
            "price": "30",
            "priceCurrency": "USD",
            "availability": "https://schema.org/InStock",
-           "url": "https://streampro.space/dashboard/subscription"
+           "url": "https://prostream.space/dashboard/subscription"
          },
          {
            "@type": "Offer",
@@ -200,7 +200,7 @@ export default function RootLayout({
            "price": "40",
            "priceCurrency": "USD",
            "availability": "https://schema.org/InStock",
-           "url": "https://streampro.space/dashboard/subscription"
+           "url": "https://prostream.space/dashboard/subscription"
          }
        ]
      },
@@ -304,12 +304,12 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "StreamPro",
-    "url": "https://streampro.space",
+    "url": "https://prostream.space",
     "potentialAction": {
       "@type": "SearchAction",
       "target": {
         "@type": "EntryPoint",
-        "urlTemplate": "https://streampro.space/search?q={search_term_string}"
+        "urlTemplate": "https://prostream.space/search?q={search_term_string}"
       },
       "query-input": "required name=search_term_string"
     }

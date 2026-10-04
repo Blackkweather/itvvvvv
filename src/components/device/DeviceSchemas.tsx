@@ -44,7 +44,7 @@ export function DeviceSchemas({ config }: DeviceSchemasProps) {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://streampro.space",
+          "item": "https://prostream.space",
         },
         {
           "@type": "ListItem",

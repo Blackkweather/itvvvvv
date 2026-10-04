@@ -42,12 +42,14 @@ export class BotDetector {
         return;
       }
 
-      const ttl = redis.ttl(key);
-      if (ttl > 0 && ttl < ageLimitSeconds) {
-        resolve({ blocked: true, reason: `Bot detected, cooldown for ${ttl} more seconds` });
-      } else {
-        resolve({ blocked: false });
-      }
+      const ttlResult = redis.ttl(key);
+      ttlResult.then((ttl: number) => {
+        if (ttl > 0 && ttl < ageLimitSeconds) {
+          resolve({ blocked: true, reason: `Bot detected, cooldown for ${ttl} more seconds` });
+        } else {
+          resolve({ blocked: false });
+        }
+      });
     });
   }
 
@@ -180,18 +182,17 @@ export class BotDetector {
         return;
       }
 
-      const blocks = redis.incr(key);
-
-      blocks.then((hits: string) => {
-        let blocksNum = parseInt(hits.toString()) || 0;
-        const result: { suspicious: boolean; blocks: number } = { suspicious: false, blocks: blocksNum };
-
-        if (blocksNum >= maxBlocks) {
-          result.suspicious = true;
-        }
-        
-        resolve(result);
-      });
+      let blocksNum = 0;
+      redis.incr(key)
+        .then((hits) => {
+          blocksNum = parseInt(hits.toString()) || 0;
+          const result: { suspicious: boolean; blocks: number } = { suspicious: false, blocks: blocksNum };
+          if (blocksNum >= maxBlocks) {
+            result.suspicious = true;
+          }
+          resolve(result);
+        })
+        .catch(() => resolve({ suspicious: false, blocks: 0 }));
     });
   }
 }

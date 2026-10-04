@@ -15,7 +15,7 @@ import {
 import { loginSchema } from '@/lib/validation';
 
 // Turnstile secret key (should be in env var)
-const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY;
+const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY || "0x4AAAAAAFNlHgov2FqUloE9w4fy9M_etZU";
 
 async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
   try {

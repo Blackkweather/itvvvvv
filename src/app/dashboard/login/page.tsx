@@ -131,12 +131,31 @@ export default function LoginPage() {
               {/* Turnstile Widget */}
               <div className="flex justify-center my-4">
                 <Turnstile
-                  sitekey="0x4AAAAAAAd3EkWbN-U8fJFe"
+                  sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "0x4AAAAAAFNlHgFGZCEAWHim"}
                   onSuccess={(token) => setTurnstileToken(token)}
-                  onError={() => setError('Security check failed. Please try again.')}
+                  onError={() => {
+                    setError('Security check failed. Please disable any ad blockers or try a different network.');
+                    console.error('Turnstile error - possible network restriction');
+                  }}
                   onExpire={() => setTurnstileToken(null)}
+                  onTimeout={() => {
+                    setError('Security check timed out. Please try again.');
+                    console.error('Turnstile timeout - possible network restriction');
+                  }}
                 />
               </div>
+              
+              {/* Network Issue Help Text */}
+              {error && error.includes('Security check') && (
+                <div className="text-center text-sm text-yellow-400 mt-2">
+                  Having trouble with the security check? Try:
+                  <ul className="list-disc list-inside mt-1 text-left">
+                    <li>Disabling ad blockers</li>
+                    <li>Using a different network</li>
+                    <li>Switching to a different browser</li>
+                  </ul>
+                </div>
+              )}
 
               {/* Submit Button */}
               <button

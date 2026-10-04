@@ -64,7 +64,7 @@ const brandCards = [
     { name: "Hulu", logo: "/images/streaming-logos/hulu-seeklogo.png" },
     { name: "Paramount+", logo: "/images/streaming-logos/paramount-seeklogo.png" },
     { name: "ESPN", logo: "/images/streaming-logos/espn-seeklogo.png" },
-    { name: "DAZN", logo: "/images/streaming-logos/dazn-seeklogo.png" },
+    { name: "DAZN", logo: "/images/streaming-logos/dazn-logo.png" },
     { name: "UFC", logo: "/images/streaming-logos/ufc-seeklogo.png" },
     { name: "NBA", logo: "/images/streaming-logos/nba-seeklogo.png" },
     { name: "NFL", logo: "/images/streaming-logos/nfl-seeklogo.png" },

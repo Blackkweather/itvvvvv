@@ -5,20 +5,34 @@ import { Tv, Trophy, Film } from 'lucide-react';
 const LOGO_DIR = '/images/streaming-logos';
 
 const SPORTS = [
-  { name: 'beIN Sports', file: 'bein-sports-seeklogo.png' },
-  { name: 'Sky Sports', file: 'sky-sports-seeklogo.png' },
+  { name: 'beIN Sports', file: 'bein-sports-logo.png' },
+  { name: 'Sky Sports', file: 'sky-sports-logo.png' },
   { name: 'Premier League', file: 'new-premier-league-2016-17-seeklogo.png' },
   { name: 'UEFA Champions League', file: 'uefa-champions-league-seeklogo.png' },
+  { name: 'UEFA Europa League', file: 'uefa-europa-league-logo.png', tall: true },
+  { name: 'FIFA', file: 'fifa-logo.png' },
   { name: 'LaLiga', file: 'laliga-seeklogo.png' },
-  { name: 'Bundesliga', file: 'bundesliga-seeklogo.png' },
-  { name: 'DAZN', file: 'dazn-seeklogo.png' },
+  { name: 'Serie A', file: 'serie-a-logo.png', tall: true },
+  { name: 'Bundesliga', file: 'bundesliga-logo.png', tall: true },
+  { name: 'Ligue 1', file: 'ligue-1-logo.png', tall: true },
+  { name: 'DAZN', file: 'dazn-logo.png', tall: true },
   { name: 'ESPN', file: 'espn-seeklogo.png' },
   { name: 'NBA', file: 'nba-seeklogo.png' },
-  { name: 'NFL', file: 'nfl-seeklogo.png' },
+  { name: 'NFL', file: 'nfl-seeklogo.png', tall: true },
+  { name: 'NHL', file: 'nhl-logo.png', tall: true },
+  { name: 'MLB', file: 'major-league-baseball-seeklogo.png' },
+  { name: 'MLS', file: 'mls-logo.png', tall: true },
+  { name: 'NCAA', file: 'ncaa-logo.png', tall: true },
   { name: 'UFC', file: 'ufc-seeklogo.png' },
+  { name: 'PFL', file: 'pfl-logo.png', tall: true },
+  { name: 'WWE', file: 'wwe-logo.png', tall: true },
+  { name: 'Top Rank Boxing', file: 'top-rank-logo.png' },
   { name: 'Formula 1', file: 'formula-1-seeklogo.png' },
   { name: 'MotoGP', file: 'motogp-2007-seeklogo.png' },
-  { name: 'MLB', file: 'major-league-baseball-seeklogo.png' },
+  { name: 'ATP Tour', file: 'atp-tour-logo.png' },
+  { name: 'PGA Tour', file: 'pga-tour-logo.png', tall: true },
+  { name: 'ICC Cricket', file: 'icc-logo.png' },
+  { name: 'Six Nations Rugby', file: 'six-nations-logo.png' },
 ];
 
 const ENTERTAINMENT = [
@@ -30,11 +44,11 @@ const ENTERTAINMENT = [
   { name: 'Hulu', file: 'hulu-seeklogo.png' },
   { name: 'Paramount', file: 'paramount-seeklogo.png' },
   { name: 'Discovery', file: 'discovery-channel-seeklogo.png' },
-  { name: 'National Geographic', file: 'national-geographic-seeklogo.png' },
+  { name: 'National Geographic', file: 'national-geographic-logo.png' },
   { name: 'CNN', file: 'cnn-seeklogo.png' },
   { name: 'BBC News', file: 'bbc-news-seeklogo.png' },
   { name: 'fuboTV', file: 'fubotv-seeklogo.png' },
-  { name: 'CuriosityStream', file: 'curiosity-stream-seeklogo.png' },
+  { name: 'CuriosityStream', file: 'curiositystream-logo.png' },
 ];
 
 const STATS = [
@@ -52,7 +66,8 @@ function LogoRow({ logos, reverse = false }: { logos: typeof SPORTS; reverse?: b
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-background to-transparent" />
       <div
         className="ticker-track py-2"
-        style={{ animationDuration: '55s', animationDirection: reverse ? 'reverse' : 'normal' }}
+        // Scale duration with logo count so every row scrolls at the same speed
+        style={{ animationDuration: `${logos.length * 4}s`, animationDirection: reverse ? 'reverse' : 'normal' }}
       >
         {loop.map((logo, i) => (
           <div
@@ -65,7 +80,7 @@ function LogoRow({ logos, reverse = false }: { logos: typeof SPORTS; reverse?: b
               alt={i < logos.length ? logo.name : ''}
               width={140}
               height={56}
-              className="h-9 w-auto max-w-full object-contain sm:h-11"
+              className={`w-auto max-w-full object-contain ${logo.tall ? 'h-12 sm:h-14' : 'h-9 sm:h-11'}`}
             />
           </div>
         ))}
@@ -80,12 +95,6 @@ export function ChannelsBanner() {
       <div className="section-padding relative z-10 mx-auto mb-10 max-w-7xl">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 backdrop-blur-md">
-              <Tv className="h-3.5 w-3.5 text-primary" />
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground/80">
-                Channels included
-              </span>
-            </div>
             <h2 className="text-3xl font-black uppercase leading-[0.9] tracking-tighter sm:text-4xl md:text-5xl">
               Every channel. <span className="text-primary">One plan.</span>
             </h2>

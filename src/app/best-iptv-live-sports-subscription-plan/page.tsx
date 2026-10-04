@@ -5,20 +5,31 @@ import StartingPrice from './components/StartingPrice'
 import {
   ArrowRight,
   BadgePercent,
+  Bike,
+  CalendarDays,
   Check,
   ChevronDown,
   Crown,
+  Dumbbell,
+  Earth,
   Film,
+  Flag,
+  Gauge,
+  Globe,
+  Goal,
   Mail,
   MonitorPlay,
   MousePointerClick,
   Play,
   Quote,
   Smartphone,
+  Swords,
+  Target,
   Star,
   Timer,
   Trophy,
   Tv,
+  Volleyball,
   type LucideIcon,
 } from 'lucide-react'
 
@@ -38,11 +49,48 @@ export const metadata: Metadata = {
 
 const features: { icon: LucideIcon; title: string; description: string }[] = [
   { icon: Tv, title: '30 000+ Live Channels', description: 'Sports, news, entertainment, kids, documentaries — every channel you could want, from every corner of the globe.' },
-  { icon: Trophy, title: 'All Major Sports', description: 'Premier League, La Liga, NBA, NFL, UFC, F1, Champions League, WWE, and more. Never miss a match.' },
+  { icon: Trophy, title: 'All Major Sports', description: 'Football, US sports, fight nights, motorsport, tennis, cricket, rugby, golf and more — 85+ competitions live. Never miss a match.' },
   { icon: MonitorPlay, title: '4K & FHD Quality', description: 'Crystal-clear 4K resolution on supported channels. Anti-freeze technology for buffer-free streaming.' },
   { icon: Smartphone, title: 'Works on Every Device', description: 'Smart TV, Firestick, Android, iOS, PC, MAG box, Enigma, VLC. One subscription, all devices.' },
   { icon: Film, title: '120 000+ Movies & Series (VOD)', description: 'Latest releases, classics, Netflix-style browsing. Updated daily with new content.' },
   { icon: Timer, title: '7-Day Free Trial', description: 'Test everything risk-free. No commitment, instant activation, cancel anytime.' },
+]
+
+// Each competition appears once across the page — big one-off events live in sportsEvents.
+const sportsCategories: { icon: LucideIcon; sport: string; competitions: string[] }[] = [
+  { icon: Goal, sport: 'European Football', competitions: ['Premier League', 'La Liga', 'Serie A', 'Bundesliga', 'Ligue 1', 'Eredivisie', 'Primeira Liga', 'Scottish Premiership', 'EFL Championship', 'FA Cup', 'Copa del Rey', 'Coppa Italia', 'DFB-Pokal', 'Carabao Cup'] },
+  { icon: Earth, sport: 'Continental & International', competitions: ['UEFA Champions League', 'UEFA Europa League', 'UEFA Conference League', 'UEFA Nations League', 'World Cup Qualifiers', 'Copa Libertadores', 'Copa Sudamericana', 'AFC Champions League Elite', 'CAF Champions League'] },
+  { icon: Globe, sport: 'Football Worldwide', competitions: ['Saudi Pro League', 'Botola Pro', 'Egyptian Premier League', 'Qatar Stars League', 'MLS', 'Liga MX', 'Brasileirão', 'Liga Profesional Argentina', 'J1 League'] },
+  { icon: Trophy, sport: 'American Sports', competitions: ['NFL', 'NBA', 'MLB', 'NHL', 'College Football', 'College Basketball', 'WNBA'] },
+  { icon: Swords, sport: 'Combat Sports', competitions: ['UFC', 'Boxing World Title Fights', 'PFL', 'ONE Championship', 'WWE Raw', 'WWE SmackDown', 'WWE Premium Live Events'] },
+  { icon: Gauge, sport: 'Motorsport', competitions: ['Formula 1', 'Formula 2', 'MotoGP', 'NASCAR Cup Series', 'IndyCar', 'World Endurance Championship', 'Formula E', 'World Rally Championship'] },
+  { icon: Volleyball, sport: 'Tennis', competitions: ['Roland-Garros', 'US Open', 'ATP Tour', 'WTA Tour', 'ATP Finals', 'Davis Cup', 'Billie Jean King Cup'] },
+  { icon: Target, sport: 'Cricket', competitions: ['IPL', 'Test & ODI Internationals', 'T20 Internationals', 'Big Bash League', 'Pakistan Super League', 'The Hundred', 'SA20'] },
+  { icon: Dumbbell, sport: 'Rugby', competitions: ['The Rugby Championship', 'Top 14', 'Premiership Rugby', 'United Rugby Championship', 'Champions Cup', 'Super Rugby Pacific', 'NRL'] },
+  { icon: Flag, sport: 'Golf', competitions: ['PGA Championship', 'U.S. Open (Golf)', 'The Open Championship', 'PGA Tour', 'DP World Tour', 'LIV Golf', 'Ryder Cup'] },
+  { icon: Bike, sport: 'Cycling & More', competitions: ["Giro d'Italia", 'La Vuelta', 'EuroLeague Basketball', 'EHF Champions League', 'Diamond League Athletics', 'World Snooker Championship', 'Cheltenham & Grand National'] },
+]
+
+const totalCompetitions = sportsCategories.reduce((n, c) => n + c.competitions.length, 0)
+
+const sportsEvents: { date: string; event: string; detail: string }[] = [
+  { date: 'Oct 2026', event: 'MLB World Series', detail: 'Every game of the Fall Classic' },
+  { date: 'Nov 2026', event: 'Las Vegas Grand Prix', detail: 'F1 night race on the Strip' },
+  { date: 'Dec 2026', event: 'Abu Dhabi Grand Prix', detail: 'F1 season finale' },
+  { date: 'Dec 2026 – Jan 2027', event: 'PDC World Darts Championship', detail: 'Alexandra Palace, London' },
+  { date: 'Jan 2027', event: 'Australian Open', detail: 'First tennis Grand Slam of the year' },
+  { date: '14 Feb 2027', event: 'Super Bowl LXI', detail: 'SoFi Stadium, Los Angeles' },
+  { date: 'Feb – Mar 2027', event: 'Six Nations', detail: 'Every rugby match, live' },
+  { date: 'Mar – Apr 2027', event: 'March Madness', detail: 'NCAA basketball tournament' },
+  { date: 'Apr 2027', event: 'The Masters', detail: 'Augusta National' },
+  { date: '5 Jun 2027', event: 'Champions League Final', detail: 'Metropolitano, Madrid' },
+  { date: 'Jun 2027', event: '24 Hours of Le Mans', detail: 'Endurance racing, start to finish' },
+  { date: '19 Jun – 17 Jul 2027', event: 'Africa Cup of Nations', detail: 'Kenya, Uganda & Tanzania' },
+  { date: 'Jun – Jul 2027', event: "FIFA Women's World Cup", detail: 'Brazil' },
+  { date: '28 Jun – 11 Jul 2027', event: 'Wimbledon', detail: 'All England Club, London' },
+  { date: 'Jul 2027', event: 'Tour de France', detail: 'All 21 stages' },
+  { date: '1 Oct – 13 Nov 2027', event: 'Rugby World Cup', detail: 'Australia' },
+  { date: 'Oct – Nov 2027', event: 'Cricket World Cup', detail: 'South Africa, Zimbabwe & Namibia' },
 ]
 
 const steps: { icon: LucideIcon; title: string; description: string }[] = [
@@ -58,7 +106,7 @@ const testimonials = [
 ]
 
 const faqs = [
-  { question: 'What is the best IPTV subscription for live sports?', answer: 'ProStream offers 30 000+ channels including all major sports: Premier League, La Liga, NBA, NFL, UFC, F1, Champions League, WWE, and more — all in HD and 4K.' },
+  { question: 'What is the best IPTV subscription for live sports?', answer: 'ProStream covers 85+ live competitions across football, American sports, combat sports, motorsport, tennis, cricket, rugby, golf and more — all in HD and 4K. See the full list in the Live Sports section above.' },
   { question: 'Can I try before I buy?', answer: 'Yes! We offer a 7-day free trial with full access to all channels and features. No credit card required.' },
   { question: 'What devices are supported?', answer: 'Smart TV (Samsung, LG, Sony), Amazon Firestick, Android TV, iPhone/iPad, PC/Mac, MAG boxes, Enigma, VLC, and more. One subscription works on all devices.' },
   { question: 'Is the IPTV service stable?', answer: 'Yes. Our anti-freeze technology ensures smooth streaming in 4K and FHD. 99.9% uptime with dedicated servers worldwide.' },
@@ -152,6 +200,59 @@ export default function BestIptvSportsPage() {
                 <p className="text-sm leading-relaxed text-[#a0a0a0]">{description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Live sports coverage */}
+      <section id="live-sports" className="relative section-padding py-16 md:py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-12 text-center md:mb-16">
+            <SectionBadge icon={Trophy} label="Live Sports" />
+            <h2 className="mx-auto max-w-3xl text-3xl font-black uppercase leading-[0.95] tracking-tighter md:text-5xl">
+              Every League, Every Fight, <span className="gradient-text-gold">Every Race</span>
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-sm text-[#a0a0a0] md:text-base">
+              {totalCompetitions}+ competitions across {sportsCategories.length} sports, live in HD and 4K — included in every plan.
+            </p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 md:gap-6">
+            {sportsCategories.map(({ icon: Icon, sport, competitions }) => (
+              <div key={sport} className="glass-strong rounded-3xl p-6 md:p-7">
+                <div className="mb-5 flex items-center gap-3">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-primary/30 bg-primary/10">
+                    <Icon className="h-5 w-5 text-primary" strokeWidth={1.75} />
+                  </span>
+                  <h3 className="text-base font-bold uppercase tracking-tight text-[#f0f0f0]">{sport}</h3>
+                  <span className="ml-auto text-xs tabular-nums text-[#a0a0a0]">{competitions.length}</span>
+                </div>
+                <ul className="flex flex-wrap gap-2">
+                  {competitions.map((name) => (
+                    <li key={name} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs text-[#d0d0d0]">
+                      {name}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          {/* Upcoming big events */}
+          <div className="mt-16">
+            <div className="mb-8 flex items-center gap-3">
+              <CalendarDays className="h-5 w-5 text-primary" strokeWidth={2} />
+              <h3 className="text-xl font-black uppercase tracking-tight text-[#f0f0f0] md:text-2xl">Big Events Coming Up</h3>
+            </div>
+            <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {sportsEvents.map(({ date, event, detail }) => (
+                <li key={event} className="flex flex-col rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5 transition-colors hover:border-primary/30">
+                  <span className="mb-2 text-[10px] font-black uppercase tracking-[0.2em] text-primary">{date}</span>
+                  <span className="text-sm font-bold text-[#f0f0f0]">{event}</span>
+                  <span className="text-xs text-[#a0a0a0]">{detail}</span>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </section>

@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { IconCheck, IconMonitor } from '@/components/ui/Icons';
+import { IconCheck, IconMonitor, IconTrendingUp } from '@/components/ui/Icons';
 import PlanCard, { type Plan } from '@/components/pricing/PlanCard';
 import { useCurrency } from '@/hooks/useCurrency';
 
@@ -26,6 +26,13 @@ export const PLANS: Record<number, Plan[]> = {
      { id: '3D_12M', name: '12 Months', price: 180, originalPrice: 285, duration: 'year', save: 105 },
    ],
  };
+
+// Mock competitor data - in a real implementation this would come from our API
+const COMPETITOR_DATA = {
+  avg_price: 22.99,
+  features: ['1080p Streaming', '150+ Channels', '50K+ VOD Titles'],
+  competitor: 'IPTV Deluxe'
+};
 
 const INCLUDED_IN_EVERY_PLAN = [
   '30,000+ Channels',
@@ -139,6 +146,15 @@ export default function PricingPlans() {
                ))}
              </motion.div>
            </AnimatePresence>
+
+           {/* Dynamic Pricing Notice */}
+           <div className="mt-4 flex items-center gap-2 rounded-xl border border-yellow-500/20 bg-yellow-500/10 px-4 py-3">
+             <IconTrendingUp className="h-5 w-5 text-yellow-500" />
+             <p className="text-xs text-yellow-200">
+               Our plans offer better value than {COMPETITOR_DATA.competitor} 
+               (${COMPETITOR_DATA.avg_price}/mo) with more features including 4K streaming.
+             </p>
+           </div>
 
            {/* Stated once instead of repeated inside all four cards */}
            <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 rounded-xl border border-white/[0.08] bg-white/[0.02] px-4 py-3">

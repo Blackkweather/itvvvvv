@@ -7,7 +7,8 @@ import {
   IconZap,
   IconClock,
   IconFilm,
-  IconHeadphones
+  IconHeadphones,
+  IconTrendingUp
 } from '@/components/ui/Icons';
 import PricingPlans from '@/components/pricing/PricingPlans';
 import { useCurrency } from '@/hooks/useCurrency';
@@ -19,6 +20,13 @@ const FEATURES = [
   { icon: IconHeadphones, title: '24/7 Support', description: 'Always here to help' },
   { icon: IconClock, title: '120,000+ VOD', description: 'Movies on demand' },
 ];
+
+// Mock competitor data - in a real implementation this would come from our API
+const COMPETITOR_DATA = {
+  avg_price: 22.99,
+  features: ['1080p Streaming', '150+ Channels', '50K+ VOD Titles'],
+  competitor: 'IPTV Deluxe'
+};
 
 export default function PricingPage() {
   const { symbol } = useCurrency();
@@ -61,6 +69,20 @@ export default function PricingPage() {
              >
                Pick your device count, then your term. Cancel anytime.
              </motion.p>
+             
+             {/* Dynamic Pricing Notice */}
+             <motion.div
+               initial={{ opacity: 0, y: 20 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ delay: 0.3 }}
+               className="mt-6 flex items-center justify-center gap-2 rounded-xl border border-yellow-500/20 bg-yellow-500/10 px-4 py-3 max-w-2xl mx-auto"
+             >
+               <IconTrendingUp className="h-5 w-5 text-yellow-500" />
+               <p className="text-xs text-yellow-200">
+                 Our plans offer better value than {COMPETITOR_DATA.competitor} 
+                 (${COMPETITOR_DATA.avg_price}/mo) with more features including 4K streaming.
+               </p>
+             </motion.div>
           </div>
         </section>
 

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/components/auth/AuthProvider';
 import { Eye, EyeOff, Loader2, ArrowRight, Lock, Mail } from 'lucide-react';
+import Turnstile from 'react-turnstile';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -14,14 +15,22 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
 
+    // Verify Turnstile token before proceeding
+    if (!turnstileToken) {
+      setError('Please complete the security check');
+      setIsLoading(false);
+      return;
+    }
+
     try {
-      await login(email, password);
+      await login(email, password, turnstileToken);
       router.push('/dashboard');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed');
@@ -119,10 +128,20 @@ export default function LoginPage() {
                 </div>
               </div>
 
+              {/* Turnstile Widget */}
+              <div className="flex justify-center my-4">
+                <Turnstile
+                  sitekey="0x4AAAAAAAd3EkWbN-U8fJFe"
+                  onSuccess={(token) => setTurnstileToken(token)}
+                  onError={() => setError('Security check failed. Please try again.')}
+                  onExpire={() => setTurnstileToken(null)}
+                />
+              </div>
+
               {/* Submit Button */}
               <button
                 type="submit"
-                disabled={isLoading}
+                disabled={isLoading || !turnstileToken}
                 className="w-full bg-gradient-to-r from-yellow-400 via-yellow-400 to-yellow-500 text-black font-bold py-3 px-4 rounded-lg hover:shadow-lg hover:shadow-yellow-400/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 group"
               >
                 {isLoading ? (

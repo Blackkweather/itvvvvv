@@ -5,7 +5,7 @@ import { useState } from 'react';
 export default function LeadMagnetPage() {
   const [phone, setPhone] = useState('');
   const [country, setCountry] = useState('');
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({ phone: '', country: '' } as { phone?: string; country?: string });
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/\D/g, '');

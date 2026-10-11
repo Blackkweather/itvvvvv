@@ -145,15 +145,14 @@ export function HeroBanner() {
                                 href="https://wa.me/34673317263?text=Hello%2C%20I%20want%20free%20trial%20please."
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group relative inline-flex items-center justify-center gap-3 bg-[hsl(var(--primary))] text-black px-10 sm:px-14 py-4 sm:py-5 rounded-xl font-black text-xs sm:text-sm uppercase tracking-widest shadow-[0_0_40px_rgba(255,191,0,0.35)] hover:shadow-[0_0_60px_rgba(255,191,0,0.55)] hover:brightness-110 transition-all duration-300 active:scale-[0.98] min-h-[52px] w-full sm:w-auto"
+                                className="group inline-flex items-center justify-center gap-3 bg-[hsl(var(--primary))] text-black px-10 sm:px-12 py-4 sm:py-[18px] rounded-lg sm:rounded-xl font-semibold text-[11px] sm:text-xs uppercase tracking-[0.25em] shadow-[0_8px_30px_rgba(212,175,55,0.2)] hover:brightness-110 transition-all duration-300 active:scale-[0.98] min-h-[48px] w-full sm:w-auto"
                             >
-                                <span className="absolute inset-0 rounded-xl ring-2 ring-[hsl(var(--primary))] animate-ping opacity-20 pointer-events-none" />
-                                Start Your 24H Free Trial
-                                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                                Free 24-Hour Trial
+                                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                             </a>
                         </Magnetic>
-                        <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-white/50 font-semibold">
-                            No credit card · Instant activation
+                        <span className="text-[10px] uppercase tracking-[0.3em] text-white/40 font-medium">
+                            No payment required
                         </span>
                     </motion.div>
 

@@ -148,7 +148,6 @@ export function HeroBanner() {
                                 className="group relative inline-flex items-center justify-center gap-3 bg-[hsl(var(--primary))] text-black px-10 sm:px-14 py-4 sm:py-5 rounded-xl font-black text-xs sm:text-sm uppercase tracking-widest shadow-[0_0_40px_rgba(255,191,0,0.35)] hover:shadow-[0_0_60px_rgba(255,191,0,0.55)] hover:brightness-110 transition-all duration-300 active:scale-[0.98] min-h-[52px] w-full sm:w-auto"
                             >
                                 <span className="absolute inset-0 rounded-xl ring-2 ring-[hsl(var(--primary))] animate-ping opacity-20 pointer-events-none" />
-                                <Sparkles className="h-4 w-4" />
                                 Start Your 24H Free Trial
                                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                             </a>

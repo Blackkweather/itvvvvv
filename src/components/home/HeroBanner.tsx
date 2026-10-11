@@ -135,6 +135,29 @@ export function HeroBanner() {
                         Optimized solutions. 24/7 assistance. Just ask.
                     </motion.p>
 
+                    {/* Free Trial CTA - primary hook for new visitors */}
+                    <motion.div
+                        variants={itemVariants}
+                        className="flex flex-col items-center gap-3 mb-6 sm:mb-8 px-2 sm:px-0"
+                    >
+                        <Magnetic strength={0.15}>
+                            <a
+                                href="https://wa.me/34673317263?text=Hello%2C%20I%20want%20free%20trial%20please."
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group relative inline-flex items-center justify-center gap-3 bg-[hsl(var(--primary))] text-black px-10 sm:px-14 py-4 sm:py-5 rounded-xl font-black text-xs sm:text-sm uppercase tracking-widest shadow-[0_0_40px_rgba(255,191,0,0.35)] hover:shadow-[0_0_60px_rgba(255,191,0,0.55)] hover:brightness-110 transition-all duration-300 active:scale-[0.98] min-h-[52px] w-full sm:w-auto"
+                            >
+                                <span className="absolute inset-0 rounded-xl ring-2 ring-[hsl(var(--primary))] animate-ping opacity-20 pointer-events-none" />
+                                <Sparkles className="h-4 w-4" />
+                                Start Your 24H Free Trial
+                                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                            </a>
+                        </Magnetic>
+                        <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-white/50 font-semibold">
+                            No credit card · Instant activation
+                        </span>
+                    </motion.div>
+
                     {/* Minimalist CTAs - Touch optimized */}
                     <motion.div
                         variants={itemVariants}
